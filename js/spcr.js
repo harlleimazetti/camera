@@ -37,6 +37,7 @@ $(document).on('click', '#capturar_imagem', function()
 function onSuccess(imageURI) {
     var image = document.getElementById('visualizacao_imagem');
     image.src = imageURI;
+	alert(imageURI);
 }
 
 function onFail(message) {
