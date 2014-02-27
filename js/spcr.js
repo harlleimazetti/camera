@@ -30,22 +30,19 @@ $(document).on('click', '#scan', function()
 
 $(document).on('click', '#capturar_imagem', function()
 {
-	navigator.camera.getPicture(onCameraOk, onCameraFalha,
-	{
-		quality: 50,
+	navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
 		destinationType: Camera.DestinationType.DATA_URL
 	});
 });
 
-function onCameraOk(imageURI) {
-	var image = document.getElementById('visualizacao_imagem');
-	image.src = imageURI;
+function onSuccess(imageData) {
+    var image = document.getElementById('visualizacao_imagem');
+    image.src = "data:image/jpeg;base64," + imageData;
 }
 
-function onCameraFalha(message) {
+function onFail(message) {
 	toast('Falha: ' + message);
 }
-
 
 $(document).on('pageshow', '#evidencia_lista', function()
 {
