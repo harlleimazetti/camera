@@ -117,6 +117,15 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 	} else {
 		var evidencia_id = sessionStorage.evidencia_id;
 		$('#operacao_bd').val(operacao_bd);
+		$('#id').val(evidencia_id);
+		$('#data').val('');
+		$('#hora').val('');
+		$('#codigo').val('');
+		$('#nome_perito').val('');
+		$('#coordenadas').val('');
+		$('#obs').val('');
+		$('#imagem_uri').val('');
+		$('#visualizacao_imagem').attr('src', '');
 	}
 });
 
@@ -140,4 +149,12 @@ $(document).on('click', '#btn_evidencia_salvar', function(event)
 $(document).on('click', '#btn_evidencia_limpar', function(event)
 {
 	event.preventDefault();
+	$('#data').val('');
+	$('#hora').val('');
+	$('#codigo').val('');
+	$('#nome_perito').val('');
+	$('#coordenadas').val('');
+	$('#obs').val('');
+	$('#imagem_uri').val('');
+	$('#visualizacao_imagem').attr('src', '');
 });

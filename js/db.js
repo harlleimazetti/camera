@@ -3,8 +3,8 @@ db.transaction (function (transaction)
 {
 	console.log('Configurando Banco de Dados...');
 
-	var sql = "DROP TABLE evidencia";
-	transaction.executeSql (sql, undefined, function() { }, error);
+	//var sql = "DROP TABLE evidencia";
+	//transaction.executeSql (sql, undefined, function() { }, error);
 	
 	var sql = "CREATE TABLE IF NOT EXISTS evidencia " +
 		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
