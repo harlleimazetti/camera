@@ -27,10 +27,10 @@ $(document).on('click', '#scan', function()
 			var campo = '#' + sessionStorage.campo_foco;
 			$(campo).val(result.text);
 		}
-		alert("We got a barcode\n" +
+		/*alert("We got a barcode\n" +
 		"Result: " + result.text + "\n" +
 		"Format: " + result.format + "\n" +
-		"Cancelled: " + result.cancelled);
+		"Cancelled: " + result.cancelled);*/
 	}, function (error) { 
 		console.log("Scanning failed: ", error); 
 	});
