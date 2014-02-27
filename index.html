@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dados Perícia</title>
+	<title>SPCR</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
@@ -18,9 +18,6 @@
     <link rel="stylesheet" href="css/spcr.css" />
     
     <meta charset="utf-8">
-    
-<script type="text/javascript" charset="utf-8">
-</script>
 </head>
 <body>
 	<div data-role="page" id="inicio" data-theme="a">
@@ -136,11 +133,11 @@
                 <label for="obs" class="ui-hidden-accessible">Observações:</label>
                 <input type="text" name="obs" id="obs" value="" placeholder="Observaçoes">
                 
-                <button onclick="capturePhoto();">Capturar Imagem</button>
+                <button id="capturar_imagem">Capturar Imagem</button>
                 
                 <button data-theme="b" id="btn_evidencia_salvar">Salvar</button>
 
-				<img style="display:none;width:320px;height:320px;" id="smallImage" src="" />
+				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
 				<img style="display:none;" id="largeImage" src="" />
             
 			</form>

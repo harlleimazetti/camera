@@ -1,11 +1,3 @@
-document.addEventListener("deviceready",onDeviceReady,false);
-function onDeviceReady() {
-	pictureSource=navigator.camera.PictureSourceType;
-	destinationType=navigator.camera.DestinationType;
-	var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-	db.transaction(populateDB, errorCB, successCB);
-}
-
 $(document).on('focus', '#evidencia_form input', function()
 {
 	sessionStorage.campo_foco = $(this).attr('id');
@@ -35,6 +27,25 @@ $(document).on('click', '#scan', function()
 		console.log("Scanning failed: ", error); 
 	});
 });
+
+$(document).on('click', '#capturar_imagem', function()
+{
+	navigator.camera.getPicture(onCameraOk, onCameraFalha,
+	{
+		quality: 50,
+		destinationType: Camera.DestinationType.FILE_URI
+	});
+});
+
+function onCameraOk(imageURI) {
+	var image = document.getElementById('visualizacao_imagem');
+	image.src = imageURI;
+}
+
+function onCameraFalha(message) {
+	toast('Falha: ' + message);
+}
+
 
 $(document).on('pageshow', '#evidencia_lista', function()
 {
