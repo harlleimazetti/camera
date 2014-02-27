@@ -44,8 +44,9 @@ function onFail(message) {
     toast('Falha: ' + message);
 }
 
-$(document).on('click', '#capturar_coordenadas', function()
+$(document).on('click', '#capturar_coordenadas', function(event)
 {
+	event.preventDefault();
 	navigator.geolocation.getCurrentPosition(onGPSSuccess, onGPSError);
 });
 
