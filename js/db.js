@@ -14,8 +14,8 @@ db.transaction (function (transaction)
 		"hora TIME, " +
 		"nome_perito VARCHAR(50), " +
 		"coordenadas VARCHAR(200), " +
-		"obs TEXT " +
-		"imagem BLOB " +
+		"obs TEXT, " +
+		"imagem BLOB, " +
 		"imagem_uri TEXT " +
 		")"
 	transaction.executeSql (sql, undefined, function() { }, error);
@@ -108,7 +108,8 @@ $(document).on('click', '#mostrar_registros', function()
 					var hora = row.hora;
 					var coordenadas = row.coordenadas;
 					var obs = row.obs;
-					html += "<li>" + "ID: " + id + ", TIPO_ID: " + tipo_evidencia_id + ", Código: " + codigo + ", Data: " + data + ", Hora: " + hora + ", Coordenadas: " + coordenadas + ", OBS: " + obs + "</li>";
+					var imagem_uri = row.imagem_uri;
+					html += "<li>" + "ID: " + id + ", TIPO_ID: " + tipo_evidencia_id + ", Código: " + codigo + ", Data: " + data + ", Hora: " + hora + ", Coordenadas: " + coordenadas + ", OBS: " + obs + ", Imagem URI: " + imagem_uri + "</li>";
 				}
 			}
 				else
