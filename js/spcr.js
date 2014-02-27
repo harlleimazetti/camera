@@ -37,7 +37,7 @@ $(document).on('click', '#capturar_imagem', function()
 function onSuccess(imageURI) {
     var image = document.getElementById('visualizacao_imagem');
     image.src = imageURI;
-	alert(imageURI);
+	$('#imagem_uri').val(imageURI);
 }
 
 function onFail(message) {
@@ -111,11 +111,21 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 			$('#nome_perito').val(evidencia.nome_perito);
 			$('#coordenadas').val(evidencia.coordenadas);
 			$('#obs').val(evidencia.obs);
+			$('#imagem_uri').val(evidencia.imagem_uri);
+			$('#visualizacao_imagem').attr('src', evidencia.imagem_uri);
 		});
 	} else {
 		var evidencia_id = sessionStorage.evidencia_id;
 		$('#operacao_bd').val(operacao_bd);
 	}
+});
+
+$(document).on('click', '#btn_evidencia_novo', function(event)
+{
+	event.preventDefault();
+	sessionStorage.evidencia_id = 0;
+	sessionStorage.operacao_bd = 'novo';
+	$.mobile.changePage( "#evidencia_formulario" );
 });
 
 $(document).on('click', '#btn_evidencia_salvar', function(event)
@@ -127,10 +137,7 @@ $(document).on('click', '#btn_evidencia_salvar', function(event)
 	});
 });
 
-$(document).on('click', '#btn_evidencia_novo', function(event)
+$(document).on('click', '#btn_evidencia_limpar', function(event)
 {
 	event.preventDefault();
-	sessionStorage.evidencia_id = 0;
-	sessionStorage.operacao_bd = 'novo';
-	$.mobile.changePage( "#evidencia_formulario" );
 });

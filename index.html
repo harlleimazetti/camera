@@ -110,8 +110,8 @@
 
         	<form action="teste" method="post" id="evidencia_form" name="evidencia_form">
 
-                <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
-                <input type="hidden" name="id" id="id" value="">
+                <input type="text" name="operacao_bd" id="operacao_bd" value="">
+                <input type="text" name="id" id="id" value="">
                 
                 <button id="scan">Escanear QRCode</button>
                 
@@ -133,9 +133,16 @@
                 <label for="obs" class="ui-hidden-accessible">Observações:</label>
                 <input type="text" name="obs" id="obs" value="" placeholder="Observaçoes">
                 
-                <button id="capturar_imagem">Capturar Imagem</button>
+                <input type="text" name="imagem_uri" id="imagem_uri" value="" placeholder="Imagem URI">
                 
-                <button data-theme="b" id="btn_evidencia_salvar">Salvar</button>
+                <button id="capturar_coordenadas">Coordenadas GPS</button>
+                
+                <button id="capturar_imagem">Capturar Imagem</button>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><button data-theme="b" id="btn_evidencia_salvar">Salvar</button></div>
+					<div class="ui-block-b"><button data-theme="d" id="btn_evidencia_limpar">Limpar</button></div>
+				</div><!-- /grid-a -->
 
 				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
 				<img style="display:none;" id="largeImage" src="" />

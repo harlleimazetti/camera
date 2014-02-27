@@ -17,6 +17,7 @@ function get_evidencia(id, fn)
 				evidencia.nome_perito		= row.nome_perito;
 				evidencia.coordenadas		= row.coordenadas;
 				evidencia.obs				= row.obs;
+				evidencia.imagem_uri		= row.imagem_uri;
 				fn(evidencia);
 			}
 		});
@@ -36,7 +37,8 @@ function salvar_evidencia(evidencia, operacao_bd, fn)
 					"hora, " + 
 					"nome_perito, " + 
 					"coordenadas, " + 
-					"obs " + 
+					"obs, " + 
+					"imagem_uri " + 
 				") VALUES ( " +
 					"'" + evidencia.evidencia_tipo_id + "', " + 
 					"'" + evidencia.codigo + "', " + 
@@ -44,7 +46,8 @@ function salvar_evidencia(evidencia, operacao_bd, fn)
 					"'" + evidencia.hora + "', " + 
 					"'" + evidencia.nome_perito + "', " + 
 					"'" + evidencia.coordenadas + "', " + 
-					"'" + evidencia.obs + "'" + 
+					"'" + evidencia.obs + "', " + 
+					"'" + evidencia.imagem_uri + "'" + 
 				")";
 		} else {
 			var sql = "UPDATE evidencia SET " +
@@ -54,7 +57,8 @@ function salvar_evidencia(evidencia, operacao_bd, fn)
 						"hora = '" + evidencia.hora + "', " + 
 						"nome_perito = '" + evidencia.nome_perito + "', " + 
 						"coordenadas = '" + evidencia.coordenadas + "', " + 
-						"obs = '" + evidencia.obs + "'" + 
+						"obs = '" + evidencia.obs + "', " + 
+						"imagem_uri = '" + evidencia.imagem_uri + "'" + 
 					" WHERE id = " + evidencia.id;
 		}
 		tx.executeSql(sql);
