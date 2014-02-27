@@ -1,3 +1,36 @@
+document.addEventListener("deviceready",onDeviceReady,false);
+function onDeviceReady() {
+	pictureSource=navigator.camera.PictureSourceType;
+	destinationType=navigator.camera.DestinationType;
+	var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+	db.transaction(populateDB, errorCB, successCB);
+}
+
+$(document).on('click', '#scan', function()
+{
+	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+	scanner.scan( function (result) {
+		alert("We got a barcode\n" +
+		"Result: " + result.text + "\n" +
+		"Format: " + result.format + "\n" +
+		"Cancelled: " + result.cancelled);
+		console.log("Scanner result: \n" +
+		"text: " + result.text + "\n" +
+		"format: " + result.format + "\n" +
+		"cancelled: " + result.cancelled + "\n");
+		//document.getElementById("info").innerHTML = result.text;
+		console.log(result);
+		/*
+		if (args.format == "QR_CODE") {
+			window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
+		}
+		*/
+
+        }, function (error) { 
+            console.log("Scanning failed: ", error); 
+        });
+});
+
 $(document).on('pageshow', '#evidencia_lista', function()
 {
 	$('#lista_evidencia').empty();
