@@ -9,7 +9,6 @@ function onDeviceReady() {
 $(document).on('focus', '#evidencia_form input', function()
 {
 	sessionStorage.campo_foco = $(this).attr('id');
-	alert(sessionStorage.campo_foco);
 });
 
 $(document).on('click', '#scan', function()
