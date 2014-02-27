@@ -6,29 +6,35 @@ function onDeviceReady() {
 	db.transaction(populateDB, errorCB, successCB);
 }
 
+$(document).on('focus', '#evidencia_form input', function()
+{
+	sessionStorage.campo_foco = $(this).attr('id');
+	alert(sessionStorage.campo_foco);
+});
+
 $(document).on('click', '#scan', function()
 {
 	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-	scanner.scan( function (result) {
+	scanner.scan( function (result)
+	{
+		try
+		{
+			var ev = jQuery.parseJSON(result.text);
+			$('#codigo').val(ev.codigo);
+			$('#nome_perito').val(ev.nome_perito);
+		}
+		catch(e)
+		{
+			var campo = '#' + sessionStorage.campo_foco;
+			$(campo).val(result.text);
+		}
 		alert("We got a barcode\n" +
 		"Result: " + result.text + "\n" +
 		"Format: " + result.format + "\n" +
 		"Cancelled: " + result.cancelled);
-		console.log("Scanner result: \n" +
-		"text: " + result.text + "\n" +
-		"format: " + result.format + "\n" +
-		"cancelled: " + result.cancelled + "\n");
-		//document.getElementById("info").innerHTML = result.text;
-		console.log(result);
-		/*
-		if (args.format == "QR_CODE") {
-			window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
-		}
-		*/
-
-        }, function (error) { 
-            console.log("Scanning failed: ", error); 
-        });
+	}, function (error) { 
+		console.log("Scanning failed: ", error); 
+	});
 });
 
 $(document).on('pageshow', '#evidencia_lista', function()
