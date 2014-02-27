@@ -18,7 +18,7 @@ $(document).on('pageshow', '#evidencia_lista', function()
 					var codigo		= row.codigo;
 					var nome_perito	= row.nome_perito;
 					var obs			= row.obs;
-					output += '<li data-id="' + id + '"><a href="#formulario" data-transition="slide"><h2>' + nome_perito + '</h2><p><strong>' + data + ', ' + hora + '</strong></p><p>' + obs + '</p><p class="ui-li-aside"><strong>' + codigo + '</strong></p></a></li>';
+					output += '<li data-id="' + id + '"><a href="#formulario"><h2>' + nome_perito + '</h2><p><strong>' + data + ', ' + hora + '</strong></p><p>' + obs + '</p><p class="ui-li-aside"><strong>' + codigo + '</strong></p></a></li>';
 				}
 				$('#lista_evidencia').append(output).listview('refresh');
 			}
@@ -31,7 +31,7 @@ $(document).on('click', '#lista_evidencia li', function()
 	evidencia_id = $(this).data('id');
 	sessionStorage.evidencia_id = evidencia_id;
 	sessionStorage.operacao_bd = 'editar';
-	$.mobile.changePage( "#evidencia_formulario", { transition : 'slide' } );
+	$.mobile.changePage( "#evidencia_formulario" );
 });
 
 $(document).on('pagebeforeshow', '#evidencia_formulario', function()
@@ -70,5 +70,5 @@ $(document).on('click', '#btn_evidencia_novo', function(event)
 	event.preventDefault();
 	sessionStorage.evidencia_id = 0;
 	sessionStorage.operacao_bd = 'novo';
-	$.mobile.changePage( "#evidencia_formulario", { transition : 'slide' } );
+	$.mobile.changePage( "#evidencia_formulario" );
 });
