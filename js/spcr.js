@@ -30,6 +30,21 @@ $(document).on('click', '#scan', function()
 
 $(document).on('click', '#capturar_imagem', function()
 {
+	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
+	destinationType: Camera.DestinationType.FILE_URI }); 
+});
+
+function onSuccess(imageURI) {
+    var image = document.getElementById('visualizacao_imagem');
+    image.src = imageURI;
+}
+
+function onFail(message) {
+    toast('Falha: ' + message);
+}
+
+/*$(document).on('click', '#capturar_imagem', function()
+{
 	navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
 		destinationType: Camera.DestinationType.DATA_URL
 	});
@@ -42,7 +57,7 @@ function onSuccess(imageData) {
 
 function onFail(message) {
 	toast('Falha: ' + message);
-}
+}*/
 
 $(document).on('pageshow', '#evidencia_lista', function()
 {
