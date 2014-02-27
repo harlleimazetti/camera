@@ -1,0 +1,23 @@
+* {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    /*-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+#menu_principal p {
+	font-size:1em;
+	font-weight:bold;
+	margin:0.2em 0;
+}
+#menu_principal a {
+	margin:0;
+}
+#menu_principal .icone {
+	color:#999;
+	width:1em;
+	font-size:1.2em;
+	float:left;
+	margin:0.7em 0.1em 0 0.7em;
+	text-align:center;
+}
