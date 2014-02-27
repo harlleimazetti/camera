@@ -51,7 +51,7 @@ $(document).on('click', '#capturar_coordenadas', function(event)
 });
 
 var onGPSSuccess = function(position) {
-	var coordenadas = position.coords.latitude + ', ' + position.coords.longitude + ', ' + position.coords.altitude;
+	var coordenadas = position.coords.latitude + ', ' + position.coords.longitude;
 	$('#coordenadas').val(coordenadas);
     /*alert('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
