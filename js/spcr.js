@@ -33,7 +33,7 @@ $(document).on('click', '#capturar_imagem', function()
 	navigator.camera.getPicture(onCameraOk, onCameraFalha,
 	{
 		quality: 50,
-		destinationType: Camera.DestinationType.FILE_URI
+		destinationType: Camera.DestinationType.DATA_URL
 	});
 });
 
