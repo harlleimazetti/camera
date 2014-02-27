@@ -44,21 +44,29 @@ function onFail(message) {
     toast('Falha: ' + message);
 }
 
-/*$(document).on('click', '#capturar_imagem', function()
+$(document).on('click', '#capturar_coordenadas', function()
 {
-	navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-		destinationType: Camera.DestinationType.DATA_URL
-	});
+	navigator.geolocation.getCurrentPosition(onGPSSuccess, onGPSError);
 });
 
-function onSuccess(imageData) {
-    var image = document.getElementById('visualizacao_imagem');
-    image.src = "data:image/jpeg;base64," + imageData;
-}
+var onGPSSuccess = function(position) {
+	var coordenadas = position.coords.latitude + ', ' + position.coords.longitude + ', ' + position.coords.altitude;
+	$('#coordenadas').val(coordenadas);
+    /*alert('Latitude: '          + position.coords.latitude          + '\n' +
+          'Longitude: '         + position.coords.longitude         + '\n' +
+          'Altitude: '          + position.coords.altitude          + '\n' +
+          'Accuracy: '          + position.coords.accuracy          + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          'Heading: '           + position.coords.heading           + '\n' +
+          'Speed: '             + position.coords.speed             + '\n' +
+          'Timestamp: '         + position.timestamp                + '\n');*/
+};
 
-function onFail(message) {
-	toast('Falha: ' + message);
-}*/
+// onError Callback receives a PositionError object
+//
+function onGPSError(error) {
+    toast('Erro: ' + error.code + ', Descrição: ' + error.message);
+}
 
 $(document).on('pageshow', '#evidencia_lista', function()
 {
