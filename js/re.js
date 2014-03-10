@@ -13,7 +13,8 @@ function get_all_re(fn)
 					var row = result.rows.item(i);
 					re[i] = new Object();
 					re[i].id			= row.id;
-					re[i].data			= row.data;
+					re[i].codigo		= row.codigo;
+					re[i].data			= formata_data(row.data);
 					re[i].hora			= row.hora;
 					re[i].endereco		= row.endereco;
 					re[i].coordenadas	= row.coordenadas;
@@ -35,8 +36,11 @@ function get_re(id, fn)
 		{
 			if (result.rows.length)
 			{
+				var re = new Object();
+				var row = result.rows.item(0);
 				re.id			= row.id;
-				re.data			= row.data;
+				re.codigo		= row.codigo;
+				re.data			= formata_data(row.data);
 				re.hora			= row.hora;
 				re.endereco		= row.endereco;
 				re.coordenadas	= row.coordenadas;

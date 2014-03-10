@@ -14,13 +14,14 @@ function get_all_evidencia(fn)
 					var row = result.rows.item(i);
 					evidencia[i] = new Object();
 					evidencia[i].id					= row.id;
-					evidencia[i].evidencia_tipo_id	= row.tipo_id;
+					evidencia[i].evidencia_tipo_id	= row.evidencia_tipo_id;
 					evidencia[i].re_id				= row.re_id;
 					evidencia[i].codigo				= row.codigo;
 					evidencia[i].data				= formata_data(row.data);
 					evidencia[i].hora				= row.hora;
 					evidencia[i].nome_perito		= row.nome_perito;
 					evidencia[i].coordenadas		= row.coordenadas;
+					evidencia[i].unidade			= row.unidade;
 					evidencia[i].obs				= row.obs;
 					evidencia[i].imagem_uri			= row.imagem_uri;
 				}
@@ -42,12 +43,14 @@ function get_evidencia(id, fn)
 				var evidencia = new Object();
 				var row = result.rows.item(0);
 				evidencia.id				= row.id;
-				evidencia.evidencia_tipo_id	= row.tipo_id;
+				evidencia.evidencia_tipo_id	= row.evidencia_tipo_id;
+				evidencia.re_id				= row.re_id;
 				evidencia.codigo			= row.codigo;
 				evidencia.data				= formata_data(row.data);
 				evidencia.hora				= row.hora;
 				evidencia.nome_perito		= row.nome_perito;
 				evidencia.coordenadas		= row.coordenadas;
+				evidencia.unidade			= row.unidade;
 				evidencia.obs				= row.obs;
 				evidencia.imagem_uri		= row.imagem_uri;
 				fn(evidencia);
@@ -64,31 +67,37 @@ function salvar_evidencia(evidencia, operacao_bd, fn)
 		{
 			var sql = "INSERT INTO evidencia (" +
 					"evidencia_tipo_id, " + 
+					"re_id, " + 
 					"codigo, " + 
 					"data, " + 
 					"hora, " + 
 					"nome_perito, " + 
 					"coordenadas, " + 
+					"unidade, " + 
 					"obs, " + 
 					"imagem_uri " + 
 				") VALUES ( " +
 					"'" + evidencia.evidencia_tipo_id + "', " + 
+					"'" + evidencia.re_id + "', " + 
 					"'" + evidencia.codigo + "', " + 
 					"'" + formata_data_db(evidencia.data) + "', " + 
 					"'" + evidencia.hora + "', " + 
 					"'" + evidencia.nome_perito + "', " + 
 					"'" + evidencia.coordenadas + "', " + 
+					"'" + evidencia.unidade + "', " + 
 					"'" + evidencia.obs + "', " + 
 					"'" + evidencia.imagem_uri + "'" + 
 				")";
 		} else {
 			var sql = "UPDATE evidencia SET " +
 						"evidencia_tipo_id = '" + evidencia.evidencia_tipo_id + "', " +  
+						"re_id = '" + evidencia.re_id + "', " +  
 						"codigo = '" + evidencia.codigo + "', " + 
 						"data = '" + formata_data_db(evidencia.data) + "', " + 
 						"hora = '" + evidencia.hora + "', " + 
 						"nome_perito = '" + evidencia.nome_perito + "', " + 
 						"coordenadas = '" + evidencia.coordenadas + "', " + 
+						"unidade = '" + evidencia.unidade + "', " + 
 						"obs = '" + evidencia.obs + "', " + 
 						"imagem_uri = '" + evidencia.imagem_uri + "'" + 
 					" WHERE id = " + evidencia.id;

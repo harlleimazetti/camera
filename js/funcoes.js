@@ -1,7 +1,7 @@
 function data_atual()
 {
 	var dt = new Date();
-	var d = '' + dt.getDay();
+	var d = '' + getUTCDate();
 	var m = '' + dt.getMonth() + 1;
 	var a = '' + dt.getFullYear();
 	if (m.length < 2) m = '0' + m;

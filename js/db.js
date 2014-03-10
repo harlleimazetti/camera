@@ -15,21 +15,22 @@ db.transaction (function (transaction)
 		"hora TIME, " +
 		"nome_perito VARCHAR(50), " +
 		"coordenadas VARCHAR(200), " +
+		"unidade VARCHAR(200), " +
 		"obs TEXT, " +
 		"imagem BLOB, " +
 		"imagem_uri TEXT " +
 		")"
 	transaction.executeSql (sql, undefined, function() { }, error);
 	
-	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, obs) VALUES ('1', '1', '1', '12345', '2014-02-23','11:00:00','Fulano de Tal','-18.92424, -48.249893','Arrombamento ocorrido à noite na ausência dos proprietários do imóvel. Encontrados vestígios no local.') ";
+	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('1', '1', '1', '12345', '2014-02-23','11:00:00','Fulano de Tal','-18.92424, -48.249893','SBC - São Bernardo do Campo','Arrombamento ocorrido à noite na ausência dos proprietários do imóvel. Encontrados vestígios no local.') ";
 	transaction.executeSql (sql, undefined, function() { }, error);
-	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, obs) VALUES ('2', '2', '1', '54321', '2014-02-24','19:00:00','Beltrano da Silva','-18.92424, -48.249893','Roubo a mão armada na Asa Norte. A vítima levou várias coronhadas na cabeça.') ";
+	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('2', '2', '1', '54321', '2014-02-24','19:00:00','Beltrano da Silva','-18.92424, -48.249893','SBC - São Bernardo do Campo','Roubo a mão armada na Asa Norte. A vítima levou várias coronhadas na cabeça.') ";
 	transaction.executeSql (sql, undefined, function() { }, error);
-	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, obs) VALUES ('3', '3', '1', '98765', '2014-02-24','21:00:00','Ciclano de Alcantara','-18.92424, -48.249893','Agressão doméstica. A vítima alega que o esposo a agrediu enquanto ela dormia.') ";
+	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('3', '3', '1', '98765', '2014-02-24','21:00:00','Ciclano de Alcantara','-18.92424, -48.249893','SBC - São Bernardo do Campo','Agressão doméstica. A vítima alega que o esposo a agrediu enquanto ela dormia.') ";
 	transaction.executeSql (sql, undefined, function() { }, error);
-	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, obs) VALUES ('4', '4', '2', '56789', '2014-02-25','12:00:00','Jose de Sousa','-18.92424, -48.249893','Furto de veículo em Taguatinga. Vítima alega que havia um malote de tranporte de valores no interior do veículo.') ";
+	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('4', '4', '2', '56789', '2014-02-25','12:00:00','Jose de Sousa','-18.92424, -48.249893','SBC - São Bernardo do Campo','Furto de veículo em Taguatinga. Vítima alega que havia um malote de tranporte de valores no interior do veículo.') ";
 	transaction.executeSql (sql, undefined, function() { }, error);
-	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, obs) VALUES ('5', '1', '2', '56712', '2014-02-25','15:00:00','Joao Francisco','-18.92424, -48.249893','Invasão em estabelecimento comercial. Mercadorias e valores do caixa foram subtraídos.') ";
+	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('5', '1', '2', '56712', '2014-02-25','15:00:00','Joao Francisco','-18.92424, -48.249893','SBC - São Bernardo do Campo','Invasão em estabelecimento comercial. Mercadorias e valores do caixa foram subtraídos.') ";
 	transaction.executeSql (sql, undefined, function() { }, error);
 
 	//var sql = "DROP TABLE evidencia_tipo";
@@ -58,6 +59,7 @@ db.transaction (function (transaction)
 	
 	var sql = "CREATE TABLE IF NOT EXISTS re " +
 		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"codigo VARCHAR(50), " +
 		"data DATE, " +
 		"hora TIME, " +
 		"endereco VARCHAR(200), " +
@@ -66,9 +68,9 @@ db.transaction (function (transaction)
 		"obs TEXT)"
 	transaction.executeSql (sql, undefined, function() { }, error);
 	
-	var sql =	" INSERT INTO re (id, data, hora, endereco, coordenadas, crime, obs) VALUES ('1', '2014-03-10', '23:00:00', 'SCS Quadra 01 bloco M sala 930 - Asa Sul - Brasília', '-18.92424, -48.249893', 'Furto em Residência', 'Observações 1')";
+	var sql =	" INSERT INTO re (id, codigo, data, hora, endereco, coordenadas, crime, obs) VALUES ('1', '99110033', '2014-03-10', '23:00:00', 'SCS Quadra 01 bloco M sala 930 - Asa Sul - Brasília', '-18.92424, -48.249893', 'Furto em Residência', 'Observações 1')";
 	transaction.executeSql (sql, undefined, function() { }, error);
-	var sql =	" INSERT INTO re (id, data, hora, endereco, coordenadas, crime, obs) VALUES ('2', '2014-03-10', '23:15:00', 'SCS Quadra 01 bloco G sala 508 - Asa Sul - Brasília','-18.92424, -48.249893','Furto em Escritório','Observações 2')";
+	var sql =	" INSERT INTO re (id, codigo, data, hora, endereco, coordenadas, crime, obs) VALUES ('2', '99110025', '2014-03-10', '23:15:00', 'SCS Quadra 01 bloco G sala 508 - Asa Sul - Brasília','-18.92424, -48.249893','Furto em Escritório','Observações 2')";
 	transaction.executeSql (sql, undefined, function() { }, error);
 });
 
