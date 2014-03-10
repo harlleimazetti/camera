@@ -1,9 +1,11 @@
 function data_atual()
 {
 	var dt = new Date();
-	var d = dt.getDay();
-	var m = dt.getMonth();
-	var a = dt.getFullYear();
+	var d = '' + dt.getDay();
+	var m = '' + dt.getMonth() + 1;
+	var a = '' + dt.getFullYear();
+	if (m.length < 2) m = '0' + m;
+    if (d.length < 2) d = '0' + d;
 	var data = d + '/' + m + '/' + a;
 	return data;
 }
@@ -14,7 +16,10 @@ function hora_atual()
 	var h = dt.getHours();
 	var m = dt.getMinutes();
 	var s = dt.getSeconds();
-	var hora = h + '/' + m + '/' + s;
+	if (h.length < 2) h = '0' + h;
+    if (m.length < 2) m = '0' + m;
+	if (s.length < 2) s = '0' + s;
+	var hora = h + ':' + m + ':' + s;
 	return hora;
 }
 
