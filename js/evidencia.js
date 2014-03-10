@@ -109,3 +109,34 @@ function salvar_evidencia(evidencia, operacao_bd, fn)
 		fn(resultado);
 	});
 }
+
+function excluir_evidencia(id, fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "DELETE FROM evidencia WHERE id = " + id;
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			var resultado = new Object();
+			resultado.status = 1;
+			resultado.mensagem = 'Registro excluído com sucesso';	
+			fn(resultado);
+			/*if (result.rows.length)
+			{
+				var evidencia = new Object();
+				var row = result.rows.item(0);
+				evidencia.id				= row.id;
+				evidencia.evidencia_tipo_id	= row.evidencia_tipo_id;
+				evidencia.re_id				= row.re_id;
+				evidencia.codigo			= row.codigo;
+				evidencia.data				= formata_data(row.data);
+				evidencia.hora				= row.hora;
+				evidencia.nome_perito		= row.nome_perito;
+				evidencia.coordenadas		= row.coordenadas;
+				evidencia.unidade			= row.unidade;
+				evidencia.obs				= row.obs;
+				evidencia.imagem_uri		= row.imagem_uri;
+			}*/
+		});
+	});
+}

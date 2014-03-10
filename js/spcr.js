@@ -81,7 +81,7 @@ $(document).on('pageshow', '#re_lista', function()
 	get_all_re(function(re) {
 		for (var i = 0; i < re.length; i++)
 		{
-			output += '<li data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></li>';
+			output += '<li data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_re').append(output).listview('refresh');
 	});
@@ -104,7 +104,7 @@ $(document).on('pageshow', '#evidencia_lista', function()
 	get_all_evidencia(function(evidencia) {
 		for (var i = 0; i < evidencia.length; i++)
 		{
-			output += '<li data-id="' + evidencia[i].id + '"><a href="#formulario"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].codigo + '</strong></p></a></li>';
+			output += '<li data-id="' + evidencia[i].id + '"><a href="#formulario"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].codigo + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_evidencia').append(output).listview('refresh');
 	});
@@ -116,6 +116,23 @@ $(document).on('click', '#lista_evidencia li', function()
 	sessionStorage.evidencia_id = evidencia_id;
 	sessionStorage.operacao_bd = 'editar';
 	$.mobile.changePage( "#evidencia_formulario" );
+});
+
+$(document).on('click', '#lista_evidencia li .excluir', function(event)
+{
+	evidencia_id = $(this).closest('li').data('id');
+	sessionStorage.evidencia_id = evidencia_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_evidencia(evidencia_id, function(resultado) {
+			$(this).closest('li').remove(function() {
+				toast(resultado.mensagem);
+			});
+		});
+	}
+	$('#lista_evidencia').listview('refresh');
+	event.preventDefault();
+	return false;
 });
 
 $(document).on('pagebeforeshow', '#evidencia_formulario', function()

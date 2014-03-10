@@ -22,7 +22,7 @@ db.transaction (function (transaction)
 		")"
 	transaction.executeSql (sql, undefined, function() { }, error);
 	
-	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('1', '1', '1', '12345', '2014-02-23','11:00:00','Fulano de Tal','-18.92424, -48.249893','SBC - São Bernardo do Campo','Arrombamento ocorrido à noite na ausência dos proprietários do imóvel. Encontrados vestígios no local.') ";
+	/*var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('1', '1', '1', '12345', '2014-02-23','11:00:00','Fulano de Tal','-18.92424, -48.249893','SBC - São Bernardo do Campo','Arrombamento ocorrido à noite na ausência dos proprietários do imóvel. Encontrados vestígios no local.') ";
 	transaction.executeSql (sql, undefined, function() { }, error);
 	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('2', '2', '1', '54321', '2014-02-24','19:00:00','Beltrano da Silva','-18.92424, -48.249893','SBC - São Bernardo do Campo','Roubo a mão armada na Asa Norte. A vítima levou várias coronhadas na cabeça.') ";
 	transaction.executeSql (sql, undefined, function() { }, error);
@@ -31,7 +31,7 @@ db.transaction (function (transaction)
 	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('4', '4', '2', '56789', '2014-02-25','12:00:00','Jose de Sousa','-18.92424, -48.249893','SBC - São Bernardo do Campo','Furto de veículo em Taguatinga. Vítima alega que havia um malote de tranporte de valores no interior do veículo.') ";
 	transaction.executeSql (sql, undefined, function() { }, error);
 	var sql = "INSERT INTO evidencia (id, evidencia_tipo_id, re_id, codigo, data, hora, nome_perito, coordenadas, unidade, obs) VALUES ('5', '1', '2', '56712', '2014-02-25','15:00:00','Joao Francisco','-18.92424, -48.249893','SBC - São Bernardo do Campo','Invasão em estabelecimento comercial. Mercadorias e valores do caixa foram subtraídos.') ";
-	transaction.executeSql (sql, undefined, function() { }, error);
+	transaction.executeSql (sql, undefined, function() { }, error);*/
 
 	//var sql = "DROP TABLE evidencia_tipo";
 	//transaction.executeSql (sql, undefined, function() { }, error);
