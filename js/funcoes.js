@@ -1,3 +1,23 @@
+function data_atual()
+{
+	var dt = new Date();
+	var d = dt.getDay();
+	var m = dt.getMonth();
+	var a = dt.getFullYear();
+	var data = d + '/' + m + '/' + a;
+	return data;
+}
+
+function hora_atual()
+{
+	var dt = new Date();
+	var h = dt.getHours();
+	var m = dt.getMinutes();
+	var s = dt.getSeconds();
+	var hora = h + '/' + m + '/' + s;
+	return hora;
+}
+
 function formata_data (data)
 {
 	d = data.substring(8,10);

@@ -8,6 +8,11 @@ $(document).on('click', '#scan', function()
 	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 	scanner.scan( function (result)
 	{
+		var data = data_atual();
+		var hora = hora_atual();
+		$('#data').val(data);
+		$('#hora').val(hora);
+		$('#capturar_coordenadas').trigger('click');
 		try
 		{
 			var ev = jQuery.parseJSON(result.text);
@@ -71,29 +76,14 @@ function onGPSError(error) {
 
 $(document).on('pageshow', '#evidencia_lista', function()
 {
+	var output = '';
 	$('#lista_evidencia').empty();
-	db.transaction(function (transaction)
-	{
-		var sql = "SELECT * FROM evidencia ORDER BY data, hora";
-		transaction.executeSql (sql, undefined, function (transaction, result)
+	get_all_evidencia(function(evidencia) {
+		for (var i = 0; i < evidencia.length; i++)
 		{
-			var output = '';
-			if (result.rows.length)
-			{
-				for (var i = 0; i < result.rows.length; i++) 
-				{
-					var row = result.rows.item(i);
-					var id			= row.id;
-					var data		= formata_data(row.data);
-					var hora		= row.hora;
-					var codigo		= row.codigo;
-					var nome_perito	= row.nome_perito;
-					var obs			= row.obs;
-					output += '<li data-id="' + id + '"><a href="#formulario"><h2>' + nome_perito + '</h2><p><strong>' + data + ', ' + hora + '</strong></p><p>' + obs + '</p><p class="ui-li-aside"><strong>' + codigo + '</strong></p></a></li>';
-				}
-				$('#lista_evidencia').append(output).listview('refresh');
-			}
-		});
+			output += '<li data-id="' + evidencia[i].id + '"><a href="#formulario"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].codigo + '</strong></p></a></li>';
+		}
+		$('#lista_evidencia').append(output).listview('refresh');
 	});
 });
 
@@ -111,7 +101,7 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 	if (operacao_bd == 'editar')
 	{
 		var evidencia_id = sessionStorage.evidencia_id;
-		get_evidencia(evidencia_id, function(evidencia){
+		get_evidencia(evidencia_id, function(evidencia) {
 			$('#operacao_bd').val(operacao_bd);
 			$('#id').val(evidencia.id);
 			$('#data').val(evidencia.data);
@@ -149,7 +139,8 @@ $(document).on('click', '#btn_evidencia_novo', function(event)
 $(document).on('click', '#btn_evidencia_salvar', function(event)
 {
 	event.preventDefault();
-	var dados = $("#evidencia_form").serializeJSON();
+	var dados = $("#evidencia_form").serialize();
+	alert(dados);
 	salvar_evidencia(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
 	});

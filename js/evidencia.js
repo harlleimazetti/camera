@@ -1,3 +1,35 @@
+function get_all_evidencia(fn)
+{
+	var re_id = sessionStorage.re_id;
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM evidencia WHERE re_id = '" + re_id + "' ORDER BY data, hora";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var evidencia = new Array;
+				for (var i = 0; i < result.rows.length; i++) 
+				{
+					var row = result.rows.item(i);
+					evidencia[i] = new Object();
+					evidencia[i].id					= row.id;
+					evidencia[i].evidencia_tipo_id	= row.tipo_id;
+					evidencia[i].re_id				= row.re_id;
+					evidencia[i].codigo				= row.codigo;
+					evidencia[i].data				= formata_data(row.data);
+					evidencia[i].hora				= row.hora;
+					evidencia[i].nome_perito		= row.nome_perito;
+					evidencia[i].coordenadas		= row.coordenadas;
+					evidencia[i].obs				= row.obs;
+					evidencia[i].imagem_uri			= row.imagem_uri;
+				}
+				fn(evidencia);
+			}
+		});
+	});
+}
+
 function get_evidencia(id, fn)
 {
 	db.transaction(function (tx)

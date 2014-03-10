@@ -25,6 +25,12 @@
 			<ul class="nav-search" data-role="listview" data-theme="a">
 				<li data-icon="delete" data-iconshadow="false" class="ui-icon-nodisc"><a href="#" data-rel="close">Menu principal</a></li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
+                	<i class="icon-archive icone"></i>
+					<a href="#lista">
+						<p>Registro de Entrada</p>
+					</a>
+				</li>
+				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-file-text icone"></i>
 					<a href="#lista">
 						<p>Formulários</p>
@@ -49,9 +55,9 @@
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
-                	<i class="icon-edit icone"></i>
+                	<i class="icon-tags icone"></i>
 					<a href="#evidencia_lista">
-						<p>Alterar Dados</p>
+						<p>Cadeia de Custódia</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
@@ -112,9 +118,20 @@
 
                 <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
                 <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="re_id" id="re_id" value="">
                 
                 <button id="scan">Escanear QRCode</button>
-                
+
+				<select name="evidencia_tipo_id" id="evidencia_tipo_id" data-native-menu="false">
+					<option>Tipo de Vestígio</option>
+					<option value="1">Arma</option>
+                    <option value="2">Digital</option>
+                    <option value="3">Ferramenta</option>
+                    <option value="4">Marcas</option>
+                    <option value="5">Pegada</option>
+                    <option value="6">Pneumático</option>
+				</select>
+            
                 <label for="data" class="ui-hidden-accessible">Data:</label>
                 <input type="text" name="data" id="data" value="" placeholder="Data">
                 
