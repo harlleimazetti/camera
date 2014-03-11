@@ -1,4 +1,4 @@
-function get_all_evidencia_tipo(fn)
+function get_all_evidencia_tipo(fn) 
 {
 	db.transaction(function (tx)
 	{

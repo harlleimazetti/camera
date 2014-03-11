@@ -1,4 +1,4 @@
-$(document).on('focus', '#evidencia_form input', function()
+$(document).on('focus', '#evidencia_form input', function() 
 {
 	sessionStorage.campo_foco = $(this).attr('id');
 });

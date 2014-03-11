@@ -1,4 +1,4 @@
-function data_atual()
+function data_atual() 
 {
 	var dt = new Date();
 	var d = '' + getUTCDate();

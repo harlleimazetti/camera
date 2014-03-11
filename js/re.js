@@ -1,4 +1,4 @@
-function get_all_re(fn)
+function get_all_re(fn) 
 {
 	db.transaction(function (tx)
 	{

@@ -1,4 +1,4 @@
-function get_all_evidencia(fn)
+function get_all_evidencia(fn) 
 {
 	var re_id = sessionStorage.re_id;
 	db.transaction(function (tx)

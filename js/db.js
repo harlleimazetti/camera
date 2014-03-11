@@ -1,4 +1,4 @@
-var db = openDatabase ("spcr", "1.0", "Test", 65535);
+var db = openDatabase ("spcr", "1.0", "Test", 65535); 
 db.transaction (function (transaction) 
 {
 	console.log('Configurando Banco de Dados...');
