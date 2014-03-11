@@ -81,7 +81,7 @@ $(document).on('pageshow', '#re_lista', function()
 	get_all_re(function(re) {
 		for (var i = 0; i < re.length; i++)
 		{
-			output += '<li data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></li>';
 		}
 		$('#lista_re').append(output).listview('refresh');
 	});
@@ -90,8 +90,9 @@ $(document).on('pageshow', '#re_lista', function()
 $(document).on('click', '#lista_re li', function()
 {
 	re_id = $(this).data('id');
-	sessionStorage.re_id = re_id;
-	get_re(re_id, function(re){
+	get_re(re_id, function(re) {
+		sessionStorage.re_id = re.id;
+		sessionStorage.re_codigo = re.codigo;
 		var msg = 'Registro de entrada selecionado <p style="margin-bottom:0"><strong>' + re.codigo + '</strong></p><br>' + re.crime;
 		toast(msg);
 	});
@@ -104,7 +105,7 @@ $(document).on('pageshow', '#evidencia_lista', function()
 	get_all_evidencia(function(evidencia) {
 		for (var i = 0; i < evidencia.length; i++)
 		{
-			output += '<li data-id="' + evidencia[i].id + '"><a href="#formulario"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].codigo + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li id="' + evidencia[i].id + '" data-id="' + evidencia[i].id + '"><a href="#formulario"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].codigo + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_evidencia').append(output).listview('refresh');
 	});
@@ -118,21 +119,31 @@ $(document).on('click', '#lista_evidencia li', function()
 	$.mobile.changePage( "#evidencia_formulario" );
 });
 
-$(document).on('click', '#lista_evidencia li .excluir', function(event)
+$(document).on('click', '#lista_evidencia li .excluir', function()
 {
-	evidencia_id = $(this).closest('li').data('id');
+	$el = $(this).closest('li');
+	evidencia_id = $el.data('id');
 	sessionStorage.evidencia_id = evidencia_id;
 	var resp = confirm('Excluir o registro?');
 	if (resp == true) {
 		excluir_evidencia(evidencia_id, function(resultado) {
-			$(this).closest('li').remove(function() {
-				toast(resultado.mensagem);
-			});
+			$($el).remove();
 		});
 	}
 	$('#lista_evidencia').listview('refresh');
 	event.preventDefault();
-	return false;
+	return false;	
+	/*evidencia_id = $(this).closest('li').data('id');
+	sessionStorage.evidencia_id = evidencia_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_evidencia(evidencia_id, function(resultado) {
+			$('').remove();
+		});
+	}
+	$('#lista_evidencia').listview('refresh');
+	event.preventDefault();
+	return false;*/
 });
 
 $(document).on('pagebeforeshow', '#evidencia_formulario', function()
@@ -146,6 +157,7 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 			$('#id').val(evidencia.id);
 			$('#evidencia_tipo_id').val(evidencia.evidencia_tipo_id).selectmenu('refresh');
 			$('#re_id').val(sessionStorage.re_id);
+			$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
 			$('#data').val(evidencia.data);
 			$('#hora').val(evidencia.hora);
 			$('#codigo').val(evidencia.codigo);
@@ -162,6 +174,7 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 		$('#id').val(evidencia_id);
 		$('#evidencia_tipo_id').val('').selectmenu('refresh');
 		$('#re_id').val(sessionStorage.re_id);
+		$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
 		$('#data').val('');
 		$('#hora').val('');
 		$('#codigo').val('');

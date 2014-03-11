@@ -27,49 +27,49 @@
 				<li data-icon="delete" data-iconshadow="false" class="ui-icon-nodisc"><a href="#" data-rel="close">Menu principal</a></li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-archive icone"></i>
-					<a href="#re_lista">
+					<a href="#re_lista" data-transition="slide">
 						<p>Registro de Entrada</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-file-text icone"></i>
-					<a href="#lista">
+					<a href="#lista" data-transition="slide">
 						<p>Formulários</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-bar-chart icone"></i>
-					<a href="#lista2">
+					<a href="#lista2" data-transition="slide">
 						<p>Sensores</p>
 					</a>
 				</li>                
 				<li class="ui-icon-nodisc" data-iconshadow="false">
 					<i class="icon-tint icone"></i>
-                    <a href="#formulario">
+                    <a href="#formulario" data-transition="slide">
 						<p>Desenho</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-camera icone"></i>
-					<a href="#config">
+					<a href="#config" data-transition="slide">
 						<p>Fotografia</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-tags icone"></i>
-					<a href="#evidencia_lista">
+					<a href="#evidencia_lista" data-transition="slide">
 						<p>Cadeia de Custódia</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-refresh icone"></i>
-					<a href="#config">
+					<a href="#config" data-transition="slide">
 						<p>Sincronizar</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-remove icone"></i>
-					<a href="#">
+					<a href="#" data-transition="slide">
 						<p>Sair</p>
 					</a>
 				</li>
@@ -138,6 +138,12 @@
                 <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
                 <input type="hidden" name="id" id="id" value="">
                 <input type="hidden" name="re_id" id="re_id" value="">
+                
+                <ul data-role="listview" style="margin-bottom:20px">
+                	<li data-role="list-divider">
+						<h2 id="re_codigo"></h2>
+					</li>
+                </ul>
                 
                 <button id="scan">Escanear QRCode</button>
 
