@@ -8,11 +8,11 @@ $(document).on('click', '#scan', function()
 	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 	scanner.scan( function (result)
 	{
-		var data = data_atual();
+		/*var data = data_atual();
 		var hora = hora_atual();
 		$('#data').val(data);
 		$('#hora').val(hora);
-		$('#capturar_coordenadas').trigger('click');
+		$('#capturar_coordenadas').trigger('click');*/
 		try
 		{
 			var ev = jQuery.parseJSON(result.text);
