@@ -271,12 +271,6 @@ function resultado_sincronizar(resultado) {
 			for (i = 0; i < n; i++) {
 				salvar_re(resultado.registro[i], 'novo', function(resultado) {});
 			}
-			try {
-				navigator.notification.vibrate(2000);
-				navigator.notification.beep(3);
-			} catch(err) {
-			
-			}
 		}
 	} else {
 		//toast(resultado.mensagem);
