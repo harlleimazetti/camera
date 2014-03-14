@@ -267,7 +267,9 @@ function resultado_sincronizar(resultado) {
 		//toast(resultado.mensagem);
 		var n = resultado.registro.length;
 		if (n > 0) {
-			toast('Novo registro de entrada!');
+			navigator.notification.vibrate(2000);
+			navigator.notification.beep(3);
+			toast('Novo Registro de entrada!');
 			for (i = 0; i < n; i++) {
 				salvar_re(resultado.registro[i], 'novo', function(resultado) {});
 			}
