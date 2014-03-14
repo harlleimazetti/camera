@@ -22,6 +22,13 @@
        <param name="domain" value="http://debug.phonegap.com"/>
        <param name="key" value="willoughby"/>
     </feature>
+	
+	<feature name="Notification">
+    	<param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+	</feature>
+	<feature name="Vibration">
+		<param name="android-package" value="org.apache.cordova.vibration.Vibration" />
+	</feature>
 
     <preference name="phonegap-version" value="3.1.0" />
     <preference name="orientation"      value="default" />
