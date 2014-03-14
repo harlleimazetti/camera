@@ -21,3 +21,19 @@
 	margin:0.7em 0.1em 0 0.7em;
 	text-align:center;
 }
+.evidencia_ordem {
+	padding:3px;
+	margin-top:0;
+	width:1.7em;
+	height:1.2em;
+	font-size:2em;
+	font-weight:bold;
+	background-color:#FDB102;
+	text-align:center;
+	border-radius:0.2em;
+}
+.evidencia_ordem_texto {
+	margin-top:14px;
+	margin-right:5px;
+	font-weight:bold;
+}

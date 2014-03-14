@@ -61,9 +61,9 @@
 						<p>Cadeia de Custódia</p>
 					</a>
 				</li>
-				<li class="ui-icon-nodisc" data-iconshadow="false">
+				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_sincronizar">
                 	<i class="icon-refresh icone"></i>
-					<a href="#config" data-transition="slide">
+					<a href="#" data-transition="slide">
 						<p>Sincronizar</p>
 					</a>
 				</li>
@@ -134,14 +134,42 @@
                 <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
                 <input type="hidden" name="id" id="id" value="">
                 <input type="hidden" name="re_id" id="re_id" value="">
+                <input type="hidden" name="numero_ordem" id="numero_ordem" value="">
                 
                 <ul data-role="listview" style="margin-bottom:20px">
                 	<li data-role="list-divider">
 						<h2 id="re_codigo"></h2>
+                        <p class="evidencia_ordem_texto ui-li-aside">Número de Ordem</p>
+                        <p class="evidencia_ordem ui-li-aside" id="numero_ordem_texto"></p>
 					</li>
                 </ul>
                 
                 <button id="scan">Escanear QRCode</button>
+            
+                <label for="data" class="ui-hidden-accessible">Data:</label>
+                <input type="text" name="data" id="data" value="" placeholder="Data" disabled>
+                
+                <label for="hora" class="ui-hidden-accessible">Hora:</label>
+                <input type="text" name="hora" id="hora" value="" placeholder="Hora" disabled>
+                
+                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS" disabled>
+                
+                <label for="codigo" class="ui-hidden-accessible">Número do Lacre:</label>
+                <input type="text" name="numero_lacre" id="numero_lacre" value="" placeholder="Número do Lacre" disabled>
+                
+                <label for="nome_perito" class="ui-hidden-accessible">Nome do Perito:</label>
+                <input type="text" name="nome_perito" id="nome_perito" value="" placeholder="Nome do Perito" disabled>
+                
+                <label for="unidade" class="ui-hidden-accessible">Unidade:</label>
+                <input type="text" name="unidade" id="unidade" value="" placeholder="Unidade" disabled>
+                
+                <label for="obs" class="ui-hidden-accessible">Observações:</label>
+                <input type="text" name="obs" id="obs" value="" placeholder="Observaçoes">
+                
+                <input type="hidden" name="imagem_uri" id="imagem_uri" value="" placeholder="Imagem URI">
+                
+                <button id="capturar_coordenadas">Coordenadas GPS</button>
 
 				<select name="evidencia_tipo_id" id="evidencia_tipo_id" data-native-menu="false">
 					<option>Tipo de Vestígio</option>
@@ -152,31 +180,6 @@
                     <option value="5">Pegada</option>
                     <option value="6">Pneumático</option>
 				</select>
-            
-                <label for="data" class="ui-hidden-accessible">Data:</label>
-                <input type="text" name="data" id="data" value="" placeholder="Data">
-                
-                <label for="hora" class="ui-hidden-accessible">Hora:</label>
-                <input type="text" name="hora" id="hora" value="" placeholder="Hora">
-                
-                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
-                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
-                
-                <label for="codigo" class="ui-hidden-accessible">Código:</label>
-                <input type="text" name="codigo" id="codigo" value="" placeholder="Código">            
-                
-                <label for="nome_perito" class="ui-hidden-accessible">Nome do Perito:</label>
-                <input type="text" name="nome_perito" id="nome_perito" value="" placeholder="Nome do Perito">
-                
-                <label for="unidade" class="ui-hidden-accessible">Unidade:</label>
-                <input type="text" name="unidade" id="unidade" value="" placeholder="Unidade">
-                
-                <label for="obs" class="ui-hidden-accessible">Observações:</label>
-                <input type="text" name="obs" id="obs" value="" placeholder="Observaçoes">
-                
-                <input type="hidden" name="imagem_uri" id="imagem_uri" value="" placeholder="Imagem URI">
-                
-                <button id="capturar_coordenadas">Coordenadas GPS</button>
                 
                 <button id="capturar_imagem">Capturar Imagem</button>
 

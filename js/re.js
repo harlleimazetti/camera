@@ -20,6 +20,7 @@ function get_all_re(fn)
 					re[i].coordenadas	= row.coordenadas;
 					re[i].crime			= row.crime;
 					re[i].obs			= row.obs;
+					re[i].novo			= row.novo;
 				}
 				fn(re);
 			}
@@ -46,6 +47,7 @@ function get_re(id, fn)
 				re.coordenadas	= row.coordenadas;
 				re.crime		= row.crime;
 				re.obs			= row.obs;
+				re.novo			= row.novo;
 				fn(re);
 			}
 		});
@@ -59,29 +61,33 @@ function salvar_re(re, operacao_bd, fn)
 		if (operacao_bd == 'novo')
 		{
 			var sql =	"INSERT INTO re (" +
+							"codigo, " + 
 							"data, " + 
 							"hora, " + 
 							"endereco, " + 
 							"coordenadas, " + 
 							"crime, " + 
-							"obs " + 
+							"obs, " + 
+							"novo " + 
 						") VALUES ( " +
+							"'" + re.codigo + "', " + 
 							"'" + formata_data_db(re.data) + "', " + 
 							"'" + re.hora + "', " + 
-							"'" + evidencia_tipo.tipo + "', " +
 							"'" + re.endereco + "', " + 
 							"'" + re.coordenadas + "', " +
 							"'" + re.crime + "', " +
-							"'" + re.obs + "' " +
+							"'" + re.obs + "', " +
+							"'" + re.novo + "' " +
 						")";
 		} else {
-			var sql =	"UPDATE evidencia_tipo SET " +
+			var sql =	"UPDATE re SET " +
 							"data = '" + formata_data_db(re.data) + "', " +
 							"hora = '" + re.hora + "', " +
 							"endereco = '" + re.endereco + "', " +
 							"coordenadas = '" + re.coordenadas + "', " +
 							"crime = '" + re.crime + "', " +
-							"obs = '" + re.obs + "' " +
+							"obs = '" + re.obs + "', " +
+							"novo = '" + re.novo + "' " +
 						"WHERE id = " + re.id;
 		}
 		tx.executeSql(sql);

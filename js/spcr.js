@@ -1,3 +1,4 @@
+sincronizar();
 $(document).on('focus', '#evidencia_form input', function() 
 {
 	sessionStorage.campo_foco = $(this).attr('id');
@@ -8,16 +9,12 @@ $(document).on('click', '#scan', function()
 	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 	scanner.scan( function (result)
 	{
-		/*var data = data_atual();
-		var hora = hora_atual();
-		$('#data').val(data);
-		$('#hora').val(hora);
-		$('#capturar_coordenadas').trigger('click');*/
 		try
 		{
 			var ev = jQuery.parseJSON(result.text);
 			$('#codigo').val(ev.codigo);
 			$('#nome_perito').val(ev.nome_perito);
+			$('#unidade').val(ev.unidade);
 		}
 		catch(e)
 		{
@@ -81,7 +78,12 @@ $(document).on('pageshow', '#re_lista', function()
 	get_all_re(function(re) {
 		for (var i = 0; i < re.length; i++)
 		{
-			output += '<li data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></li>';
+			if (re[i].novo == '1') {
+				data_theme = 'b';
+			} else {
+				data_theme = 'a';
+			}
+			output += '<li data-theme="' + data_theme + '" data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></li>';
 		}
 		$('#lista_re').append(output).listview('refresh');
 	});
@@ -90,9 +92,14 @@ $(document).on('pageshow', '#re_lista', function()
 $(document).on('click', '#lista_re li', function()
 {
 	re_id = $(this).data('id');
+	$(this).attr('data-theme', 'a');
+	$(this).removeClass('ui-btn-up-b ui-btn-hover-b').addClass('ui-btn-up-a ui-btn-hover-a');
+	$('#lista_re').listview('refresh');
 	get_re(re_id, function(re) {
 		sessionStorage.re_id = re.id;
 		sessionStorage.re_codigo = re.codigo;
+		re.novo = '0';
+		salvar_re(re, 'editar', function(resultado) {});
 		var msg = 'Registro de entrada selecionado <p style="margin-bottom:0"><strong>' + re.codigo + '</strong></p><br>' + re.crime;
 		toast(msg);
 	});
@@ -105,7 +112,7 @@ $(document).on('pageshow', '#evidencia_lista', function()
 	get_all_evidencia(function(evidencia) {
 		for (var i = 0; i < evidencia.length; i++)
 		{
-			output += '<li id="' + evidencia[i].id + '" data-id="' + evidencia[i].id + '"><a href="#formulario"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].codigo + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li id="' + evidencia[i].id + '" data-id="' + evidencia[i].id + '"><a href="#"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].numero_lacre + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_evidencia').append(output).listview('refresh');
 	});
@@ -116,7 +123,7 @@ $(document).on('click', '#lista_evidencia li', function()
 	evidencia_id = $(this).data('id');
 	sessionStorage.evidencia_id = evidencia_id;
 	sessionStorage.operacao_bd = 'editar';
-	$.mobile.changePage( "#evidencia_formulario" );
+	$.mobile.changePage( "#evidencia_formulario", {transition : 'slide'} );
 });
 
 $(document).on('click', '#lista_evidencia li .excluir', function()
@@ -127,23 +134,13 @@ $(document).on('click', '#lista_evidencia li .excluir', function()
 	var resp = confirm('Excluir o registro?');
 	if (resp == true) {
 		excluir_evidencia(evidencia_id, function(resultado) {
+			reordena_evidencia();
 			$($el).remove();
 		});
 	}
 	$('#lista_evidencia').listview('refresh');
 	event.preventDefault();
 	return false;	
-	/*evidencia_id = $(this).closest('li').data('id');
-	sessionStorage.evidencia_id = evidencia_id;
-	var resp = confirm('Excluir o registro?');
-	if (resp == true) {
-		excluir_evidencia(evidencia_id, function(resultado) {
-			$('').remove();
-		});
-	}
-	$('#lista_evidencia').listview('refresh');
-	event.preventDefault();
-	return false;*/
 });
 
 $(document).on('pagebeforeshow', '#evidencia_formulario', function()
@@ -158,9 +155,11 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 			$('#evidencia_tipo_id').val(evidencia.evidencia_tipo_id).selectmenu('refresh');
 			$('#re_id').val(sessionStorage.re_id);
 			$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto').html(evidencia.numero_ordem);
+			$('#numero_ordem').val(evidencia.numero_ordem);
 			$('#data').val(evidencia.data);
 			$('#hora').val(evidencia.hora);
-			$('#codigo').val(evidencia.codigo);
+			$('#numero_lacre').val(evidencia.numero_lacre);
 			$('#nome_perito').val(evidencia.nome_perito);
 			$('#coordenadas').val(evidencia.coordenadas);
 			$('#unidade').val(evidencia.unidade);
@@ -170,20 +169,30 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 		});
 	} else {
 		var evidencia_id = sessionStorage.evidencia_id;
-		$('#operacao_bd').val(operacao_bd);
-		$('#id').val(evidencia_id);
-		$('#evidencia_tipo_id').val('').selectmenu('refresh');
-		$('#re_id').val(sessionStorage.re_id);
-		$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
-		$('#data').val('');
-		$('#hora').val('');
-		$('#codigo').val('');
-		$('#nome_perito').val('');
-		$('#coordenadas').val('');
-		$('#unidade').val('');
-		$('#obs').val('');
-		$('#imagem_uri').val('');
-		$('#visualizacao_imagem').attr('src', '');
+		get_no_evidencia(sessionStorage.re_id, function(numero_ordem) {
+			$('#operacao_bd').val(operacao_bd);
+			$('#id').val(evidencia_id);
+			$('#evidencia_tipo_id').val('').selectmenu('refresh');
+			$('#re_id').val(sessionStorage.re_id);
+			$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto').html(numero_ordem);
+			$('#numero_ordem').val(numero_ordem);
+			$('#data').val('');
+			$('#hora').val('');
+			$('#numero_lacre').val('');
+			$('#nome_perito').val('');
+			$('#coordenadas').val('');
+			$('#unidade').val('');
+			$('#obs').val('');
+			$('#imagem_uri').val('');
+			$('#visualizacao_imagem').attr('src', '');
+			
+			var data = data_atual();
+			var hora = hora_atual();
+			$('#data').val(data);
+			$('#hora').val(hora);
+			$('#capturar_coordenadas').trigger('click');
+		});
 	}
 });
 
@@ -192,7 +201,7 @@ $(document).on('click', '#btn_evidencia_novo', function(event)
 	event.preventDefault();
 	sessionStorage.evidencia_id = 0;
 	sessionStorage.operacao_bd = 'novo';
-	$.mobile.changePage( "#evidencia_formulario" );
+	$.mobile.changePage( "#evidencia_formulario", {transition : 'slide'} );
 });
 
 $(document).on('click', '#btn_evidencia_salvar', function(event)
@@ -201,6 +210,17 @@ $(document).on('click', '#btn_evidencia_salvar', function(event)
 	var dados = $("#evidencia_form").serializeJSON();
 	salvar_evidencia(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
+		history.back();
+		/*setTimeout(function() {
+			var resp = confirm('Inserir novo registro?');
+			if (resp == true) {
+				sessionStorage.evidencia_id = 0;
+				sessionStorage.operacao_bd = 'novo';
+				$.mobile.changePage( "#evidencia_formulario", {reloadPage : true} );
+			} else {
+				$.mobile.changePage( "#evidencia_lista", {transition : 'slide', reverse : true} );
+			}
+		}, 3000);*/
 	});
 });
 
@@ -209,7 +229,7 @@ $(document).on('click', '#btn_evidencia_limpar', function(event)
 	event.preventDefault();
 	$('#data').val('');
 	$('#hora').val('');
-	$('#codigo').val('');
+	$('#numero_lacre').val('');
 	$('#nome_perito').val('');
 	$('#coordenadas').val('');
 	$('#unidade').val('');
@@ -217,3 +237,36 @@ $(document).on('click', '#btn_evidencia_limpar', function(event)
 	$('#imagem_uri').val('');
 	$('#visualizacao_imagem').attr('src', '');
 });
+
+$(document).on('click', '#menu_sincronizar', function(event)
+{
+	sincronizar();
+});
+
+function sincronizar() {
+	$.ajax({
+		url: 'http://www.hlcontabil.com.br/spcr/sincronizar.php',
+		data: {nome : 'Harllei Mazetti'},
+		dataType: 'jsonp',
+		jsonp: 'callback',
+		jsonpCallback: 'resultado_sincronizar',
+		success: function(){},
+		error: function(){}
+	});
+	window.setTimeout(sincronizar, 5000);
+}
+
+function resultado_sincronizar(resultado) {
+	if (resultado.status == 'ok') {
+		//toast(resultado.mensagem);
+		var n = resultado.registro.length;
+		if (n > 0) {
+			toast('Novo registro de entrada!');
+			for (i = 0; i < n; i++) {
+				salvar_re(resultado.registro[i], 'novo', function(resultado) {});
+			}
+		}
+	} else {
+		//toast(resultado.mensagem);
+	}
+}

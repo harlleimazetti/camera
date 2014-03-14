@@ -1,9 +1,9 @@
 function data_atual() 
 {
 	var dt = new Date();
-	var d = '' + getUTCDate();
-	var m = '' + dt.getMonth() + 1;
-	var a = '' + dt.getFullYear();
+	var d = dt.getDate().toString();
+	var m = (dt.getMonth() + 1).toString();
+	var a = dt.getFullYear();
 	if (m.length < 2) m = '0' + m;
     if (d.length < 2) d = '0' + d;
 	var data = d + '/' + m + '/' + a;
@@ -37,7 +37,7 @@ function formata_data_db (data)
 	d = data.substring(0,2);
 	m = data.substring(3,5);
 	a = data.substring(6,10);
-	nova_data = a + '/' + m + '/' + d;
+	nova_data = a + '-' + m + '-' + d;
 	return nova_data;
 }
 
@@ -56,7 +56,7 @@ var toast=function(msg){
 		width: "270px",
 		left: ($(window).width() - 284)/2,
 		top: $(window).height()/2 })
-	.appendTo( $.mobile.pageContainer ).delay( 3000 )
+	.appendTo( $.mobile.pageContainer ).delay( 2500 )
 	.fadeOut( 400, function(){
 		$(this).remove();
 	});

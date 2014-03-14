@@ -3,7 +3,7 @@ function get_all_evidencia(fn)
 	var re_id = sessionStorage.re_id;
 	db.transaction(function (tx)
 	{
-		var sql = "SELECT * FROM evidencia WHERE re_id = '" + re_id + "' ORDER BY data, hora";
+		var sql = "SELECT * FROM evidencia WHERE re_id = '" + re_id + "' ORDER BY numero_ordem, id, data, hora";
 		tx.executeSql (sql, undefined, function (tx, result)
 		{
 			if (result.rows.length)
@@ -16,7 +16,8 @@ function get_all_evidencia(fn)
 					evidencia[i].id					= row.id;
 					evidencia[i].evidencia_tipo_id	= row.evidencia_tipo_id;
 					evidencia[i].re_id				= row.re_id;
-					evidencia[i].codigo				= row.codigo;
+					evidencia[i].numero_ordem		= row.numero_ordem;
+					evidencia[i].numero_lacre		= row.numero_lacre;
 					evidencia[i].data				= formata_data(row.data);
 					evidencia[i].hora				= row.hora;
 					evidencia[i].nome_perito		= row.nome_perito;
@@ -45,7 +46,8 @@ function get_evidencia(id, fn)
 				evidencia.id				= row.id;
 				evidencia.evidencia_tipo_id	= row.evidencia_tipo_id;
 				evidencia.re_id				= row.re_id;
-				evidencia.codigo			= row.codigo;
+				evidencia.numero_ordem		= row.numero_ordem;
+				evidencia.numero_lacre		= row.numero_lacre;
 				evidencia.data				= formata_data(row.data);
 				evidencia.hora				= row.hora;
 				evidencia.nome_perito		= row.nome_perito;
@@ -54,6 +56,24 @@ function get_evidencia(id, fn)
 				evidencia.obs				= row.obs;
 				evidencia.imagem_uri		= row.imagem_uri;
 				fn(evidencia);
+			}
+		});
+	});
+}
+
+function get_no_evidencia(re_id, fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM evidencia WHERE re_id = '" + re_id + "' ORDER BY id DESC LIMIT 0,1";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var row = result.rows.item(0);
+				var numero_ordem = parseInt(row.numero_ordem);
+				numero_ordem++;
+				fn(numero_ordem);
 			}
 		});
 	});
@@ -68,7 +88,8 @@ function salvar_evidencia(evidencia, operacao_bd, fn)
 			var sql = "INSERT INTO evidencia (" +
 					"evidencia_tipo_id, " + 
 					"re_id, " + 
-					"codigo, " + 
+					"numero_ordem, " + 
+					"numero_lacre, " + 
 					"data, " + 
 					"hora, " + 
 					"nome_perito, " + 
@@ -79,7 +100,8 @@ function salvar_evidencia(evidencia, operacao_bd, fn)
 				") VALUES ( " +
 					"'" + evidencia.evidencia_tipo_id + "', " + 
 					"'" + evidencia.re_id + "', " + 
-					"'" + evidencia.codigo + "', " + 
+					"'" + evidencia.numero_ordem + "', " + 
+					"'" + evidencia.numero_lacre + "', " + 
 					"'" + formata_data_db(evidencia.data) + "', " + 
 					"'" + evidencia.hora + "', " + 
 					"'" + evidencia.nome_perito + "', " + 
@@ -92,7 +114,8 @@ function salvar_evidencia(evidencia, operacao_bd, fn)
 			var sql = "UPDATE evidencia SET " +
 						"evidencia_tipo_id = '" + evidencia.evidencia_tipo_id + "', " +  
 						"re_id = '" + evidencia.re_id + "', " +  
-						"codigo = '" + evidencia.codigo + "', " + 
+						"numero_ordem = '" + evidencia.numero_ordem + "', " + 
+						"numero_lacre = '" + evidencia.numero_lacre + "', " + 
 						"data = '" + formata_data_db(evidencia.data) + "', " + 
 						"hora = '" + evidencia.hora + "', " + 
 						"nome_perito = '" + evidencia.nome_perito + "', " + 
@@ -128,7 +151,7 @@ function excluir_evidencia(id, fn)
 				evidencia.id				= row.id;
 				evidencia.evidencia_tipo_id	= row.evidencia_tipo_id;
 				evidencia.re_id				= row.re_id;
-				evidencia.codigo			= row.codigo;
+				evidencia.numero_lacre		= row.numero_lacre;
 				evidencia.data				= formata_data(row.data);
 				evidencia.hora				= row.hora;
 				evidencia.nome_perito		= row.nome_perito;
@@ -138,5 +161,18 @@ function excluir_evidencia(id, fn)
 				evidencia.imagem_uri		= row.imagem_uri;
 			}*/
 		});
+	});
+}
+
+function reordena_evidencia()
+{
+	get_all_evidencia(function(evidencia) {
+		var x = 1;
+		for (var i = 0; i < evidencia.length; i++) 
+		{
+			evidencia[i].numero_ordem = x;
+			salvar_evidencia(evidencia[i], 'editar', function(resultado) {});
+			x++;
+		}		
 	});
 }
