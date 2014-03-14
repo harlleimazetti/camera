@@ -1,4 +1,9 @@
-sincronizar();
+$(document).bind("mobileinit", function(){
+	$.mobile.allowCrossDomainPages = true;
+	$.mobile.phonegapNavigationEnabled = true;
+	$.support.cors = true;
+	sincronizar();
+});
 $(document).on('focus', '#evidencia_form input', function() 
 {
 	sessionStorage.campo_foco = $(this).attr('id');
@@ -244,6 +249,7 @@ $(document).on('click', '#menu_sincronizar', function(event)
 });
 
 function sincronizar() {
+	alert('sincronizando');
 	$.ajax({
 		url: 'http://www.hlcontabil.com.br/spcr/sincronizar.php',
 		data: {nome : 'Harllei Mazetti'},
