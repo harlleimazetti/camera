@@ -18,7 +18,7 @@ $(document).on('click', '#scan', function()
 		try
 		{
 			var ev = jQuery.parseJSON(result.text);
-			$('#codigo').val(ev.codigo);
+			$('#numero_lacre').val(ev.numero_lacre);
 			$('#nome_perito').val(ev.nome_perito);
 			$('#unidade').val(ev.unidade);
 		}
@@ -256,8 +256,8 @@ function sincronizar() {
 		dataType: 'jsonp',
 		jsonp: 'callback',
 		jsonpCallback: 'resultado_sincronizar',
-		success: function(){ alert('Ok'); },
-		error: function(){ alert('Erro'); }
+		success: function(){},
+		error: function(){}
 	});
 	window.setTimeout(sincronizar, 5000);
 }
