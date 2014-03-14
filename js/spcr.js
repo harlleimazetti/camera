@@ -250,15 +250,14 @@ $(document).on('click', '#menu_sincronizar', function(event)
 });
 
 function sincronizar() {
-	alert('sincronizando');
 	$.ajax({
 		url: 'http://www.hlcontabil.com.br/spcr/sincronizar.php',
 		data: {nome : 'Harllei Mazetti'},
 		dataType: 'jsonp',
 		jsonp: 'callback',
 		jsonpCallback: 'resultado_sincronizar',
-		success: function(){},
-		error: function(){}
+		success: function(){ alert('Ok'); },
+		error: function(){ alert('Erro'); }
 	});
 	window.setTimeout(sincronizar, 5000);
 }
