@@ -74,6 +74,8 @@ function get_no_evidencia(re_id, fn)
 				var numero_ordem = parseInt(row.numero_ordem);
 				numero_ordem++;
 				fn(numero_ordem);
+			} else {
+				fn(1);
 			}
 		});
 	});
