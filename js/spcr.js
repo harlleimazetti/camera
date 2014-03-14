@@ -1,9 +1,10 @@
-$(document).bind("mobileinit", function(){
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
 	$.mobile.allowCrossDomainPages = true;
 	$.mobile.phonegapNavigationEnabled = true;
 	$.support.cors = true;
 	sincronizar();
-});
+}
 $(document).on('focus', '#evidencia_form input', function() 
 {
 	sessionStorage.campo_foco = $(this).attr('id');
