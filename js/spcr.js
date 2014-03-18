@@ -1,5 +1,7 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+	$.mobile.defaultPageTransition = 'none';
+	$.mobile.defaultDialogTransition = 'none';
 	$.mobile.allowCrossDomainPages = true;
 	$.mobile.phonegapNavigationEnabled = true;
 	$.support.cors = true;
@@ -129,7 +131,7 @@ $(document).on('click', '#lista_evidencia li', function()
 	evidencia_id = $(this).data('id');
 	sessionStorage.evidencia_id = evidencia_id;
 	sessionStorage.operacao_bd = 'editar';
-	$.mobile.changePage( "#evidencia_formulario", {transition : 'slide'} );
+	$.mobile.changePage( "#evidencia_formulario", {transition : 'none'} );
 });
 
 $(document).on('click', '#lista_evidencia li .excluir', function()
@@ -207,7 +209,7 @@ $(document).on('click', '#btn_evidencia_novo', function(event)
 	event.preventDefault();
 	sessionStorage.evidencia_id = 0;
 	sessionStorage.operacao_bd = 'novo';
-	$.mobile.changePage( "#evidencia_formulario", {transition : 'slide'} );
+	$.mobile.changePage( "#evidencia_formulario", {transition : 'none'} );
 });
 
 $(document).on('click', '#btn_evidencia_salvar', function(event)
@@ -311,7 +313,7 @@ $(document).on('click', '#btn_re_novo', function(event)
 	event.preventDefault();
 	sessionStorage.re_id = 0;
 	sessionStorage.operacao_bd = 'novo';
-	$.mobile.changePage( "#re_formulario", {transition : 'slide'} );
+	$.mobile.changePage( "#re_formulario", {transition : 'none'} );
 });
 
 $(document).on('click', '#btn_re_salvar', function(event)

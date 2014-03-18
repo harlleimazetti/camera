@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>SPCR</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
 
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<script src="js/jquery-1.9.1.min.js"></script>
@@ -27,49 +27,49 @@
 				<li data-icon="delete" data-iconshadow="false" class="ui-icon-nodisc"><a href="#" data-rel="close">Menu principal</a></li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-archive icone"></i>
-					<a href="#re_lista" data-transition="slide">
+					<a href="#re_lista">
 						<p>Registro de Entrada</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-file-text icone"></i>
-					<a href="#lista" data-transition="slide">
+					<a href="#lista">
 						<p>Formulários</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-bar-chart icone"></i>
-					<a href="#lista2" data-transition="slide">
+					<a href="#lista2">
 						<p>Sensores</p>
 					</a>
 				</li>                
 				<li class="ui-icon-nodisc" data-iconshadow="false">
 					<i class="icon-tint icone"></i>
-                    <a href="#formulario" data-transition="slide">
+                    <a href="#formulario">
 						<p>Desenho</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-camera icone"></i>
-					<a href="#config" data-transition="slide">
+					<a href="#config">
 						<p>Fotografia</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-tags icone"></i>
-					<a href="#evidencia_lista" data-transition="slide">
+					<a href="#evidencia_lista">
 						<p>Cadeia de Custódia</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_sincronizar">
                 	<i class="icon-refresh icone"></i>
-					<a href="#" data-transition="slide">
+					<a href="#">
 						<p>Sincronizar</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-remove icone"></i>
-					<a href="#" data-transition="slide">
+					<a href="#">
 						<p>Sair</p>
 					</a>
 				</li>
@@ -207,9 +207,9 @@
 
         	<form action="teste" method="post" id="re_form" name="re_form">
 
-                <input type="text" name="operacao_bd" id="operacao_bd" value="">
-                <input type="text" name="id" id="id" value="">
-                <input type="text" name="novo" id="novo" value="1">
+                <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
+                <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="novo" id="novo" value="1">
                 
                 <label for="data" class="ui-hidden-accessible">Número RE:</label>
                 <input type="text" name="codigo" id="codigo" value="" placeholder="Número RE">

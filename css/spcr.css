@@ -5,6 +5,10 @@
     /*-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
 }
 
+.ui-page {
+    -webkit-backface-visibility: hidden;
+}
+
 #menu_principal p {
 	font-size:1em;
 	font-weight:bold;
