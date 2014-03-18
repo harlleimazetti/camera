@@ -97,3 +97,22 @@ function salvar_re(re, operacao_bd, fn)
 		fn(resultado);
 	});
 }
+
+function excluir_re(id, fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "DELETE FROM evidencia WHERE re_id = " + id;
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			var sql = "DELETE FROM re WHERE id = " + id;
+			tx.executeSql (sql, undefined, function (tx, result)
+			{
+				var resultado = new Object();
+				resultado.status = 1;
+				resultado.mensagem = 'Registro excluído com sucesso';	
+				fn(resultado);
+			});
+		});
+	});
+}

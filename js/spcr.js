@@ -18,9 +18,9 @@ $(document).on('click', '#scan', function()
 		try
 		{
 			var ev = jQuery.parseJSON(result.text);
-			$('#numero_lacre').val(ev.numero_lacre);
-			$('#nome_perito').val(ev.nome_perito);
-			$('#unidade').val(ev.unidade);
+			$('#evidencia_form #numero_lacre').val(ev.numero_lacre);
+			$('#evidencia_form #nome_perito').val(ev.nome_perito);
+			$('#evidencia_form #unidade').val(ev.unidade);
 		}
 		catch(e)
 		{
@@ -89,7 +89,7 @@ $(document).on('pageshow', '#re_lista', function()
 			} else {
 				data_theme = 'a';
 			}
-			output += '<li data-theme="' + data_theme + '" data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></li>';
+			output += '<li data-theme="' + data_theme + '" data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_re').append(output).listview('refresh');
 	});
@@ -156,48 +156,48 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 	{
 		var evidencia_id = sessionStorage.evidencia_id;
 		get_evidencia(evidencia_id, function(evidencia) {
-			$('#operacao_bd').val(operacao_bd);
-			$('#id').val(evidencia.id);
-			$('#evidencia_tipo_id').val(evidencia.evidencia_tipo_id).selectmenu('refresh');
-			$('#re_id').val(sessionStorage.re_id);
+			$('#evidencia_form #operacao_bd').val(operacao_bd);
+			$('#evidencia_form #id').val(evidencia.id);
+			$('#evidencia_form #evidencia_tipo_id').val(evidencia.evidencia_tipo_id).selectmenu('refresh');
+			$('#evidencia_form #re_id').val(sessionStorage.re_id);
 			$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
 			$('#numero_ordem_texto').html(evidencia.numero_ordem);
-			$('#numero_ordem').val(evidencia.numero_ordem);
-			$('#data').val(evidencia.data);
-			$('#hora').val(evidencia.hora);
-			$('#numero_lacre').val(evidencia.numero_lacre);
-			$('#nome_perito').val(evidencia.nome_perito);
-			$('#coordenadas').val(evidencia.coordenadas);
-			$('#unidade').val(evidencia.unidade);
-			$('#obs').val(evidencia.obs);
-			$('#imagem_uri').val(evidencia.imagem_uri);
-			$('#visualizacao_imagem').attr('src', evidencia.imagem_uri);
+			$('#evidencia_form #numero_ordem').val(evidencia.numero_ordem);
+			$('#evidencia_form #data').val(evidencia.data);
+			$('#evidencia_form #hora').val(evidencia.hora);
+			$('#evidencia_form #numero_lacre').val(evidencia.numero_lacre);
+			$('#evidencia_form #nome_perito').val(evidencia.nome_perito);
+			$('#evidencia_form #coordenadas').val(evidencia.coordenadas);
+			$('#evidencia_form #unidade').val(evidencia.unidade);
+			$('#evidencia_form #obs').val(evidencia.obs);
+			$('#evidencia_form #imagem_uri').val(evidencia.imagem_uri);
+			$('#evidencia_form #visualizacao_imagem').attr('src', evidencia.imagem_uri);
 		});
 	} else {
 		var evidencia_id = sessionStorage.evidencia_id;
 		get_no_evidencia(sessionStorage.re_id, function(numero_ordem) {
-			$('#operacao_bd').val(operacao_bd);
-			$('#id').val(evidencia_id);
-			$('#evidencia_tipo_id').val('').selectmenu('refresh');
-			$('#re_id').val(sessionStorage.re_id);
+			$('#evidencia_form #operacao_bd').val(operacao_bd);
+			$('#evidencia_form #id').val(evidencia_id);
+			$('#evidencia_form #evidencia_tipo_id').val('').selectmenu('refresh');
+			$('#evidencia_form #re_id').val(sessionStorage.re_id);
 			$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
 			$('#numero_ordem_texto').html(numero_ordem);
-			$('#numero_ordem').val(numero_ordem);
-			$('#data').val('');
-			$('#hora').val('');
-			$('#numero_lacre').val('');
-			$('#nome_perito').val('');
-			$('#coordenadas').val('');
-			$('#unidade').val('');
-			$('#obs').val('');
-			$('#imagem_uri').val('');
-			$('#visualizacao_imagem').attr('src', '');
+			$('#evidencia_form #numero_ordem').val(numero_ordem);
+			$('#evidencia_form #data').val('');
+			$('#evidencia_form #hora').val('');
+			$('#evidencia_form #numero_lacre').val('');
+			$('#evidencia_form #nome_perito').val('');
+			$('#evidencia_form #coordenadas').val('');
+			$('#evidencia_form #unidade').val('');
+			$('#evidencia_form #obs').val('');
+			$('#evidencia_form #imagem_uri').val('');
+			$('#evidencia_form #visualizacao_imagem').attr('src', '');
 			
 			var data = data_atual();
 			var hora = hora_atual();
-			$('#data').val(data);
-			$('#hora').val(hora);
-			$('#capturar_coordenadas').trigger('click');
+			$('#evidencia_form #data').val(data);
+			$('#evidencia_form #hora').val(hora);
+			$('#evidencia_form #capturar_coordenadas').trigger('click');
 		});
 	}
 });
@@ -233,15 +233,107 @@ $(document).on('click', '#btn_evidencia_salvar', function(event)
 $(document).on('click', '#btn_evidencia_limpar', function(event)
 {
 	event.preventDefault();
-	$('#data').val('');
-	$('#hora').val('');
-	$('#numero_lacre').val('');
-	$('#nome_perito').val('');
-	$('#coordenadas').val('');
-	$('#unidade').val('');
-	$('#obs').val('');
-	$('#imagem_uri').val('');
-	$('#visualizacao_imagem').attr('src', '');
+	$('#evidencia_form #data').val('');
+	$('#evidencia_form #hora').val('');
+	$('#evidencia_form #numero_lacre').val('');
+	$('#evidencia_form #nome_perito').val('');
+	$('#evidencia_form #coordenadas').val('');
+	$('#evidencia_form #unidade').val('');
+	$('#evidencia_form #obs').val('');
+	$('#evidencia_form #imagem_uri').val('');
+	$('#evidencia_form #visualizacao_imagem').attr('src', '');
+});
+
+
+
+
+
+
+
+
+
+
+$(document).on('click', '#lista_re li .excluir', function()
+{
+	$el = $(this).closest('li');
+	re_id = $el.data('id');
+	sessionStorage.re_id = re_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_re(re_id, function(resultado) {
+			$($el).remove();
+		});
+	}
+	$('#lista_re').listview('refresh');
+	event.preventDefault();
+	return false;	
+});
+
+$(document).on('pagebeforeshow', '#re_formulario', function()
+{
+	var operacao_bd = sessionStorage.operacao_bd;
+	if (operacao_bd == 'editar')
+	{
+		var re_id = sessionStorage.re_id;
+		get_re(re_id, function(re) {
+			$('#re_form #operacao_bd').val(operacao_bd);
+			$('#re_form #id').val(re.id);
+			$('#re_form #codigo').val(re.codigo);
+			$('#re_form #data').val(re.data);
+			$('#re_form #hora').val(re.hora);
+			$('#re_form #endereco').val(re.endereco);
+			$('#re_form #coordenadas').val(re.coordenadas);
+			$('#re_form #crime').val(re.crime);
+			$('#re_form #obs').val(re.obs);
+		});
+	} else {
+		var re_id = sessionStorage.re_id;
+		$('#re_form #operacao_bd').val(operacao_bd);
+		$('#re_form #id').val(re_id);
+		$('#re_form #codigo').val('');
+		$('#re_form #data').val('');
+		$('#re_form #hora').val('');
+		$('#re_form #endereco').val('');
+		$('#re_form #coordenadas').val('');
+		$('#re_form #crime').val('');
+		$('#re_form #obs').val('');
+			
+		var data = data_atual();
+		var hora = hora_atual();
+		$('#re_form #data').val(data);
+		$('#re_form #hora').val(hora);
+		$('#re_form #capturar_coordenadas').trigger('click');
+	}
+});
+
+$(document).on('click', '#btn_re_novo', function(event)
+{
+	event.preventDefault();
+	sessionStorage.re_id = 0;
+	sessionStorage.operacao_bd = 'novo';
+	$.mobile.changePage( "#re_formulario", {transition : 'slide'} );
+});
+
+$(document).on('click', '#btn_re_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#re_form").serializeJSON();
+	salvar_re(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
+	});
+});
+
+$(document).on('click', '#btn_re_limpar', function(event)
+{
+	event.preventDefault();
+	$('#re_form #codigo').val('');
+	$('#re_form #data').val('');
+	$('#re_form #hora').val('');
+	$('#re_form #endereco').val('');
+	$('#re_form #coordenadas').val('');
+	$('#re_form #crime').val('');
+	$('#re_form #obs').val('');
 });
 
 $(document).on('click', '#menu_sincronizar', function(event)

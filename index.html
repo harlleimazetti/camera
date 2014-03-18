@@ -124,7 +124,7 @@
         
         <div data-role="header">
             <a href="#lista" data-rel="back" data-icon="arrow-l">Voltar</a>
-            <h1>Dados Perícia</h1>
+            <h1>Evidência</h1>
         </div><!-- /header -->
 
 		<div data-role="content">
@@ -190,6 +190,54 @@
 
 				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
 				<img style="display:none;" id="largeImage" src="" />
+            
+			</form>
+            
+		</div><!-- /content -->
+	</div><!-- /page -->
+    
+	<div data-role="page" id="re_formulario" data-theme="a">
+        
+        <div data-role="header">
+            <a href="#lista" data-rel="back" data-icon="arrow-l">Voltar</a>
+            <h1>Registro de Entrada</h1>
+        </div><!-- /header -->
+
+		<div data-role="content">
+
+        	<form action="teste" method="post" id="re_form" name="re_form">
+
+                <input type="text" name="operacao_bd" id="operacao_bd" value="">
+                <input type="text" name="id" id="id" value="">
+                <input type="text" name="novo" id="novo" value="1">
+                
+                <label for="data" class="ui-hidden-accessible">Número RE:</label>
+                <input type="text" name="codigo" id="codigo" value="" placeholder="Número RE">
+            
+                <label for="data" class="ui-hidden-accessible">Data:</label>
+                <input type="text" name="data" id="data" value="" placeholder="Data">
+                
+                <label for="hora" class="ui-hidden-accessible">Hora:</label>
+                <input type="text" name="hora" id="hora" value="" placeholder="Hora">
+                
+                <label for="endereco" class="ui-hidden-accessible">Endereço:</label>
+                <input type="text" name="endereco" id="endereco" value="" placeholder="Endereço">
+                
+                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
+                
+                <label for="crime" class="ui-hidden-accessible">Descrição do Crime:</label>
+                <input type="text" name="crime" id="crime" value="" placeholder="Descrição do Crime">
+                
+                <label for="obs" class="ui-hidden-accessible">Observações:</label>
+                <input type="text" name="obs" id="obs" value="" placeholder="Observações">
+                
+                <button id="capturar_coordenadas">Coordenadas GPS</button>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><button data-theme="b" id="btn_re_salvar">Salvar</button></div>
+					<div class="ui-block-b"><button data-theme="d" id="btn_re_limpar">Limpar</button></div>
+				</div><!-- /grid-a -->
             
 			</form>
             
