@@ -37,3 +37,7 @@
 	margin-right:5px;
 	font-weight:bold;
 }
+.ui-disabled {
+	filter:Alpha(Opacity=80) !important;
+	opacity:.8 !important;
+}
