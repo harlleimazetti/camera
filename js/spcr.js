@@ -47,7 +47,7 @@ $(document).on('click', '#capturar_imagem', function()
 function onSuccess(imageURI) {
     var image = document.getElementById('visualizacao_imagem');
     image.src = imageURI;
-	$('#imagem_uri').val(imageURI);
+	$('#imagem_uri', $.mobile.activePage).val(imageURI);
 }
 
 function onFail(message) {
@@ -62,7 +62,7 @@ $(document).on('click', '#capturar_coordenadas', function(event)
 
 var onGPSSuccess = function(position) {
 	var coordenadas = position.coords.latitude + ', ' + position.coords.longitude;
-	$('#coordenadas').val(coordenadas);
+	$('#coordenadas', $.mobile.activePage).val(coordenadas);
     /*alert('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
           'Altitude: '          + position.coords.altitude          + '\n' +
@@ -78,6 +78,8 @@ var onGPSSuccess = function(position) {
 function onGPSError(error) {
     toast('Erro: ' + error.code + ', Descrição: ' + error.message);
 }
+
+/////////// REGISTRO DE ENTRADA INÍCIO
 
 $(document).on('pageshow', '#re_lista', function()
 {
@@ -112,6 +114,93 @@ $(document).on('click', '#lista_re li', function()
 		toast(msg);
 	});
 });
+
+$(document).on('click', '#lista_re li .excluir', function()
+{
+	$el = $(this).closest('li');
+	re_id = $el.data('id');
+	sessionStorage.re_id = re_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_re(re_id, function(resultado) {
+			$($el).remove();
+		});
+	}
+	$('#lista_re').listview('refresh');
+	event.preventDefault();
+	return false;	
+});
+
+$(document).on('pagebeforeshow', '#re_formulario', function()
+{
+	var operacao_bd = sessionStorage.operacao_bd;
+	if (operacao_bd == 'editar')
+	{
+		var re_id = sessionStorage.re_id;
+		get_re(re_id, function(re) {
+			$('#re_form #operacao_bd').val(operacao_bd);
+			$('#re_form #id').val(re.id);
+			$('#re_form #codigo').val(re.codigo);
+			$('#re_form #data').val(re.data);
+			$('#re_form #hora').val(re.hora);
+			$('#re_form #endereco').val(re.endereco);
+			$('#re_form #coordenadas').val(re.coordenadas);
+			$('#re_form #crime').val(re.crime);
+			$('#re_form #obs').val(re.obs);
+		});
+	} else {
+		var re_id = sessionStorage.re_id;
+		$('#re_form #operacao_bd').val(operacao_bd);
+		$('#re_form #id').val(re_id);
+		$('#re_form #codigo').val('');
+		$('#re_form #data').val('');
+		$('#re_form #hora').val('');
+		$('#re_form #endereco').val('');
+		$('#re_form #coordenadas').val('');
+		$('#re_form #crime').val('');
+		$('#re_form #obs').val('');
+			
+		var data = data_atual();
+		var hora = hora_atual();
+		$('#re_form #data').val(data);
+		$('#re_form #hora').val(hora);
+		$('#re_form #capturar_coordenadas').trigger('click');
+	}
+});
+
+$(document).on('click', '#btn_re_novo', function(event)
+{
+	event.preventDefault();
+	sessionStorage.re_id = 0;
+	sessionStorage.operacao_bd = 'novo';
+	$.mobile.changePage( "#re_formulario", {transition : 'none'} );
+});
+
+$(document).on('click', '#btn_re_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#re_form").serializeJSON();
+	salvar_re(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
+	});
+});
+
+$(document).on('click', '#btn_re_limpar', function(event)
+{
+	event.preventDefault();
+	$('#re_form #codigo').val('');
+	$('#re_form #data').val('');
+	$('#re_form #hora').val('');
+	$('#re_form #endereco').val('');
+	$('#re_form #coordenadas').val('');
+	$('#re_form #crime').val('');
+	$('#re_form #obs').val('');
+});
+
+//////// REGISTRO DE ENTRADA FIM
+
+/////// EVIDÊNCIAS INÍCIO
 
 $(document).on('pageshow', '#evidencia_lista', function()
 {
@@ -246,97 +335,249 @@ $(document).on('click', '#btn_evidencia_limpar', function(event)
 	$('#evidencia_form #visualizacao_imagem').attr('src', '');
 });
 
+///////// EVIDÊNCIAS FIM
 
+///////// VESTÍGIOS INÍCIO
 
+$(document).on('pageshow', '#vestigio_lista', function()
+{
+	var output = '';
+	$('#lista_vestigio').empty();
+	get_all_vestigio(function(vestigio) {
+		for (var i = 0; i < vestigio.length; i++)
+		{
+			output += '<li id="' + vestigio[i].id + '" data-id="' + vestigio[i].id + '"><a href="#"><h2>' + vestigio[i].localizacao + '</h2><p><strong>' + vestigio[i].data + ', ' + vestigio[i].hora + '</strong></p><p>' + vestigio[i].descricao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
+		}
+		$('#lista_vestigio').append(output).listview('refresh');
+	});
+});
 
+$(document).on('click', '#lista_vestigio li', function()
+{
+	vestigio_id = $(this).data('id');
+	sessionStorage.vestigio_id = vestigio_id;
+	sessionStorage.operacao_bd = 'editar';
+	$.mobile.changePage( "#vestigio_formulario", {transition : 'none'} );
+});
 
-
-
-
-
-
-$(document).on('click', '#lista_re li .excluir', function()
+$(document).on('click', '#lista_vestigio li .excluir', function()
 {
 	$el = $(this).closest('li');
-	re_id = $el.data('id');
-	sessionStorage.re_id = re_id;
+	vestigio_id = $el.data('id');
+	sessionStorage.vestigio_id = vestigio_id;
 	var resp = confirm('Excluir o registro?');
 	if (resp == true) {
-		excluir_re(re_id, function(resultado) {
+		excluir_vestigio(vestigio_id, function(resultado) {
+			reordena_vestigio();
 			$($el).remove();
 		});
 	}
-	$('#lista_re').listview('refresh');
+	$('#lista_vestigio').listview('refresh');
 	event.preventDefault();
-	return false;	
+	return false;
 });
 
-$(document).on('pagebeforeshow', '#re_formulario', function()
+$(document).on('pagebeforeshow', '#vestigio_formulario', function()
 {
 	var operacao_bd = sessionStorage.operacao_bd;
 	if (operacao_bd == 'editar')
 	{
-		var re_id = sessionStorage.re_id;
-		get_re(re_id, function(re) {
-			$('#re_form #operacao_bd').val(operacao_bd);
-			$('#re_form #id').val(re.id);
-			$('#re_form #codigo').val(re.codigo);
-			$('#re_form #data').val(re.data);
-			$('#re_form #hora').val(re.hora);
-			$('#re_form #endereco').val(re.endereco);
-			$('#re_form #coordenadas').val(re.coordenadas);
-			$('#re_form #crime').val(re.crime);
-			$('#re_form #obs').val(re.obs);
+		var vestigio_id = sessionStorage.vestigio_id;
+		get_vestigio(vestigio_id, function(vestigio) {
+			$('#vestigio_form #operacao_bd').val(operacao_bd);
+			$('#vestigio_form #id').val(vestigio.id);
+			$('#vestigio_form #vestigio_tipo_id').val(vestigio.vestigio_tipo_id).selectmenu('refresh');
+			$('#vestigio_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto', $.mobile.activePage).html(vestigio.numero_ordem);
+			$('#vestigio_form #numero_ordem').val(vestigio.numero_ordem);
+			$('#vestigio_form #data').val(vestigio.data);
+			$('#vestigio_form #hora').val(vestigio.hora);
+			$('#vestigio_form #coordenadas').val(vestigio.coordenadas);
+			$('#vestigio_form #descricao').val(vestigio.descricao);
+			$('#vestigio_form #localizacao').val(vestigio.localizacao);
+			$('#vestigio_form #imagem_uri').val(vestigio.imagem_uri);
+			$('#vestigio_form #visualizacao_imagem').attr('src', vestigio.imagem_uri);
 		});
 	} else {
-		var re_id = sessionStorage.re_id;
-		$('#re_form #operacao_bd').val(operacao_bd);
-		$('#re_form #id').val(re_id);
-		$('#re_form #codigo').val('');
-		$('#re_form #data').val('');
-		$('#re_form #hora').val('');
-		$('#re_form #endereco').val('');
-		$('#re_form #coordenadas').val('');
-		$('#re_form #crime').val('');
-		$('#re_form #obs').val('');
+		var vestigio_id = sessionStorage.vestigio_id;
+		get_no_vestigio(sessionStorage.re_id, function(numero_ordem) {
+			$('#vestigio_form #operacao_bd').val(operacao_bd);
+			$('#vestigio_form #id').val(vestigio_id);
+			$('#vestigio_form #vestigio_tipo_id').val('').selectmenu('refresh');
+			$('#vestigio_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto', $.mobile.activePage).html(numero_ordem);
+			$('#vestigio_form #numero_ordem').val(numero_ordem);
+			$('#vestigio_form #data').val('');
+			$('#vestigio_form #hora').val('');
+			$('#vestigio_form #coordenadas').val('');
+			$('#vestigio_form #descricao').val('');
+			$('#vestigio_form #localizacao').val('');
+			$('#vestigio_form #imagem_uri').val('');
+			$('#vestigio_form #visualizacao_imagem').attr('src', '');
 			
-		var data = data_atual();
-		var hora = hora_atual();
-		$('#re_form #data').val(data);
-		$('#re_form #hora').val(hora);
-		$('#re_form #capturar_coordenadas').trigger('click');
+			var data = data_atual();
+			var hora = hora_atual();
+			$('#vestigio_form #data').val(data);
+			$('#vestigio_form #hora').val(hora);
+			$('#vestigio_form #capturar_coordenadas').trigger('click');
+		});
 	}
 });
 
-$(document).on('click', '#btn_re_novo', function(event)
+$(document).on('click', '#btn_vestigio_novo', function(event)
 {
 	event.preventDefault();
-	sessionStorage.re_id = 0;
+	sessionStorage.vestigio_id = 0;
 	sessionStorage.operacao_bd = 'novo';
-	$.mobile.changePage( "#re_formulario", {transition : 'none'} );
+	$.mobile.changePage( "#vestigio_formulario", {transition : 'none'} );
 });
 
-$(document).on('click', '#btn_re_salvar', function(event)
+$(document).on('click', '#btn_vestigio_salvar', function(event)
 {
 	event.preventDefault();
-	var dados = $("#re_form").serializeJSON();
-	salvar_re(dados, dados.operacao_bd, function(resultado) {
+	var dados = $("#vestigio_form").serializeJSON();
+	salvar_vestigio(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
 		history.back();
 	});
 });
 
-$(document).on('click', '#btn_re_limpar', function(event)
+$(document).on('click', '#btn_vestigio_limpar', function(event)
 {
 	event.preventDefault();
-	$('#re_form #codigo').val('');
-	$('#re_form #data').val('');
-	$('#re_form #hora').val('');
-	$('#re_form #endereco').val('');
-	$('#re_form #coordenadas').val('');
-	$('#re_form #crime').val('');
-	$('#re_form #obs').val('');
+	$('#vestigio_form #data').val('');
+	$('#vestigio_form #hora').val('');
+	$('#vestigio_form #coordenadas').val('');
+	$('#vestigio_form #descricao').val('');
+	$('#vestigio_form #localizacao').val('');
+	$('#vestigio_form #imagem_uri').val('');
+	$('#vestigio_form #visualizacao_imagem').attr('src', '');
 });
+
+///////// VESTÍGIOS FIM
+
+///////// INFORMES INÍCIO
+
+$(document).on('pageshow', '#informe_lista', function()
+{
+	var output = '';
+	$('#lista_informe').empty();
+	get_all_informe(function(informe) {
+		for (var i = 0; i < informe.length; i++)
+		{
+			output += '<li id="' + informe[i].id + '" data-id="' + informe[i].id + '"><a href="#"><h2>' + informe[i].localizacao + '</h2><p><strong>' + informe[i].data + ', ' + informe[i].hora + '</strong></p><p>' + informe[i].declaracao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
+		}
+		$('#lista_informe').append(output).listview('refresh');
+	});
+});
+
+$(document).on('click', '#lista_informe li', function()
+{
+	informe_id = $(this).data('id');
+	sessionStorage.informe_id = informe_id;
+	sessionStorage.operacao_bd = 'editar';
+	$.mobile.changePage( "#informe_formulario", {transition : 'none'} );
+});
+
+$(document).on('click', '#lista_informe li .excluir', function()
+{
+	$el = $(this).closest('li');
+	informe_id = $el.data('id');
+	sessionStorage.informe_id = informe_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_informe(informe_id, function(resultado) {
+			reordena_informe();
+			$($el).remove();
+		});
+	}
+	$('#lista_informe').listview('refresh');
+	event.preventDefault();
+	return false;
+});
+
+$(document).on('pagebeforeshow', '#informe_formulario', function()
+{
+	var operacao_bd = sessionStorage.operacao_bd;
+	if (operacao_bd == 'editar')
+	{
+		var informe_id = sessionStorage.informe_id;
+		get_informe(informe_id, function(informe) {
+			$('#informe_form #operacao_bd').val(operacao_bd);
+			$('#informe_form #id').val(informe.id);
+			$('#informe_form #testemunha_tipo_id').val(informe.testemunha_tipo_id).selectmenu('refresh');
+			$('#informe_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto', $.mobile.activePage).html(informe.numero_ordem);
+			$('#informe_form #numero_ordem').val(informe.numero_ordem);
+			$('#informe_form #data').val(informe.data);
+			$('#informe_form #hora').val(informe.hora);
+			$('#informe_form #coordenadas').val(informe.coordenadas);
+			$('#informe_form #declaracao').val(informe.declaracao);
+			$('#informe_form #localizacao').val(informe.localizacao);
+			$('#informe_form #imagem_uri').val(informe.imagem_uri);
+			$('#informe_form #visualizacao_imagem').attr('src', informe.imagem_uri);
+		});
+	} else {
+		var informe_id = sessionStorage.informe_id;
+		get_no_informe(sessionStorage.re_id, function(numero_ordem) {
+			$('#informe_form #operacao_bd').val(operacao_bd);
+			$('#informe_form #id').val(informe_id);
+			$('#informe_form #testemunha_tipo_id').val('').selectmenu('refresh');
+			$('#informe_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto', $.mobile.activePage).html(numero_ordem);
+			$('#informe_form #numero_ordem').val(numero_ordem);
+			$('#informe_form #data').val('');
+			$('#informe_form #hora').val('');
+			$('#informe_form #coordenadas').val('');
+			$('#informe_form #declaracao').val('');
+			$('#informe_form #localizacao').val('');
+			$('#informe_form #imagem_uri').val('');
+			$('#informe_form #visualizacao_imagem').attr('src', '');
+			
+			var data = data_atual();
+			var hora = hora_atual();
+			$('#informe_form #data').val(data);
+			$('#informe_form #hora').val(hora);
+			$('#informe_form #capturar_coordenadas').trigger('click');
+		});
+	}
+});
+
+$(document).on('click', '#btn_informe_novo', function(event)
+{
+	event.preventDefault();
+	sessionStorage.informe_id = 0;
+	sessionStorage.operacao_bd = 'novo';
+	$.mobile.changePage( "#informe_formulario", {transition : 'none'} );
+});
+
+$(document).on('click', '#btn_informe_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#informe_form").serializeJSON();
+	salvar_informe(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
+	});
+});
+
+$(document).on('click', '#btn_informe_limpar', function(event)
+{
+	event.preventDefault();
+	$('#informe_form #data').val('');
+	$('#informe_form #hora').val('');
+	$('#informe_form #coordenadas').val('');
+	$('#informe_form #declaracao').val('');
+	$('#informe_form #localizacao').val('');
+	$('#informe_form #imagem_uri').val('');
+	$('#informe_form #visualizacao_imagem').attr('src', '');
+});
+
+///////// INFORMES FIM
 
 $(document).on('click', '#menu_sincronizar', function(event)
 {

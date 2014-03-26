@@ -11,6 +11,8 @@
     <script src="js/funcoes.js"></script>
 	<script src="js/spcr.js"></script>
     <script src="js/evidencia.js"></script>
+    <script src="js/vestigio.js"></script>
+    <script src="js/informe.js"></script>
     <script src="js/re.js"></script>
     
     <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
@@ -56,9 +58,21 @@
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
+                	<i class="icon-puzzle-piece icone"></i>
+					<a href="#vestigio_lista">
+						<p>Vestígios</p>
+					</a>
+				</li>
+				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-tags icone"></i>
 					<a href="#evidencia_lista">
 						<p>Cadeia de Custódia</p>
+					</a>
+				</li>
+				<li class="ui-icon-nodisc" data-iconshadow="false">
+                	<i class="icon-comment icone"></i>
+					<a href="#informe_lista">
+						<p>Informes</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_sincronizar">
@@ -102,6 +116,40 @@
                     
 		</div><!-- /content -->
 	</div><!-- /page -->
+    
+    <div data-role="page" id="vestigio_lista" data-theme="a">
+    
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
+			<h1>Vestígios</h1>
+            <a href="#" data-icon="plus" id="btn_vestigio_novo">Novo</a>
+		</div><!-- /header -->
+        
+    	<div data-role="content">
+        
+			<ul data-role="listview" data-inset="false" id="lista_vestigio" data-icon="false" data-split-icon="delete" data-split-theme="a">
+
+			</ul>
+                    
+		</div><!-- /content -->
+	</div><!-- /page -->
+    
+    <div data-role="page" id="informe_lista" data-theme="a">
+    
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
+			<h1>Informes</h1>
+            <a href="#" data-icon="plus" id="btn_informe_novo">Novo</a>
+		</div><!-- /header -->
+        
+    	<div data-role="content">
+        
+			<ul data-role="listview" data-inset="false" id="lista_informe" data-icon="false" data-split-icon="delete" data-split-theme="a">
+
+			</ul>
+                    
+		</div><!-- /content -->
+	</div><!-- /page -->
 
     <div data-role="page" id="evidencia_lista" data-theme="a">
     
@@ -124,7 +172,7 @@
         
         <div data-role="header">
             <a href="#lista" data-rel="back" data-icon="arrow-l">Voltar</a>
-            <h1>Evidência</h1>
+            <h1>Cadeia de Custódia</h1>
         </div><!-- /header -->
 
 		<div data-role="content">
@@ -238,6 +286,141 @@
 					<div class="ui-block-a"><button data-theme="b" id="btn_re_salvar">Salvar</button></div>
 					<div class="ui-block-b"><button data-theme="d" id="btn_re_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
+            
+			</form>
+            
+		</div><!-- /content -->
+	</div><!-- /page -->
+    
+	<div data-role="page" id="vestigio_formulario" data-theme="a">
+        
+        <div data-role="header">
+            <a href="#lista" data-rel="back" data-icon="arrow-l">Voltar</a>
+            <h1>Vestígios</h1>
+        </div><!-- /header -->
+
+		<div data-role="content">
+
+        	<form action="teste" method="post" id="vestigio_form" name="vestigio_form">
+
+                <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
+                <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="re_id" id="re_id" value="">
+                <input type="hidden" name="numero_ordem" id="numero_ordem" value="">
+                
+                <ul data-role="listview" style="margin-bottom:20px">
+                	<li data-role="list-divider">
+						<h2 id="re_codigo"></h2>
+                        <p class="evidencia_ordem_texto ui-li-aside">Número de Ordem</p>
+                        <p class="evidencia_ordem ui-li-aside" id="numero_ordem_texto"></p>
+					</li>
+                </ul>
+                
+                <button id="capturar_imagem">Capturar Imagem</button>
+
+                <label for="data" class="ui-hidden-accessible">Data:</label>
+                <input type="text" name="data" id="data" value="" placeholder="Data" disabled>
+                
+                <label for="hora" class="ui-hidden-accessible">Hora:</label>
+                <input type="text" name="hora" id="hora" value="" placeholder="Hora" disabled>
+                
+                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
+                
+				<select name="vestigio_tipo_id" id="vestigio_tipo_id" data-native-menu="false">
+					<option>Tipo de Vestígio</option>
+					<option value="1">Arma</option>
+                    <option value="2">Digital</option>
+                    <option value="3">Ferramenta</option>
+                    <option value="4">Marcas</option>
+                    <option value="5">Pegada</option>
+                    <option value="6">Pneumático</option>
+				</select>
+                
+                <label for="descricao" class="ui-hidden-accessible">Descrição:</label>
+                <input type="text" name="descricao" id="descricao" value="" placeholder="Descrição">
+                
+                <label for="localizacao" class="ui-hidden-accessible">Localização:</label>
+                <input type="text" name="localizacao" id="localizacao" value="" placeholder="Localização">
+                
+                <input type="hidden" name="imagem_uri" id="imagem_uri" value="" placeholder="Imagem URI">
+                
+                <button id="capturar_coordenadas">Coordenadas GPS</button>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><button data-theme="b" id="btn_vestigio_salvar">Salvar</button></div>
+					<div class="ui-block-b"><button data-theme="d" id="btn_vestigio_limpar">Limpar</button></div>
+				</div><!-- /grid-a -->
+
+				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
+				<img style="display:none;" id="largeImage" src="" />
+            
+			</form>
+            
+		</div><!-- /content -->
+	</div><!-- /page -->
+    
+	<div data-role="page" id="informe_formulario" data-theme="a">
+        
+        <div data-role="header">
+            <a href="#lista" data-rel="back" data-icon="arrow-l">Voltar</a>
+            <h1>Informes</h1>
+        </div><!-- /header -->
+
+		<div data-role="content">
+
+        	<form action="teste" method="post" id="informe_form" name="informe_form">
+
+                <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
+                <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="re_id" id="re_id" value="">
+                <input type="hidden" name="numero_ordem" id="numero_ordem" value="">
+                
+                <ul data-role="listview" style="margin-bottom:20px">
+                	<li data-role="list-divider">
+						<h2 id="re_codigo"></h2>
+                        <p class="evidencia_ordem_texto ui-li-aside">Número de Ordem</p>
+                        <p class="evidencia_ordem ui-li-aside" id="numero_ordem_texto"></p>
+					</li>
+                </ul>
+
+                <label for="data" class="ui-hidden-accessible">Data:</label>
+                <input type="text" name="data" id="data" value="" placeholder="Data" disabled>
+                
+                <label for="hora" class="ui-hidden-accessible">Hora:</label>
+                <input type="text" name="hora" id="hora" value="" placeholder="Hora" disabled>
+                
+                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
+                
+				<select name="testemunha_tipo_id" id="testemunha_tipo_id" data-native-menu="false">
+					<option>Tipo da Testemunha</option>
+					<option value="1">Vítima</option>
+                    <option value="2">Suspeito</option>
+                    <option value="3">Vizinho</option>
+                    <option value="4">Policial</option>
+                    <option value="5">Carteiro</option>
+                    <option value="6">Transeunte</option>
+                    <option value="7">Outros</option>
+				</select>
+                
+                <label for="declaracao" class="ui-hidden-accessible">Declaração:</label>
+                <input type="text" name="declaracao" id="declaracao" value="" placeholder="Declaração">
+                
+                <label for="localizacao" class="ui-hidden-accessible">Localização:</label>
+                <input type="text" name="localizacao" id="localizacao" value="" placeholder="Localização">
+                
+                <input type="hidden" name="imagem_uri" id="imagem_uri" value="" placeholder="Imagem URI">
+                
+                <button id="capturar_coordenadas">Coordenadas GPS</button>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><button data-theme="b" id="btn_informe_salvar">Salvar</button></div>
+					<div class="ui-block-b"><button data-theme="d" id="btn_informe_limpar">Limpar</button></div>
+				</div><!-- /grid-a -->
+
+				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
+				<img style="display:none;" id="largeImage" src="" />
             
 			</form>
             

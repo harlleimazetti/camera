@@ -2,7 +2,48 @@ var db = openDatabase ("spcr", "1.0", "Test", 65535);
 db.transaction (function (transaction) 
 {
 	console.log('Configurando Banco de Dados...');
+	
+	//var sql = "DROP TABLE vestigio";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "CREATE TABLE IF NOT EXISTS vestigio " +
+		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"vestigio_tipo_id INTEGER, " +
+		"re_id INTEGER, " +
+		"numero_ordem INTEGER, " +
+		"data DATE, " +
+		"hora TIME, " +
+		"coordenadas VARCHAR(200), " +
+		"descricao TEXT, " +
+		"localizacao TEXT, " +
+		"imagem BLOB, " +
+		"imagem_uri TEXT " +
+		")"
+	transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "INSERT INTO vestigio (id, vestigio_tipo_id, re_id, numero_ordem, data, hora, coordenadas, descricao, localizacao) VALUES ('1', '1', '1', '1', '2014-02-23','11:00:00','-18.92424, -48.249893','Descrição do vestígio 1.','Localização do vestígio 1') ";
+	transaction.executeSql (sql, undefined, function() { }, error);
+	var sql = "INSERT INTO vestigio (id, vestigio_tipo_id, re_id, numero_ordem, data, hora, coordenadas, descricao, localizacao) VALUES ('2', '2', '2', '1', '2014-02-24','19:00:00','-18.92424, -48.249893','Descrição do vestígio 2.','Localização do vestígio 2') ";
+	transaction.executeSql (sql, undefined, function() { }, error);
 
+	//var sql = "DROP TABLE informe";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "CREATE TABLE IF NOT EXISTS informe " +
+		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"testemunha_tipo_id INTEGER, " +
+		"re_id INTEGER, " +
+		"numero_ordem INTEGER, " +
+		"data DATE, " +
+		"hora TIME, " +
+		"coordenadas VARCHAR(200), " +
+		"declaracao TEXT, " +
+		"localizacao TEXT, " +
+		"imagem BLOB, " +
+		"imagem_uri TEXT " +
+		")"
+	transaction.executeSql (sql, undefined, function() { }, error);
+		
 	//var sql = "DROP TABLE evidencia";
 	//transaction.executeSql (sql, undefined, function() { }, error);
 	
