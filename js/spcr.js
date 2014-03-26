@@ -45,8 +45,9 @@ $(document).on('click', '#capturar_imagem', function()
 });
 
 function onSuccess(imageURI) {
-    var image = document.getElementById('visualizacao_imagem');
-    image.src = imageURI;
+    //var image = document.getElementById('visualizacao_imagem');
+    //image.src = imageURI;
+	$('#visualizacao_imagem', $.mobile.activePage).attr('src', imageURI);
 	$('#imagem_uri', $.mobile.activePage).val(imageURI);
 }
 
