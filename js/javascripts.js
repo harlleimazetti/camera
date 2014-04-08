@@ -1,338 +1,260 @@
-var APPFOLDER = 'controlhouse/';
-function getBaseURL(){
-	var baseURL = location.protocol + "//" + location.hostname + "/" + APPFOLDER;
-	return baseURL;
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+	$.mobile.defaultPageTransition = 'none';
+	$.mobile.defaultDialogTransition = 'none';
+	$.mobile.allowCrossDomainPages = true;
+	$.mobile.phonegapNavigationEnabled = true;
+	$.support.cors = true;
+	//sincronizar();
 }
-$(document).on('pagehide', function (e) {
-    var page = $(e.target);
-    if (!$.mobile.page.prototype.options.domCache
-        && (!page.attr('data-dom-cache')
-            || page.attr('data-dom-cache') == "false")
-        ) {
-        page.remove();
-    }
-});
 
-var toast=function(msg){
-	$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h4>"+msg+"</h4></div>")
-	.css({ display: "block", 
-		opacity: 0.90, 
-		position: "fixed",
-		padding: "7px",
-		"text-align": "center",
-		width: "270px",
-		left: ($(window).width() - 284)/2,
-		top: $(window).height()/2 })
-	.appendTo( $.mobile.pageContainer ).delay( 3000 )
-	.fadeOut( 400, function(){
-		$(this).remove();
-	});
-}
- 
-$.fn.serializeJSON = function(){
-	var json = {}
-	var form = $(this);
-	form.find('input, select').each(function(){
-		var val
-		if (!this.name) return;
-			if ('radio' === this.type) {
-				if (json[this.name]) { return; }
-				json[this.name] = this.checked ? this.value : '';
-			} else if ('checkbox' === this.type) {
-				val = json[this.name];
-			if (!this.checked) {
-				if (!val) { json[this.name] = ''; }
-			} else {
-				json[this.name] = 
-				typeof val === 'string' ? [val, this.value] :
-				$.isArray(val) ? $.merge(val, [this.value]) :
-				this.value;
-        	}
-		} else {
-        	json[this.name] = this.value;
+$(document).on('click', '#scan', function()
+{
+	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+	scanner.scan( function (result)
+	{
+		try
+		{
+			var ev = jQuery.parseJSON(result.text);
+			$('#evidencia_form #numero_lacre').val(ev.numero_lacre);
+			$('#evidencia_form #nome_perito').val(ev.nome_perito);
+			$('#evidencia_form #unidade').val(ev.unidade);
 		}
-	})
-	return json;
-}
-
-var cr_status = 1;
-function altera_controle() {
-	if (cr_status == 1) {
-		cr_status = 2;
-		$(".cr-botao .cr-botao-texto-1").addClass("cr-botao-texto-inativo");
-		$(".cr-botao .cr-botao-texto-1").removeClass("cr-botao-texto-ativo");
-		$(".cr-botao .cr-botao-texto-2").addClass("cr-botao-texto-ativo");
-		$(".cr-botao .cr-botao-texto-2").removeClass("cr-botao-texto-inativo");
-	} else {
-		cr_status = 1;
-		$(".cr-botao .cr-botao-texto-1").addClass("cr-botao-texto-ativo");
-		$(".cr-botao .cr-botao-texto-1").removeClass("cr-botao-texto-inativo");
-		$(".cr-botao .cr-botao-texto-2").addClass("cr-botao-texto-inativo");
-		$(".cr-botao .cr-botao-texto-2").removeClass("cr-botao-texto-ativo");		
-	}
-}
-
-$(document).on('tap click', '.registros .opRegistro', function(event) {
-	var id_registro = $(this).data('ch-id');
-	$('#id_registro').val(id_registro);
-	$('.opRegistroEditar').attr('data-ch-id', id_registro);
-	$('.opRegistroExcluir').attr('data-ch-id', id_registro);
-	$(".popupOpRegistro").popup("open", {positionTo : event.target});
-	event.preventDefault();
-	return false;
-});
-
-$(document).on('tap click', '.registros .opRegistroComando', function(event) {
-	var n = $(this).data('ch-n');
-	$('.opRegistroEditarComando').attr('data-ch-n', n);
-	$('.opRegistroExcluirComando').attr('data-ch-n', n);
-	$(".popupOpRegistro").popup("open", {positionTo : event.target});
-	event.preventDefault();
-	return false;
-});
-
-$(document).on('tap click', '.opRegistroEditar', function(event) {
-	var id_registro = $(this).attr('data-ch-id');
-	var v = $('#formulario_registro').val();
-	if (v == 'ambiente')
-	{
-		var url = getBaseURL() + 'ambiente/editar/' + id_registro;
-	} else if (v == 'dispositivo')
-	{
-		var url = getBaseURL() + 'dispositivo/editar/' + id_registro;
-	} else if (v == 'comando')
-	{
-		var url = getBaseURL() + 'comando/editar/' + id_registro;
-	} else if (v == 'cenario')
-	{
-		var url = getBaseURL() + 'cenario/editar/' + id_registro;
-	} else if (v == 'usuario')
-	{
-		var url = getBaseURL() + 'usuario/editar/' + id_registro;
-	}
-	$.mobile.changePage(url, {transition: "slide"});
-	event.preventDefault();
-	return false;
-});
-
-$(document).on('tap click', '.opRegistroExcluir', function(event) {
-	var id_registro = $(this).attr('data-ch-id');
-	event.preventDefault();
-	return false;
-});
-
-$(document).on('tap click', '.opRegistroEditarComando', function(event) {
-	var n = $(this).attr('data-ch-n');
-	var data = $('li[data-ch-n=' + n + '] :input').serializeArray();
-	alert(data);
-	jQuery.each( data, function( i, field ) {
-		alert(i + ' --- ' + field.value);
-      $( "#results" ).append( field.value + " " );
-    });
-	$('#form_comando #comando').val(data.comando);
-	event.preventDefault();
-	return false;
-});
-
-$(document).on('tap click', '.opRegistroExcluirComando', function(event) {
-	var n = $(this).attr('data-ch-n');
-	event.preventDefault();
-	return false;
-});
-
-var taphold = false;
-
-$(document).on('taphold', '.registros li', function(event) {
-	taphold = true;
-	$(".popupOpRegistro").popup("open", {positionTo : event.target});
-	setTimeout(function(){
-		taphold = false;
-	},3000);
-	event.preventDefault();
-	return false;
-});
-
-$(document).on('click', '.ch-botao', function() {
-	if (!taphold) {
-		var id_comando		= $(this).data('ch-id');
-		var id_dispositivo	= $(this).data('ch-id-dispositivo');
-		var valor			= $(this).data('ch-valor');
-		executar_comando(id_comando, id_dispositivo, valor);
-		event.preventDefault();
-		return false;
-	}
-});
-
-$(document).on('slidestop', '.ch-chave-selecao', function() {
-	var id_comando		= $("option:selected", this).data('ch-id');
-	var id_dispositivo	= $("option:selected", this).data('ch-id-dispositivo');
-	var valor			= $("option:selected", this).val();
-	executar_comando(id_comando, id_dispositivo, valor);
-	event.preventDefault();
-	return false;
-});
-
-$(document).on('slidestop', '.ch-slider', function() {
-	var id_dispositivo	= $(this).data('ch-id-dispositivo');
-	var valor			= $(this).val();
-	var el = '#sel2slider-' + $(this).attr('id');
-	$(el).val(valor);
-	var op = el + ' option:selected';
-	var id_comando = $(op).text();
-	executar_comando(id_comando, id_dispositivo, valor);
-	event.preventDefault();
-	return false;
-});
-
-$(document).on('click', '.ch-lista', function() {
-	var id_comando		= $(this).data('ch-id');
-	var id_dispositivo	= $(this).data('ch-id-dispositivo');
-	var valor			= $(this).data('ch-valor');
-	executar_comando(id_comando, id_dispositivo, valor);
-	event.preventDefault();
-	return false;
-});
-
-function executar_comando(id_comando, id_dispositivo, valor) {
-	var url = getBaseURL() + "comando/executar";
-	$.post(url, {
-		id_comando		: id_comando,
-		id_dispositivo	: id_dispositivo,
-		valor			: valor
-	}, function(resultado) {
-		resultado = jQuery.parseJSON(resultado);
-		toast(resultado.mensagem);
-	});
-}
-
-$(document).on('click', '#btn_barra_novo', function() {
-	var id_pagina = $.mobile.activePage.attr('id');
-	var el = '#' + id_pagina + ' #formulario_registro';
-	var v = $(el).val();
-	if (v == 'ambiente')
-	{
-		var url = getBaseURL() + "ambiente/novo";
-		$.mobile.changePage(url, {transition: "slide"});
-	} else if (v == 'dispositivo')
-	{
-		var el = '#' + id_pagina + ' #id_ambiente';
-		var id = $(el).val();
-		var url = getBaseURL() + "dispositivo/novo/" + id;
-		$.mobile.changePage(url, {transition: "slide"});
-	}
-	else if (v == 'comando')
-	{
-		var el = '#' + id_pagina + ' #id_dispositivo';
-		var id = $(el).val();
-		var url = getBaseURL() + "comando/novo/" + id;
-		$.mobile.changePage(url, {transition: "slide"});
-	}
-	else if (v == 'cenario')
-	{
-		var url = getBaseURL() + "cenario/novo/";
-		$.mobile.changePage(url, {transition: "slide"});
-	}
-	else if (v == 'usuario')
-	{
-		var url = getBaseURL() + "usuario/novo/";
-		$.mobile.changePage(url, {transition: "slide"});
-	}
-});
-
-$(document).on('change', '#form_comando #id_tipo', function() {
-	event.preventDefault();
-	var valor = $(this).val();
-	$('#formulario_comando #id_tipo').val(valor);
-});
-
-$(document).on('change', '#form_comando #id_formato', function() {
-	event.preventDefault();
-	var valor = $(this).val();
-	$('#formulario_comando #id_formato').val(valor);
-});
-
-$(document).on('change', '#form_comando #codificacao', function() {
-	event.preventDefault();
-	var valor = $(this).val();
-	$('#formulario_comando #codificacao').val(valor);
-});
-
-$(document).on('click', '#btn_ad_comando', function() {
-	event.preventDefault();
-	var data = $("#form_comando").serializeJSON();
-	var str = "";
-	$.each(data, function(key, val) {
-		str = str + '<input type="hidden" name="' + key + '[]" id="' + key + '[]" value="' + val + '" />';
-	});
-	$("#lista_comandos").append('<li><a href="#">' + data.descricao + '</a><a href="#" class="opRegistro" data-ch-id=""></a>'+ str +'</li>');
-	$("#lista_comandos").listview("refresh");
-});
-
-$(document).on('click', '.cancelar_registro', function() {
-	var id_pagina = $.mobile.activePage.attr('id');
-	var el = '#' + id_pagina + ' .formulario_registro';
-	var v = $(el).data('ch-status');
-	if (v == 0) {
-		$(el).trigger('expand');
-		$(el).data('ch-status', '1');
-	} else {
-		$(el).trigger('collapse');
-		$(el).data('ch-status', '0');
-	}
-	event.preventDefault();
-});
-
-$(document).on('click', '.salvar_registro', function() {
-	event.preventDefault();
-	var id_pagina = $.mobile.activePage.attr('id');
-	var el = '#' + id_pagina + ' form.form_registro';
-	var dados = $(el).serialize();
-	var formulario = $(el).attr('id');
-	dados = dados + '&formulario=' + formulario;
-	if (formulario == 'form_ambiente') {
-		acao = getBaseURL() + 'ambiente/salvar';
-		url_volta = getBaseURL() + 'ambiente/lista';
-	} else if (formulario == 'form_dispositivo') {
-		acao = getBaseURL() + 'dispositivo/salvar';
-		url_volta = getBaseURL() + 'dispositivo/lista';
-	} else if (formulario == 'formulario_comando') {
-		acao = getBaseURL() + 'comando/salvar';
-		url_volta = getBaseURL() + 'comando/lista';
-	} else if (formulario == 'form_cenario') {
-		acao = getBaseURL() + 'cenario/salvar';
-		url_volta = getBaseURL() + 'cenario/lista';
-	} else if (formulario == 'form_usuario') {
-		acao = getBaseURL() + 'usuario/salvar';
-		url_volta = getBaseURL() + 'usuario/lista';
-	}
-	$.post(acao, dados, function(resultado) {
-		alert(resultado);
-		resultado = jQuery.parseJSON(resultado);
-		toast(resultado.mensagem);
-		$.mobile.back();
-		//$.mobile.changePage('../ambiente/lista', {
-		//	reloadPage : true
-		//});
+		catch(e)
+		{
+			var campo = '#' + sessionStorage.campo_foco;
+			$(campo).val(result.text);
+		}
+		/*alert("We got a barcode\n" +
+		"Result: " + result.text + "\n" +
+		"Format: " + result.format + "\n" +
+		"Cancelled: " + result.cancelled);*/
+	}, function (error) { 
+		console.log("Scanning failed: ", error); 
 	});
 });
 
-$( document ).on( "pageinit", "#usuario_login", function() {
-	$("#form_login").submit(function(event) {
-		var login	= $("#login").val();
-		var senha	= $("#senha").val();
-		var dados = {
-			"login" : login,
-			"senha" : senha
-		};
-		$.post("usuario/login", dados, function(resultado) {
-			resultado = jQuery.parseJSON(resultado);
-			if (resultado.status == "ok") {
-				$(location).attr('href','inicio');
-				//$.mobile.changePage("http://localhost/controlhouse/inicio", {transition: "flip"});
-			} else {
-				alert(resultado.mensagem);
-			}
+$(document).on('click', '#capturar_coordenadas', function(event)
+{
+	event.preventDefault();
+	navigator.geolocation.getCurrentPosition(onGPSSuccess, onGPSError);
+});
+
+var onGPSSuccess = function(position) {
+	var coordenadas = position.coords.latitude + ', ' + position.coords.longitude;
+	$('#coordenadas', $.mobile.activePage).val(coordenadas);
+    /*alert('Latitude: '          + position.coords.latitude          + '\n' +
+          'Longitude: '         + position.coords.longitude         + '\n' +
+          'Altitude: '          + position.coords.altitude          + '\n' +
+          'Accuracy: '          + position.coords.accuracy          + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          'Heading: '           + position.coords.heading           + '\n' +
+          'Speed: '             + position.coords.speed             + '\n' +
+          'Timestamp: '         + position.timestamp                + '\n');*/
+};
+
+// onError Callback receives a PositionError object
+//
+function onGPSError(error) {
+    toast('Erro: ' + error.code + ', Descrição: ' + error.message);
+}
+
+/////// EVIDÊNCIAS INÍCIO
+
+$(document).on('pageshow', '#enquete_lista', function()
+{
+	var output = '';
+	$('#lista_enquete').empty();
+	get_all_enquete(function(enquete) {
+		for (var i = 0; i < enquete.length; i++)
+		{
+			output += '<li id="' + enquete[i].id + '" data-id="' + enquete[i].id + '"><a href="#"><h2>' + enquete[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].numero_lacre + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
+		}
+		$('#lista_enquete').append(output).listview('refresh');
+	});
+});
+
+$(document).on('click', '#lista_enquete li', function()
+{
+	enquete_id = $(this).data('id');
+	sessionStorage.enquete_id = enquete_id;
+	$.mobile.changePage( "#enquete_resposta", {transition : 'none'} );
+});
+
+$(document).on('click', '#lista_enquete li .excluir', function()
+{
+	$el = $(this).closest('li');
+	enquete_id = $el.data('id');
+	sessionStorage.enquete_id = enquete_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_enquete(enquete_id, function(resultado) {
+			$($el).remove();
 		});
-		event.preventDefault();
+	}
+	$('#lista_enquete').listview('refresh');
+	event.preventDefault();
+	return false;	
+});
+
+$(document).on('pagebeforeshow', '#enquete_resposta', function()
+{
+	if (operacao_bd == 'editar')
+	{
+		var enquete_id = sessionStorage.enquete_id;
+		get_enquete(enquete_id, function(enquete) {
+			$('#evidencia_form #operacao_bd').val(operacao_bd);
+			$('#evidencia_form #id').val(evidencia.id);
+			$('#evidencia_form #evidencia_tipo_id').val(evidencia.evidencia_tipo_id).selectmenu('refresh');
+			$('#evidencia_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto').html(evidencia.numero_ordem);
+			$('#evidencia_form #numero_ordem').val(evidencia.numero_ordem);
+			$('#evidencia_form #data').val(evidencia.data);
+			$('#evidencia_form #hora').val(evidencia.hora);
+			$('#evidencia_form #numero_lacre').val(evidencia.numero_lacre);
+			$('#evidencia_form #nome_perito').val(evidencia.nome_perito);
+			$('#evidencia_form #coordenadas').val(evidencia.coordenadas);
+			$('#evidencia_form #unidade').val(evidencia.unidade);
+			$('#evidencia_form #obs').val(evidencia.obs);
+			$('#evidencia_form #imagem_uri').val(evidencia.imagem_uri);
+			$('#evidencia_form #visualizacao_imagem').attr('src', evidencia.imagem_uri);
+		});
+	} else {
+		var evidencia_id = sessionStorage.evidencia_id;
+		get_no_evidencia(sessionStorage.re_id, function(numero_ordem) {
+			$('#evidencia_form #operacao_bd').val(operacao_bd);
+			$('#evidencia_form #id').val(evidencia_id);
+			$('#evidencia_form #evidencia_tipo_id').val('').selectmenu('refresh');
+			$('#evidencia_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto').html(numero_ordem);
+			$('#evidencia_form #numero_ordem').val(numero_ordem);
+			$('#evidencia_form #data').val('');
+			$('#evidencia_form #hora').val('');
+			$('#evidencia_form #numero_lacre').val('');
+			$('#evidencia_form #nome_perito').val('');
+			$('#evidencia_form #coordenadas').val('');
+			$('#evidencia_form #unidade').val('');
+			$('#evidencia_form #obs').val('');
+			$('#evidencia_form #imagem_uri').val('');
+			$('#evidencia_form #visualizacao_imagem').attr('src', '');
+			
+			var data = data_atual();
+			var hora = hora_atual();
+			$('#evidencia_form #data').val(data);
+			$('#evidencia_form #hora').val(hora);
+			$('#evidencia_form #capturar_coordenadas').trigger('click');
+		});
+	}
+});
+
+$(document).on('click', '#btn_enquete_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#enquete_form").serializeJSON();
+	salvar_enquete(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
 	});
 });
+
+///////// EVIDÊNCIAS FIM
+
+///////// CONFIG INÍCIO
+
+$(document).on('pagebeforeshow', '#config_formulario', function()
+{
+	var operacao_bd = 'editar'; //sessionStorage.operacao_bd;
+	if (operacao_bd == 'editar')
+	{
+		var config_id = 1; //sessionStorage.config_id;
+		get_config(config_id, function(config) {
+			$('#config_form #operacao_bd').val(operacao_bd);
+			$('#config_form #id').val(config.id);
+			$('#config_form #url_servidor').val(config.url_servidor);
+		});
+	} else {
+		var config_id = sessionStorage.config_id;
+		get_no_informe(sessionStorage.re_id, function(numero_ordem) {
+			$('#config_form #operacao_bd').val(operacao_bd);
+			$('#config_form #id').val(config_id);
+			$('#config_form #url_servidor').val('');
+		});
+	}
+});
+
+$(document).on('click', '#btn_config_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#config_form").serializeJSON();
+	salvar_config(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
+	});
+});
+
+$(document).on('click', '#btn_config_limpar', function(event)
+{
+	event.preventDefault();
+	$('#config_form #url_servidor').val('');
+});
+
+///////// CONFIG FIM
+
+$(document).on('click', '#menu_sincronizar', function(event)
+{
+	sincronizar();
+});
+
+function atualizar() {
+	var url = 'http://localhost/spcr/enquete.php';
+	$.ajax({
+		url: url,
+		data: {acao : 'get_all_enquetes', dados : ''},
+		dataType: 'jsonp',
+		jsonp: 'callback',
+		jsonpCallback: 'resultado_atualizar',
+		success: function(){},
+		error: function(){}
+	});
+}
+
+function resultado_atualizar(resultado) {
+	if (resultado.status == 'ok') {
+		toast(resultado.mensagem);
+	} else {
+		toast(resultado.mensagem);
+	}
+}
+
+function sincronizar() {
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		$.ajax({
+			url: url_servidor,
+			data: {acao : 'get_all_enquetes'},
+			dataType: 'jsonp',
+			jsonp: 'callback',
+			jsonpCallback: 'resultado_sincronizar',
+			success: function(){},
+			error: function(){}
+		});
+		window.setTimeout(sincronizar, 30000);
+	});
+}
+
+function resultado_sincronizar(resultado) {
+	if (resultado.status == 'ok') {
+		//toast(resultado.mensagem);
+		var n = resultado.registro.length;
+		if (n > 0) {
+			toast('Novo Registro de entrada!');
+			for (i = 0; i < n; i++) {
+				salvar_re(resultado.registro[i], 'novo', function(resultado) {});
+			}
+		}
+	} else {
+		//toast(resultado.mensagem);
+	}
+}

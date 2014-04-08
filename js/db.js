@@ -3,6 +3,18 @@ db.transaction (function (transaction)
 {
 	console.log('Configurando Banco de Dados...');
 	
+	//var sql = "DROP TABLE config";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "CREATE TABLE IF NOT EXISTS config " +
+		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"url_servidor VARCHAR(200) " +
+		")"
+	transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "INSERT INTO config (id, url_servidor) VALUES ('1', 'http://www.hlcontabil.com.br/spcr/sincronizar.php') ";
+	transaction.executeSql (sql, undefined, function() { }, error);
+	
 	//var sql = "DROP TABLE vestigio";
 	//transaction.executeSql (sql, undefined, function() { }, error);
 	

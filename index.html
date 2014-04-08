@@ -13,6 +13,7 @@
     <script src="js/evidencia.js"></script>
     <script src="js/vestigio.js"></script>
     <script src="js/informe.js"></script>
+    <script src="js/config.js"></script>
     <script src="js/re.js"></script>
     
     <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
@@ -73,6 +74,12 @@
                 	<i class="icon-comment icone"></i>
 					<a href="#informe_lista">
 						<p>Informes</p>
+					</a>
+				</li>
+				<li class="ui-icon-nodisc" data-iconshadow="false">
+                	<i class="icon-cog icone"></i>
+					<a href="#config_formulario">
+						<p>Configurações</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_sincronizar">
@@ -426,7 +433,34 @@
             
 		</div><!-- /content -->
 	</div><!-- /page -->
-    
+
+	<div data-role="page" id="config_formulario" data-theme="a">
+        
+        <div data-role="header">
+            <a href="#lista" data-rel="back" data-icon="arrow-l">Voltar</a>
+            <h1>Configurações</h1>
+        </div><!-- /header -->
+
+		<div data-role="content">
+
+        	<form action="teste" method="post" id="config_form" name="config_form">
+
+                <input type="hidden" name="operacao_bd" id="operacao_bd" value="editar">
+                <input type="hidden" name="id" id="id" value="">
+                
+                <label for="url_servidor" class="ui-hidden-accessible">URL Servidor:</label>
+                <input type="text" name="url_servidor" id="url_servidor" value="" placeholder="URL Servidor">
+                
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><button data-theme="b" id="btn_config_salvar">Salvar</button></div>
+					<div class="ui-block-b"><button data-theme="d" id="btn_config_limpar">Limpar</button></div>
+				</div><!-- /grid-a -->
+            
+			</form>
+            
+		</div><!-- /content -->
+	</div><!-- /page -->
+        
 	<div data-role="page" id="db" data-theme="a">
 
         <div data-role="header">

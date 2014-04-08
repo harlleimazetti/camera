@@ -580,22 +580,66 @@ $(document).on('click', '#btn_informe_limpar', function(event)
 
 ///////// INFORMES FIM
 
+///////// CONFIG INÍCIO
+
+$(document).on('pagebeforeshow', '#config_formulario', function()
+{
+	var operacao_bd = 'editar'; //sessionStorage.operacao_bd;
+	if (operacao_bd == 'editar')
+	{
+		var config_id = 1; //sessionStorage.config_id;
+		get_config(config_id, function(config) {
+			$('#config_form #operacao_bd').val(operacao_bd);
+			$('#config_form #id').val(config.id);
+			$('#config_form #url_servidor').val(config.url_servidor);
+		});
+	} else {
+		var config_id = sessionStorage.config_id;
+		get_no_informe(sessionStorage.re_id, function(numero_ordem) {
+			$('#config_form #operacao_bd').val(operacao_bd);
+			$('#config_form #id').val(config_id);
+			$('#config_form #url_servidor').val('');
+		});
+	}
+});
+
+$(document).on('click', '#btn_config_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#config_form").serializeJSON();
+	salvar_config(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
+	});
+});
+
+$(document).on('click', '#btn_config_limpar', function(event)
+{
+	event.preventDefault();
+	$('#config_form #url_servidor').val('');
+});
+
+///////// CONFIG FIM
+
 $(document).on('click', '#menu_sincronizar', function(event)
 {
 	sincronizar();
 });
 
 function sincronizar() {
-	$.ajax({
-		url: 'http://www.hlcontabil.com.br/spcr/sincronizar.php',
-		data: {nome : 'Harllei Mazetti'},
-		dataType: 'jsonp',
-		jsonp: 'callback',
-		jsonpCallback: 'resultado_sincronizar',
-		success: function(){},
-		error: function(){}
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		$.ajax({
+			url: url_servidor,
+			data: {nome : 'Harllei Mazetti'},
+			dataType: 'jsonp',
+			jsonp: 'callback',
+			jsonpCallback: 'resultado_sincronizar',
+			success: function(){},
+			error: function(){}
+		});
+		window.setTimeout(sincronizar, 30000);
 	});
-	window.setTimeout(sincronizar, 5000);
 }
 
 function resultado_sincronizar(resultado) {
