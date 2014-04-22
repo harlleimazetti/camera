@@ -240,7 +240,7 @@
                     <option value="6">Pneumático</option>
 				</select>
                 
-                <button id="capturar_imagem">Capturar Imagem</button>
+                <button class="capturar_imagem" data-img-uri="imagem_uri" data-img-vis="visualizacao_imagem">Capturar Imagem</button>
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a"><button data-theme="b" id="btn_evidencia_salvar">Salvar</button></div>
@@ -659,9 +659,9 @@
 
         	<form action="teste" method="post" id="acesso_coisa_form" name="acesso_coisa_form">
 
-                <input type="text" name="operacao_bd" id="operacao_bd" value="">
-                <input type="text" name="id" id="id" value="">
-                <input type="text" name="re_id" id="re_id" value="">
+                <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
+                <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="re_id" id="re_id" value="">
                 
                 <ul data-role="listview" style="margin-bottom:20px">
                 	<li data-role="list-divider">
@@ -1000,7 +1000,7 @@
                     <option value="6">Maior 60.00 Kg</option>
 				</select>
                 
-				<select name="tranporte_id" id="transporte_id">
+				<select name="transporte_id" id="transporte_id">
 					<option>Mecanismo de Transporte</option>
 					<option value="1">Manual</option>
                     <option value="2">Sacolas</option>

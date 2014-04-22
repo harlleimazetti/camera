@@ -38,18 +38,22 @@ $(document).on('click', '#scan', function()
 	});
 });
 
-$(document).on('click', '#capturar_imagem', function()
+$(document).on('click', '.capturar_imagem', function()
 {
+	sessionStorage.img_uri = $(this).data('img-uri');
+	sessionStorage.img_vis = $(this).data('img-vis');
 	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
-	destinationType: Camera.DestinationType.FILE_URI, teste : 'harllei' }); 
+	destinationType: Camera.DestinationType.FILE_URI }); 
 });
 
-function onSuccess(imageURI, teste) {
+function onSuccess(imageURI) {
     //var image = document.getElementById('visualizacao_imagem');
     //image.src = imageURI;
-	alert(teste);
-	$('#visualizacao_imagem', $.mobile.activePage).attr('src', imageURI);
-	$('#imagem_uri', $.mobile.activePage).val(imageURI);
+	var img_uri = sessionStorage.img_uri;
+	var img_vis = sessionStorage.img_vis;
+	alert('img_uri: ' + img_uri + ', img_vis: ' + img_vis);
+	$(img_vis, $.mobile.activePage).attr('src', imageURI);
+	$(img_uri, $.mobile.activePage).val(imageURI);
 }
 
 function onFail(message) {

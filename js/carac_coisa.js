@@ -15,7 +15,7 @@ function get_all_carac_coisa(fn)
 					carac_coisa[i] = new Object();
 					carac_coisa[i].id					= row.id;
 					carac_coisa[i].re_id				= row.re_id;
-					carac_coisa[i].visibilidade			= row.visibilidade;
+					carac_coisa[i].visibilidade_id		= row.visibilidade_id;
 					carac_coisa[i].tipo_principal_id	= row.tipo_principal_id;
 					carac_coisa[i].tipo_secundario_id	= row.tipo_secundario_id;
 					carac_coisa[i].dimensao_id			= row.dimensao_id;
@@ -45,7 +45,7 @@ function get_carac_coisa(id, fn)
 				var row = result.rows.item(0);
 				carac_coisa.id					= row.id;
 				carac_coisa.re_id				= row.re_id;
-				carac_coisa.visibilidade		= row.visibilidade;
+				carac_coisa.visibilidade_id		= row.visibilidade_id;
 				carac_coisa.tipo_principal_id	= row.tipo_principal_id;
 				carac_coisa.tipo_secundario_id	= row.tipo_secundario_id;
 				carac_coisa.dimensao_id			= row.dimensao_id;
@@ -74,7 +74,7 @@ function get_carac_coisa_re(re_id, fn)
 				var row = result.rows.item(0);
 				carac_coisa.id					= row.id;
 				carac_coisa.re_id				= row.re_id;
-				carac_coisa.visibilidade		= row.visibilidade;
+				carac_coisa.visibilidade_id		= row.visibilidade_id;
 				carac_coisa.tipo_principal_id	= row.tipo_principal_id;
 				carac_coisa.tipo_secundario_id	= row.tipo_secundario_id;
 				carac_coisa.dimensao_id			= row.dimensao_id;
