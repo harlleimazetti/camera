@@ -1,4 +1,4 @@
-function get_all_acesso_local(fn) 
+function get_all_acesso_local(fn)
 {
 	var re_id = sessionStorage.re_id;
 	db.transaction(function (tx)
