@@ -116,3 +116,124 @@ function excluir_re(id, fn)
 		});
 	});
 }
+
+/////////// REGISTRO DE ENTRADA INÍCIO
+
+$(document).on('pageshow', '#re_lista', function()
+{
+	var output = '';
+	$('#lista_re').empty();
+	get_all_re(function(re) {
+		for (var i = 0; i < re.length; i++)
+		{
+			if (re[i].novo == '1') {
+				data_theme = 'b';
+			} else {
+				data_theme = 'a';
+			}
+			output += '<li data-theme="' + data_theme + '" data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></a><a href="#" class="excluir">Excluir</a></li>';
+		}
+		$('#lista_re').append(output).listview('refresh');
+	});
+});
+
+$(document).on('click', '#lista_re li', function()
+{
+	re_id = $(this).data('id');
+	$(this).attr('data-theme', 'a');
+	$(this).removeClass('ui-btn-up-b ui-btn-hover-b').addClass('ui-btn-up-a ui-btn-hover-a');
+	$('#lista_re').listview('refresh');
+	get_re(re_id, function(re) {
+		sessionStorage.re_id = re.id;
+		sessionStorage.re_codigo = re.codigo;
+		re.novo = '0';
+		salvar_re(re, 'editar', function(resultado) {});
+		var msg = 'Registro de entrada selecionado <p style="margin-bottom:0"><strong>' + re.codigo + '</strong></p><br>' + re.crime;
+		toast(msg);
+	});
+});
+
+$(document).on('click', '#lista_re li .excluir', function()
+{
+	$el = $(this).closest('li');
+	re_id = $el.data('id');
+	sessionStorage.re_id = re_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_re(re_id, function(resultado) {
+			$($el).remove();
+		});
+	}
+	$('#lista_re').listview('refresh');
+	event.preventDefault();
+	return false;	
+});
+
+$(document).on('pagebeforeshow', '#re_formulario', function()
+{
+	var operacao_bd = sessionStorage.operacao_bd;
+	if (operacao_bd == 'editar')
+	{
+		var re_id = sessionStorage.re_id;
+		get_re(re_id, function(re) {
+			$('#re_form #operacao_bd').val(operacao_bd);
+			$('#re_form #id').val(re.id);
+			$('#re_form #codigo').val(re.codigo);
+			$('#re_form #data').val(re.data);
+			$('#re_form #hora').val(re.hora);
+			$('#re_form #endereco').val(re.endereco);
+			$('#re_form #coordenadas').val(re.coordenadas);
+			$('#re_form #crime').val(re.crime);
+			$('#re_form #obs').val(re.obs);
+		});
+	} else {
+		var re_id = sessionStorage.re_id;
+		$('#re_form #operacao_bd').val(operacao_bd);
+		$('#re_form #id').val(re_id);
+		$('#re_form #codigo').val('');
+		$('#re_form #data').val('');
+		$('#re_form #hora').val('');
+		$('#re_form #endereco').val('');
+		$('#re_form #coordenadas').val('');
+		$('#re_form #crime').val('');
+		$('#re_form #obs').val('');
+			
+		var data = data_atual();
+		var hora = hora_atual();
+		$('#re_form #data').val(data);
+		$('#re_form #hora').val(hora);
+		$('#re_form #capturar_coordenadas').trigger('click');
+	}
+});
+
+$(document).on('click', '#btn_re_novo', function(event)
+{
+	event.preventDefault();
+	sessionStorage.re_id = 0;
+	sessionStorage.operacao_bd = 'novo';
+	$.mobile.changePage( "#re_formulario", {transition : 'none'} );
+});
+
+$(document).on('click', '#btn_re_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#re_form").serializeJSON();
+	salvar_re(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
+	});
+});
+
+$(document).on('click', '#btn_re_limpar', function(event)
+{
+	event.preventDefault();
+	$('#re_form #codigo').val('');
+	$('#re_form #data').val('');
+	$('#re_form #hora').val('');
+	$('#re_form #endereco').val('');
+	$('#re_form #coordenadas').val('');
+	$('#re_form #crime').val('');
+	$('#re_form #obs').val('');
+});
+
+//////// REGISTRO DE ENTRADA FIM

@@ -1,7 +1,117 @@
-var db = openDatabase ("spcr", "1.0", "Test", 65535); 
+var db = openDatabase ("spcr", "1.0", "Test", 65535);
 db.transaction (function (transaction) 
 {
 	console.log('Configurando Banco de Dados...');
+	
+	//var sql = "DROP TABLE carac_coisa";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "CREATE TABLE IF NOT EXISTS carac_coisa " +
+		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"re_id INTEGER, " +
+		"visibilidade_id INTEGER, " +
+		"tipo_principal_id INTEGER, " +
+		"tipo_secundario_id INTEGER, " +
+		"dimensao_id INTEGER, " +
+		"peso_id INTEGER, " +
+		"transporte_id INTEGER, " + 
+		"vestigios_id INTEGER, " + 
+		"fluidos_id INTEGER, " +
+		"obs TEXT, " +
+		"hipoteses TEXT " +
+		")"
+	transaction.executeSql (sql, undefined, function() { }, error);
+	
+	//var sql = "DROP TABLE acesso_coisa";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "CREATE TABLE IF NOT EXISTS acesso_coisa " +
+		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"re_id INTEGER, " +
+		"res_pri_comodo_id INTEGER, " + 
+		"res_atuacao_id INTEGER, " + 
+		"res_outro_comodo_id INTEGER, " + 
+		"res_imagem1 BLOB, " + 
+		"res_imagem1_uri TEXT, " + 
+		"res_imagem2 BLOB, " + 
+		"res_imagem2_uri TEXT, " + 
+		"com_pri_comodo_id INTEGER, " + 
+		"com_atuacao_id INTEGER, " + 
+		"com_outro_comodo_id INTEGER, " + 
+		"com_imagem1 BLOB, " + 
+		"com_imagem1_uri TEXT, " + 
+		"com_imagem2 BLOB, " + 
+		"com_imagem2_uri TEXT, " + 
+		"ind_pri_comodo_id INTEGER, " + 
+		"ind_atuacao_id INTEGER, " + 
+		"ind_outro_comodo_id INTEGER, " + 
+		"ind_imagem1 BLOB, " + 
+		"ind_imagem1_uri TEXT, " + 
+		"ind_imagem2 BLOB, " + 
+		"ind_imagem2_uri TEXT, " + 
+		"esco_pri_comodo_id INTEGER, " + 
+		"esco_atuacao_id INTEGER, " + 
+		"esco_outro_comodo_id INTEGER, " + 
+		"esco_imagem1 BLOB, " + 
+		"esco_imagem1_uri TEXT, " + 
+		"esco_imagem2 BLOB, " + 
+		"esco_imagem2_uri TEXT, " + 
+		"escr_pri_comodo_id INTEGER, " + 
+		"escr_atuacao_id INTEGER, " + 
+		"escr_outro_comodo_id INTEGER, " + 
+		"escr_imagem1 BLOB, " + 
+		"escr_imagem1_uri TEXT, " + 
+		"escr_imagem2 BLOB, " + 
+		"escr_imagem2_uri TEXT, " + 
+		"obs TEXT, " +
+		"hipoteses TEXT " +
+		")"
+	transaction.executeSql (sql, undefined, function() { }, error);
+	
+	//var sql = "DROP TABLE acesso_local";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "CREATE TABLE IF NOT EXISTS acesso_local " +
+		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"re_id INTEGER, " +
+		"limite_id INTEGER, " +
+		"escalada_id INTEGER, " +
+		"modo_escalada_id INTEGER, " +
+		"rompimento_id INTEGER, " +
+		"modo_rompimento_id INTEGER, " +
+		"chave_falsa_id INTEGER, " +
+		"imagem1 BLOB, " +
+		"imagem1_uri TEXT, " +
+		"imagem2 BLOB, " +
+		"imagem2_uri TEXT, " +
+		"obs TEXT, " +
+		"hipoteses TEXT " +
+		")"
+	transaction.executeSql (sql, undefined, function() { }, error);
+	
+	//var sql = "DROP TABLE administrativa";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	
+	var sql = "CREATE TABLE IF NOT EXISTS administrativa " +
+		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"re_id INTEGER, " +
+		"cidade_id INTEGER, " +
+		"bo_tc VARCHAR(100), " +
+		"dp VARCHAR(100), " +
+		"data_requisicao DATE, " +
+		"hora_requisicao TIME, " +
+		"data_atendimento DATE, " +
+		"hora_atendimento TIME, " +
+		"preservacao VARCHAR(5), " +
+		"logradouro VARCHAR(100), " +
+		"numero VARCHAR(5), " +
+		"complemento VARCHAR(100), " +
+		"bairro VARCHAR(100), " + 
+		"coordenadas VARCHAR(200), " + 
+		"obs TEXT, " +
+		"hipoteses TEXT " +
+		")"
+	transaction.executeSql (sql, undefined, function() { }, error);
 	
 	//var sql = "DROP TABLE config";
 	//transaction.executeSql (sql, undefined, function() { }, error);

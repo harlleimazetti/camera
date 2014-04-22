@@ -152,3 +152,124 @@ function reordena_informe()
 		}		
 	});
 }
+
+///////// INFORMES INÍCIO
+
+$(document).on('pageshow', '#informe_lista', function()
+{
+	var output = '';
+	$('#lista_informe').empty();
+	get_all_informe(function(informe) {
+		for (var i = 0; i < informe.length; i++)
+		{
+			output += '<li id="' + informe[i].id + '" data-id="' + informe[i].id + '"><a href="#"><h2>' + informe[i].localizacao + '</h2><p><strong>' + informe[i].data + ', ' + informe[i].hora + '</strong></p><p>' + informe[i].declaracao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
+		}
+		$('#lista_informe').append(output).listview('refresh');
+	});
+});
+
+$(document).on('click', '#lista_informe li', function()
+{
+	informe_id = $(this).data('id');
+	sessionStorage.informe_id = informe_id;
+	sessionStorage.operacao_bd = 'editar';
+	$.mobile.changePage( "#informe_formulario", {transition : 'none'} );
+});
+
+$(document).on('click', '#lista_informe li .excluir', function()
+{
+	$el = $(this).closest('li');
+	informe_id = $el.data('id');
+	sessionStorage.informe_id = informe_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_informe(informe_id, function(resultado) {
+			reordena_informe();
+			$($el).remove();
+		});
+	}
+	$('#lista_informe').listview('refresh');
+	event.preventDefault();
+	return false;
+});
+
+$(document).on('pagebeforeshow', '#informe_formulario', function()
+{
+	var operacao_bd = sessionStorage.operacao_bd;
+	if (operacao_bd == 'editar')
+	{
+		var informe_id = sessionStorage.informe_id;
+		get_informe(informe_id, function(informe) {
+			$('#informe_form #operacao_bd').val(operacao_bd);
+			$('#informe_form #id').val(informe.id);
+			$('#informe_form #testemunha_tipo_id').val(informe.testemunha_tipo_id).selectmenu('refresh');
+			$('#informe_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto', $.mobile.activePage).html(informe.numero_ordem);
+			$('#informe_form #numero_ordem').val(informe.numero_ordem);
+			$('#informe_form #data').val(informe.data);
+			$('#informe_form #hora').val(informe.hora);
+			$('#informe_form #coordenadas').val(informe.coordenadas);
+			$('#informe_form #declaracao').val(informe.declaracao);
+			$('#informe_form #localizacao').val(informe.localizacao);
+			$('#informe_form #imagem_uri').val(informe.imagem_uri);
+			$('#informe_form #visualizacao_imagem').attr('src', informe.imagem_uri);
+		});
+	} else {
+		var informe_id = sessionStorage.informe_id;
+		get_no_informe(sessionStorage.re_id, function(numero_ordem) {
+			$('#informe_form #operacao_bd').val(operacao_bd);
+			$('#informe_form #id').val(informe_id);
+			$('#informe_form #testemunha_tipo_id').val('').selectmenu('refresh');
+			$('#informe_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto', $.mobile.activePage).html(numero_ordem);
+			$('#informe_form #numero_ordem').val(numero_ordem);
+			$('#informe_form #data').val('');
+			$('#informe_form #hora').val('');
+			$('#informe_form #coordenadas').val('');
+			$('#informe_form #declaracao').val('');
+			$('#informe_form #localizacao').val('');
+			$('#informe_form #imagem_uri').val('');
+			$('#informe_form #visualizacao_imagem').attr('src', '');
+			
+			var data = data_atual();
+			var hora = hora_atual();
+			$('#informe_form #data').val(data);
+			$('#informe_form #hora').val(hora);
+			$('#informe_form #capturar_coordenadas').trigger('click');
+		});
+	}
+});
+
+$(document).on('click', '#btn_informe_novo', function(event)
+{
+	event.preventDefault();
+	sessionStorage.informe_id = 0;
+	sessionStorage.operacao_bd = 'novo';
+	$.mobile.changePage( "#informe_formulario", {transition : 'none'} );
+});
+
+$(document).on('click', '#btn_informe_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#informe_form").serializeJSON();
+	salvar_informe(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
+	});
+});
+
+$(document).on('click', '#btn_informe_limpar', function(event)
+{
+	event.preventDefault();
+	$('#informe_form #data').val('');
+	$('#informe_form #hora').val('');
+	$('#informe_form #coordenadas').val('');
+	$('#informe_form #declaracao').val('');
+	$('#informe_form #localizacao').val('');
+	$('#informe_form #imagem_uri').val('');
+	$('#informe_form #visualizacao_imagem').attr('src', '');
+});
+
+///////// INFORMES FIM

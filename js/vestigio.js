@@ -152,3 +152,124 @@ function reordena_vestigio()
 		}		
 	});
 }
+
+///////// VESTÍGIOS INÍCIO
+
+$(document).on('pageshow', '#vestigio_lista', function()
+{
+	var output = '';
+	$('#lista_vestigio').empty();
+	get_all_vestigio(function(vestigio) {
+		for (var i = 0; i < vestigio.length; i++)
+		{
+			output += '<li id="' + vestigio[i].id + '" data-id="' + vestigio[i].id + '"><a href="#"><h2>' + vestigio[i].localizacao + '</h2><p><strong>' + vestigio[i].data + ', ' + vestigio[i].hora + '</strong></p><p>' + vestigio[i].descricao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
+		}
+		$('#lista_vestigio').append(output).listview('refresh');
+	});
+});
+
+$(document).on('click', '#lista_vestigio li', function()
+{
+	vestigio_id = $(this).data('id');
+	sessionStorage.vestigio_id = vestigio_id;
+	sessionStorage.operacao_bd = 'editar';
+	$.mobile.changePage( "#vestigio_formulario", {transition : 'none'} );
+});
+
+$(document).on('click', '#lista_vestigio li .excluir', function()
+{
+	$el = $(this).closest('li');
+	vestigio_id = $el.data('id');
+	sessionStorage.vestigio_id = vestigio_id;
+	var resp = confirm('Excluir o registro?');
+	if (resp == true) {
+		excluir_vestigio(vestigio_id, function(resultado) {
+			reordena_vestigio();
+			$($el).remove();
+		});
+	}
+	$('#lista_vestigio').listview('refresh');
+	event.preventDefault();
+	return false;
+});
+
+$(document).on('pagebeforeshow', '#vestigio_formulario', function()
+{
+	var operacao_bd = sessionStorage.operacao_bd;
+	if (operacao_bd == 'editar')
+	{
+		var vestigio_id = sessionStorage.vestigio_id;
+		get_vestigio(vestigio_id, function(vestigio) {
+			$('#vestigio_form #operacao_bd').val(operacao_bd);
+			$('#vestigio_form #id').val(vestigio.id);
+			$('#vestigio_form #vestigio_tipo_id').val(vestigio.vestigio_tipo_id).selectmenu('refresh');
+			$('#vestigio_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto', $.mobile.activePage).html(vestigio.numero_ordem);
+			$('#vestigio_form #numero_ordem').val(vestigio.numero_ordem);
+			$('#vestigio_form #data').val(vestigio.data);
+			$('#vestigio_form #hora').val(vestigio.hora);
+			$('#vestigio_form #coordenadas').val(vestigio.coordenadas);
+			$('#vestigio_form #descricao').val(vestigio.descricao);
+			$('#vestigio_form #localizacao').val(vestigio.localizacao);
+			$('#vestigio_form #imagem_uri').val(vestigio.imagem_uri);
+			$('#vestigio_form #visualizacao_imagem').attr('src', vestigio.imagem_uri);
+		});
+	} else {
+		var vestigio_id = sessionStorage.vestigio_id;
+		get_no_vestigio(sessionStorage.re_id, function(numero_ordem) {
+			$('#vestigio_form #operacao_bd').val(operacao_bd);
+			$('#vestigio_form #id').val(vestigio_id);
+			$('#vestigio_form #vestigio_tipo_id').val('').selectmenu('refresh');
+			$('#vestigio_form #re_id').val(sessionStorage.re_id);
+			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
+			$('#numero_ordem_texto', $.mobile.activePage).html(numero_ordem);
+			$('#vestigio_form #numero_ordem').val(numero_ordem);
+			$('#vestigio_form #data').val('');
+			$('#vestigio_form #hora').val('');
+			$('#vestigio_form #coordenadas').val('');
+			$('#vestigio_form #descricao').val('');
+			$('#vestigio_form #localizacao').val('');
+			$('#vestigio_form #imagem_uri').val('');
+			$('#vestigio_form #visualizacao_imagem').attr('src', '');
+			
+			var data = data_atual();
+			var hora = hora_atual();
+			$('#vestigio_form #data').val(data);
+			$('#vestigio_form #hora').val(hora);
+			$('#vestigio_form #capturar_coordenadas').trigger('click');
+		});
+	}
+});
+
+$(document).on('click', '#btn_vestigio_novo', function(event)
+{
+	event.preventDefault();
+	sessionStorage.vestigio_id = 0;
+	sessionStorage.operacao_bd = 'novo';
+	$.mobile.changePage( "#vestigio_formulario", {transition : 'none'} );
+});
+
+$(document).on('click', '#btn_vestigio_salvar', function(event)
+{
+	event.preventDefault();
+	var dados = $("#vestigio_form").serializeJSON();
+	salvar_vestigio(dados, dados.operacao_bd, function(resultado) {
+		toast(resultado.mensagem);
+		history.back();
+	});
+});
+
+$(document).on('click', '#btn_vestigio_limpar', function(event)
+{
+	event.preventDefault();
+	$('#vestigio_form #data').val('');
+	$('#vestigio_form #hora').val('');
+	$('#vestigio_form #coordenadas').val('');
+	$('#vestigio_form #descricao').val('');
+	$('#vestigio_form #localizacao').val('');
+	$('#vestigio_form #imagem_uri').val('');
+	$('#vestigio_form #visualizacao_imagem').attr('src', '');
+});
+
+///////// VESTÍGIOS FIM
