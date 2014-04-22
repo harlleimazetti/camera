@@ -126,9 +126,9 @@ function salvar_acesso_local(acesso_local, operacao_bd, fn)
 					"'" + acesso_local.rompimento_id + "', " + 
 					"'" + acesso_local.modo_rompimento_id + "', " + 
 					"'" + acesso_local.chave_falsa_id + "', " + 
-					"'" + acesso_local.imagem1 + "', " + 
+					"'', " + 
 					"'" + acesso_local.imagem1_uri + "', " + 
-					"'" + acesso_local.imagem2 + "', " + 
+					"'', " + 
 					"'" + acesso_local.imagem2_uri + "', " + 
 					"'" + acesso_local.obs + "', " + 
 					"'" + acesso_local.hipoteses + "'" + 
@@ -230,7 +230,9 @@ $(document).on('pagebeforeshow', '#formulario_acesso_local', function()
 			$('#acesso_local_form #modo_rompimento_id').val(1).selectmenu('refresh');
 			$('#acesso_local_form #chave_falsa_id').val(1).selectmenu('refresh');
 			$('#acesso_local_form #imagem1_uri').val('');
+			$('#acesso_local_form #visualizacao_imagem1').attr('src', '');
 			$('#acesso_local_form #imagem2_uri').val('');
+			$('#acesso_local_form #visualizacao_imagem2').attr('src', '');
 			$('#acesso_local_form #obs').val('');
 			$('#acesso_local_form #hipoteses').val('');
 		} else {
@@ -246,7 +248,9 @@ $(document).on('pagebeforeshow', '#formulario_acesso_local', function()
 			$('#acesso_local_form #modo_rompimento_id').val(acesso_local.modo_rompimento_id).selectmenu('refresh');
 			$('#acesso_local_form #chave_falsa_id').val(acesso_local.chave_falsa_id).selectmenu('refresh');
 			$('#acesso_local_form #imagem1_uri').val(acesso_local.imagem1_uri);
+			$('#acesso_local_form #visualizacao_imagem1').attr('src', acesso_local.imagem1_uri);
 			$('#acesso_local_form #imagem2_uri').val(acesso_local.imagem2_uri);
+			$('#acesso_local_form #visualizacao_imagem2').attr('src', acesso_local.imagem2_uri);
 			$('#acesso_local_form #obs').val(acesso_local.obs);
 			$('#acesso_local_form #hipoteses').val(acesso_local.hipoteses);
 		}

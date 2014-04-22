@@ -223,37 +223,37 @@ function salvar_acesso_coisa(acesso_coisa, operacao_bd, fn)
 					"'" + acesso_coisa.res_pri_comodo_id + "', " + 
 					"'" + acesso_coisa.res_atuacao_id + "', " + 
 					"'" + acesso_coisa.res_outro_comodo_id + "', " + 
-					"'" + acesso_coisa.res_imagem1 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.res_imagem1_uri + "', " + 
-					"'" + acesso_coisa.res_imagem2 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.res_imagem2_uri + "', " + 
 					"'" + acesso_coisa.com_pri_comodo_id + "', " + 
 					"'" + acesso_coisa.com_atuacao_id + "', " + 
 					"'" + acesso_coisa.com_outro_comodo_id + "', " + 
-					"'" + acesso_coisa.com_imagem1 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.com_imagem1_uri + "', " + 
-					"'" + acesso_coisa.com_imagem2 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.com_imagem2_uri + "', " + 
 					"'" + acesso_coisa.ind_pri_comodo_id + "', " + 
 					"'" + acesso_coisa.ind_atuacao_id + "', " + 
 					"'" + acesso_coisa.ind_outro_comodo_id + "', " + 
-					"'" + acesso_coisa.ind_imagem1 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.ind_imagem1_uri + "', " + 
-					"'" + acesso_coisa.ind_imagem2 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.ind_imagem2_uri + "', " + 
 					"'" + acesso_coisa.esco_pri_comodo_id + "', " + 
 					"'" + acesso_coisa.esco_atuacao_id + "', " + 
 					"'" + acesso_coisa.esco_outro_comodo_id + "', " + 
-					"'" + acesso_coisa.esco_imagem1 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.esco_imagem1_uri + "', " + 
-					"'" + acesso_coisa.esco_imagem2 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.esco_imagem2_uri + "', " + 
 					"'" + acesso_coisa.escr_pri_comodo_id + "', " + 
 					"'" + acesso_coisa.escr_atuacao_id + "', " + 
 					"'" + acesso_coisa.escr_outro_comodo_id + "', " + 
-					"'" + acesso_coisa.escr_imagem1 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.escr_imagem1_uri + "', " + 
-					"'" + acesso_coisa.escr_imagem2 + "', " + 
+					"'', " + 
 					"'" + acesso_coisa.escr_imagem2_uri + "', " + 
 					"'" + acesso_coisa.obs + "', " + 
 					"'" + acesso_coisa.hipoteses + "'" + 
@@ -264,37 +264,37 @@ function salvar_acesso_coisa(acesso_coisa, operacao_bd, fn)
 						"res_pri_comodo_id = '" + acesso_coisa.res_pri_comodo_id + "', " + 
 						"res_atuacao_id = '" + acesso_coisa.res_atuacao_id + "', " + 
 						"res_outro_comodo_id = '" + acesso_coisa.res_outro_comodo_id + "', " + 
-						"res_imagem1 = '" + acesso_coisa.res_imagem1 + "', " + 
+						"res_imagem1 = '', " + 
 						"res_imagem1_uri = '" + acesso_coisa.res_imagem1_uri + "', " + 
-						"res_imagem2 = '" + acesso_coisa.res_imagem2 + "', " + 
+						"res_imagem2 = '', " + 
 						"res_imagem2_uri = '" + acesso_coisa.res_imagem2_uri + "', " + 
 						"com_pri_comodo_id = '" + acesso_coisa.com_pri_comodo_id + "', " + 
 						"com_atuacao_id = '" + acesso_coisa.com_atuacao_id + "', " + 
 						"com_outro_comodo_id = '" + acesso_coisa.com_outro_comodo_id + "', " + 
-						"com_imagem1 = '" + acesso_coisa.com_imagem1 + "', " + 
+						"com_imagem1 = '', " + 
 						"com_imagem1_uri = '" + acesso_coisa.com_imagem1_uri + "', " + 
-						"com_imagem2 = '" + acesso_coisa.com_imagem2 + "', " + 
+						"com_imagem2 = '', " + 
 						"com_imagem2_uri = '" + acesso_coisa.com_imagem2_uri + "', " + 
 						"ind_pri_comodo_id = '" + acesso_coisa.ind_pri_comodo_id + "', " + 
 						"ind_atuacao_id = '" + acesso_coisa.ind_atuacao_id + "', " + 
 						"ind_outro_comodo_id = '" + acesso_coisa.ind_outro_comodo_id + "', " + 
-						"ind_imagem1 = '" + acesso_coisa.ind_imagem1 + "', " + 
+						"ind_imagem1 = '', " + 
 						"ind_imagem1_uri = '" + acesso_coisa.ind_imagem1_uri + "', " + 
-						"ind_imagem2 = '" + acesso_coisa.ind_imagem2 + "', " + 
+						"ind_imagem2 = '', " + 
 						"ind_imagem2_uri = '" + acesso_coisa.ind_imagem2_uri + "', " + 
 						"esco_pri_comodo_id = '" + acesso_coisa.esco_pri_comodo_id + "', " + 
 						"esco_atuacao_id = '" + acesso_coisa.esco_atuacao_id + "', " + 
 						"esco_outro_comodo_id = '" + acesso_coisa.esco_outro_comodo_id + "', " + 
-						"esco_imagem1 = '" + acesso_coisa.esco_imagem1 + "', " + 
+						"esco_imagem1 = '', " + 
 						"esco_imagem1_uri = '" + acesso_coisa.esco_imagem1_uri + "', " + 
-						"esco_imagem2 = '" + acesso_coisa.esco_imagem2 + "', " + 
+						"esco_imagem2 = '', " + 
 						"esco_imagem2_uri = '" + acesso_coisa.esco_imagem2_uri + "', " + 
 						"escr_pri_comodo_id = '" + acesso_coisa.escr_pri_comodo_id + "', " + 
 						"escr_atuacao_id = '" + acesso_coisa.escr_atuacao_id + "', " + 
 						"escr_outro_comodo_id = '" + acesso_coisa.escr_outro_comodo_id + "', " + 
-						"escr_imagem1 = '" + acesso_coisa.escr_imagem1 + "', " + 
+						"escr_imagem1 = '', " + 
 						"escr_imagem1_uri = '" + acesso_coisa.escr_imagem1_uri + "', " + 
-						"escr_imagem2 = '" + acesso_coisa.escr_imagem2 + "', " + 
+						"escr_imagem2 = '', " + 
 						"escr_imagem2_uri = '" + acesso_coisa.escr_imagem2_uri + "', " + 
 						"obs = '" + acesso_coisa.obs + "', " + 
 						"hipoteses = '" + acesso_coisa.hipoteses + "'" + 
@@ -376,38 +376,48 @@ $(document).on('pagebeforeshow', '#formulario_acesso_coisa', function()
 			$('#acesso_coisa_form #res_pri_comodo_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #res_atuacao_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #res_outro_comodo_id').val(0).selectmenu('refresh');
-			$('#acesso_coisa_form #res_imagem1').val('');
+			//$('#acesso_coisa_form #res_imagem1').val('');
 			$('#acesso_coisa_form #res_imagem1_uri').val('');
-			$('#acesso_coisa_form #res_imagem2').val('');
+			$('#acesso_coisa_form #res_visualizacao_imagem1').attr('src', '');
+			//$('#acesso_coisa_form #res_imagem2').val('');
 			$('#acesso_coisa_form #res_imagem2_uri').val('');
+			$('#acesso_coisa_form #res_visualizacao_imagem2').attr('src', '');
 			$('#acesso_coisa_form #com_pri_comodo_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #com_atuacao_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #com_outro_comodo_id').val(0).selectmenu('refresh');
-			$('#acesso_coisa_form #com_imagem1').val('');
+			//$('#acesso_coisa_form #com_imagem1').val('');
 			$('#acesso_coisa_form #com_imagem1_uri').val('');
-			$('#acesso_coisa_form #com_imagem2').val('');
+			$('#acesso_coisa_form #com_visualizacao_imagem2').attr('src', '');
+			//$('#acesso_coisa_form #com_imagem2').val('');
 			$('#acesso_coisa_form #com_imagem2_uri').val('');
+			$('#acesso_coisa_form #com_visualizacao_imagem2').attr('src', '');
 			$('#acesso_coisa_form #ind_pri_comodo_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #ind_atuacao_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #ind_outro_comodo_id').val(0).selectmenu('refresh');
-			$('#acesso_coisa_form #ind_imagem1').val('');
+			//$('#acesso_coisa_form #ind_imagem1').val('');
 			$('#acesso_coisa_form #ind_imagem1_uri').val('');
-			$('#acesso_coisa_form #ind_imagem2').val('');
+			$('#acesso_coisa_form #ind_visualizacao_imagem1').attr('src', '');
+			//$('#acesso_coisa_form #ind_imagem2').val('');
 			$('#acesso_coisa_form #ind_imagem2_uri').val('');
+			$('#acesso_coisa_form #ind_visualizacao_imagem2').attr('src', '');
 			$('#acesso_coisa_form #esco_pri_comodo_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #esco_atuacao_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #esco_outro_comodo_id').val(0).selectmenu('refresh');
-			$('#acesso_coisa_form #esco_imagem1').val('');
+			//$('#acesso_coisa_form #esco_imagem1').val('');
 			$('#acesso_coisa_form #esco_imagem1_uri').val('');
-			$('#acesso_coisa_form #esco_imagem2').val('');
+			$('#acesso_coisa_form #esco_visualizacao_imagem1').attr('src', '');
+			//$('#acesso_coisa_form #esco_imagem2').val('');
 			$('#acesso_coisa_form #esco_imagem2_uri').val('');
+			$('#acesso_coisa_form #esco_visualizacao_imagem2').attr('src', '');
 			$('#acesso_coisa_form #escr_pri_comodo_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #escr_atuacao_id').val(0).selectmenu('refresh');
 			$('#acesso_coisa_form #escr_outro_comodo_id').val(0).selectmenu('refresh');
-			$('#acesso_coisa_form #escr_imagem1').val('');
+			//$('#acesso_coisa_form #escr_imagem1').val('');
 			$('#acesso_coisa_form #escr_imagem1_uri').val('');
-			$('#acesso_coisa_form #escr_imagem2').val('');
+			$('#acesso_coisa_form #escr_visualizacao_imagem1').attr('src', '');
+			//$('#acesso_coisa_form #escr_imagem2').val('');
 			$('#acesso_coisa_form #escr_imagem2_uri').val('');
+			$('#acesso_coisa_form #escr_visualizacao_imagem2').attr('src', '');
 			$('#acesso_coisa_form #obs').val('');
 			$('#acesso_coisa_form #hipoteses').val('');
 		} else {
@@ -419,38 +429,48 @@ $(document).on('pagebeforeshow', '#formulario_acesso_coisa', function()
 			$('#acesso_coisa_form #res_pri_comodo_id').val(acesso_coisa.res_pri_comodo_id).selectmenu('refresh');
 			$('#acesso_coisa_form #res_atuacao_id').val(acesso_coisa.res_atuacao_id).selectmenu('refresh');
 			$('#acesso_coisa_form #res_outro_comodo_id').val(acesso_coisa.res_outro_comodo_id).selectmenu('refresh');
-			$('#acesso_coisa_form #res_imagem1').val(acesso_coisa.res_imagem1);
+			//$('#acesso_coisa_form #res_imagem1').val(acesso_coisa.res_imagem1);
 			$('#acesso_coisa_form #res_imagem1_uri').val(acesso_coisa.res_imagem1_uri);
-			$('#acesso_coisa_form #res_imagem2').val(acesso_coisa.res_imagem2);
+			$('#acesso_coisa_form #res_visualizacao_imagem1').attr('src', acesso_coisa.res_imagem1_uri);
+			//$('#acesso_coisa_form #res_imagem2').val(acesso_coisa.res_imagem2);
 			$('#acesso_coisa_form #res_imagem2_uri').val(acesso_coisa.res_imagem2_uri);
+			$('#acesso_coisa_form #res_visualizacao_imagem2').attr('src', acesso_coisa.res_imagem2_uri);
 			$('#acesso_coisa_form #com_pri_comodo_id').val(acesso_coisa.com_pri_comodo_id).selectmenu('refresh');
 			$('#acesso_coisa_form #com_atuacao_id').val(acesso_coisa.com_atuacao_id).selectmenu('refresh');
 			$('#acesso_coisa_form #com_outro_comodo_id').val(acesso_coisa.com_outro_comodo_id).selectmenu('refresh');
-			$('#acesso_coisa_form #com_imagem1').val(acesso_coisa.com_imagem1);
+			//$('#acesso_coisa_form #com_imagem1').val(acesso_coisa.com_imagem1);
 			$('#acesso_coisa_form #com_imagem1_uri').val(acesso_coisa.com_imagem1_uri);
-			$('#acesso_coisa_form #com_imagem2').val(acesso_coisa.com_imagem2);
+			$('#acesso_coisa_form #com_visualizacao_imagem1').attr('src', acesso_coisa.com_imagem1_uri);
+			//$('#acesso_coisa_form #com_imagem2').val(acesso_coisa.com_imagem2);
 			$('#acesso_coisa_form #com_imagem2_uri').val(acesso_coisa.com_imagem2_uri);
+			$('#acesso_coisa_form #com_visualizacao_imagem2').attr('src', acesso_coisa.com_imagem2_uri);
 			$('#acesso_coisa_form #ind_pri_comodo_id').val(acesso_coisa.ind_pri_comodo_id).selectmenu('refresh');
 			$('#acesso_coisa_form #ind_atuacao_id').val(acesso_coisa.ind_atuacao_id).selectmenu('refresh');
 			$('#acesso_coisa_form #ind_outro_comodo_id').val(acesso_coisa.ind_outro_comodo_id).selectmenu('refresh');
-			$('#acesso_coisa_form #ind_imagem1').val(acesso_coisa.ind_imagem1);
+			//$('#acesso_coisa_form #ind_imagem1').val(acesso_coisa.ind_imagem1);
 			$('#acesso_coisa_form #ind_imagem1_uri').val(acesso_coisa.ind_imagem1_uri);
-			$('#acesso_coisa_form #ind_imagem2').val(acesso_coisa.ind_imagem2);
+			$('#acesso_coisa_form #ind_visualizacao_imagem1').attr('src', acesso_coisa.ind_imagem1_uri);
+			//$('#acesso_coisa_form #ind_imagem2').val(acesso_coisa.ind_imagem2);
 			$('#acesso_coisa_form #ind_imagem2_uri').val(acesso_coisa.ind_imagem2_uri);
+			$('#acesso_coisa_form #ind_visualizacao_imagem2').attr('src', acesso_coisa.ind_imagem2_uri);
 			$('#acesso_coisa_form #esco_pri_comodo_id').val(acesso_coisa.esco_pri_comodo_id).selectmenu('refresh');
 			$('#acesso_coisa_form #esco_atuacao_id').val(acesso_coisa.esco_atuacao_id).selectmenu('refresh');
 			$('#acesso_coisa_form #esco_outro_comodo_id').val(acesso_coisa.esco_outro_comodo_id).selectmenu('refresh');
-			$('#acesso_coisa_form #esco_imagem1').val(acesso_coisa.esco_imagem1);
+			//$('#acesso_coisa_form #esco_imagem1').val(acesso_coisa.esco_imagem1);
 			$('#acesso_coisa_form #esco_imagem1_uri').val(acesso_coisa.esco_imagem1_uri);
-			$('#acesso_coisa_form #esco_imagem2').val(acesso_coisa.esco_imagem2);
+			$('#acesso_coisa_form #esco_visualizacao_imagem1').attr('src', acesso_coisa.esco_imagem1_uri);
+			//$('#acesso_coisa_form #esco_imagem2').val(acesso_coisa.esco_imagem2);
 			$('#acesso_coisa_form #esco_imagem2_uri').val(acesso_coisa.esco_imagem2_uri);
+			$('#acesso_coisa_form #esco_visualizacao_imagem2').attr('src', acesso_coisa.esco_imagem2_uri);
 			$('#acesso_coisa_form #escr_pri_comodo_id').val(acesso_coisa.escr_pri_comodo_id).selectmenu('refresh');
 			$('#acesso_coisa_form #escr_atuacao_id').val(acesso_coisa.escr_atuacao_id).selectmenu('refresh');
 			$('#acesso_coisa_form #escr_outro_comodo_id').val(acesso_coisa.escr_outro_comodo_id).selectmenu('refresh');
-			$('#acesso_coisa_form #escr_imagem1').val(acesso_coisa.escr_imagem1);
+			//$('#acesso_coisa_form #escr_imagem1').val(acesso_coisa.escr_imagem1);
 			$('#acesso_coisa_form #escr_imagem1_uri').val(acesso_coisa.escr_imagem1_uri);
-			$('#acesso_coisa_form #escr_imagem2').val(acesso_coisa.escr_imagem2);
+			$('#acesso_coisa_form #escr_visualizacao_imagem1').attr('src', acesso_coisa.escr_imagem1_uri);
+			//$('#acesso_coisa_form #escr_imagem2').val(acesso_coisa.escr_imagem2);
 			$('#acesso_coisa_form #escr_imagem2_uri').val(acesso_coisa.escr_imagem2_uri);
+			$('#acesso_coisa_form #escr_visualizacao_imagem2').attr('src', acesso_coisa.escr_imagem2_uri);
 			$('#acesso_coisa_form #obs').val(acesso_coisa.obs);
 			$('#acesso_coisa_form #hipoteses').val(acesso_coisa.hipoteses);
 		}

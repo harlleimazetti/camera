@@ -297,7 +297,7 @@
 					<div class="ui-block-a"><button data-theme="b" id="btn_re_salvar">Salvar</button></div>
 					<div class="ui-block-b"><button data-theme="d" id="btn_re_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
-            
+                
 			</form>
             
 		</div><!-- /content -->
@@ -327,7 +327,7 @@
 					</li>
                 </ul>
                 
-                <button id="capturar_imagem">Capturar Imagem</button>
+                <button class="capturar_imagem" data-img-uri="imagem_uri" data-img-vis="visualizacao_imagem">Capturar Imagem</button>
 
                 <label for="data" class="ui-hidden-accessible">Data:</label>
                 <input type="text" name="data" id="data" value="" placeholder="Data" disabled>
@@ -362,7 +362,10 @@
 					<div class="ui-block-a"><button data-theme="b" id="btn_vestigio_salvar">Salvar</button></div>
 					<div class="ui-block-b"><button data-theme="d" id="btn_vestigio_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
-            
+
+				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
+				<img style="display:none;" id="largeImage" src="" />
+                
 			</form>
             
 		</div><!-- /content -->
@@ -567,8 +570,8 @@
                     <option value="6">Outros</option>
 				</select>
                 
-                <button id="capturar_imagem1">Capturar Imagem</button>
-                
+                <button class="capturar_imagem" data-img-uri="imagem1_uri" data-img-vis="visualizacao_imagem1">Capturar Imagem</button>
+				<input type="hidden" name="imagem1_uri" id="imagem1_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="visualizacao_imagem1" src="" />
 				<img style="display:none;" id="largeImage1" src="" />
 
@@ -633,13 +636,14 @@
                 <label for="hipoteses" class="ui-hidden-accessible">Hipóteses:</label>
                 <input type="text" name="hipoteses" id="hipoteses" value="" placeholder="Hipóteses">
                 
-                <button id="capturar_imagem2">Capturar Imagem</button>
-
+                <button class="capturar_imagem" data-img-uri="imagem2_uri" data-img-vis="visualizacao_imagem2">Capturar Imagem</button>
+                
 				<div class="ui-grid-a">
 					<div class="ui-block-a"><button data-theme="b" id="btn_acesso_local_salvar">Salvar</button></div>
 					<div class="ui-block-b"><button data-theme="d" id="btn_acesso_local_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
 
+				<input type="hidden" name="imagem2_uri" id="imagem2_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="visualizacao_imagem2" src="" />
 				<img style="display:none;" id="largeImage2" src="" />
             
@@ -693,14 +697,14 @@
                     <option value="6">Armários</option>
                     <option value="7">Outros</option>
 				</select>
-                
-                <button id="res_capturar_imagem1">Foto da Movimentação</button>
-                
+
+                <button class="capturar_imagem" data-img-uri="res_imagem1_uri" data-img-vis="res_visualizacao_imagem1">Foto da Movimentação</button>
+				<input type="hidden" name="res_imagem1_uri" id="res_imagem1_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="res_visualizacao_imagem1" src="" />
 				<img style="display:none;" id="res_largeImage1" src="" />
                 
-                <button id="res_capturar_imagem2">Foto do Vestígio Coletado</button>
-                
+                <button class="capturar_imagem" data-img-uri="res_imagem2_uri" data-img-vis="res_visualizacao_imagem2">Foto do Vestígio Coletado</button>
+				<input type="hidden" name="res_imagem2_uri" id="res_imagem2_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="res_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="res_largeImage2" src="" />
                 
@@ -739,16 +743,16 @@
                     <option value="7">Outros</option>
 				</select>
                 
-                <button id="com_capturar_imagem1">Foto da Movimentação</button>
-                
+                <button class="capturar_imagem" data-img-uri="com_imagem1_uri" data-img-vis="com_visualizacao_imagem1">Foto da Movimentação</button>
+				<input type="hidden" name="com_imagem1_uri" id="com_imagem1_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="com_visualizacao_imagem1" src="" />
 				<img style="display:none;" id="com_largeImage1" src="" />
                 
-                <button id="com_capturar_imagem2">Foto do Vestígio Coletado</button>
-                
+                <button class="capturar_imagem" data-img-uri="com_imagem2_uri" data-img-vis="com_visualizacao_imagem2">Foto do Vestígio Coletado</button>
+				<input type="hidden" name="com_imagem2_uri" id="com_imagem2_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="com_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="com_largeImage2" src="" />
-                
+                                
 				<select name="com_outro_comodo_id" id="com_outro_comodo_id">
 					<option>Outros Cômodos Invadidos</option>
 					<option value="1">0 Vestígios</option>
@@ -784,13 +788,13 @@
                     <option value="7">Outros</option>
 				</select>
                 
-                <button id="ind_capturar_imagem1">Foto da Movimentação</button>
-                
+                <button class="capturar_imagem" data-img-uri="ind_imagem1_uri" data-img-vis="ind_visualizacao_imagem1">Foto da Movimentação</button>
+				<input type="hidden" name="ind_imagem1_uri" id="ind_imagem1_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="ind_visualizacao_imagem1" src="" />
 				<img style="display:none;" id="ind_largeImage1" src="" />
                 
-                <button id="ind_capturar_imagem2">Foto do Vestígio Coletado</button>
-                
+                <button class="capturar_imagem" data-img-uri="ind_imagem2_uri" data-img-vis="ind_visualizacao_imagem2">Foto do Vestígio Coletado</button>
+				<input type="hidden" name="ind_imagem2_uri" id="ind_imagem2_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="ind_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="ind_largeImage2" src="" />
                 
@@ -829,13 +833,13 @@
                     <option value="7">Outros</option>
 				</select>
                 
-                <button id="esco_capturar_imagem1">Foto da Movimentação</button>
-                
+                <button class="capturar_imagem" data-img-uri="esco_imagem1_uri" data-img-vis="esco_visualizacao_imagem1">Foto da Movimentação</button>
+				<input type="hidden" name="esco_imagem1_uri" id="esco_imagem1_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="esco_visualizacao_imagem1" src="" />
 				<img style="display:none;" id="esco_largeImage1" src="" />
                 
-                <button id="esco_capturar_imagem2">Foto do Vestígio Coletado</button>
-                
+                <button class="capturar_imagem" data-img-uri="esco_imagem2_uri" data-img-vis="esco_visualizacao_imagem2">Foto do Vestígio Coletado</button>
+				<input type="hidden" name="esco_imagem2_uri" id="esco_imagem2_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="esco_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="esco_largeImage2" src="" />
                 
@@ -874,13 +878,13 @@
                     <option value="7">Outros</option>
 				</select>
                 
-                <button id="escr_capturar_imagem1">Foto da Movimentação</button>
-                
+                <button class="capturar_imagem" data-img-uri="escr_imagem1_uri" data-img-vis="escr_visualizacao_imagem1">Foto da Movimentação</button>
+				<input type="hidden" name="escr_imagem1_uri" id="escr_imagem1_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="escr_visualizacao_imagem1" src="" />
 				<img style="display:none;" id="escr_largeImage1" src="" />
                 
-                <button id="escr_capturar_imagem2">Foto do Vestígio Coletado</button>
-                
+                <button class="capturar_imagem" data-img-uri="escr_imagem2_uri" data-img-vis="escr_visualizacao_imagem2">Foto do Vestígio Coletado</button>
+				<input type="hidden" name="escr_imagem2_uri" id="escr_imagem2_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="escr_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="escr_largeImage2" src="" />
                 

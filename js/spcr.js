@@ -51,7 +51,6 @@ function onSuccess(imageURI) {
     //image.src = imageURI;
 	var img_uri = '#' + sessionStorage.img_uri;
 	var img_vis = '#' + sessionStorage.img_vis;
-	alert('img_uri: ' + img_uri + ', img_vis: ' + img_vis);
 	$(img_vis, $.mobile.activePage).attr('src', imageURI);
 	$(img_uri, $.mobile.activePage).val(imageURI);
 }
