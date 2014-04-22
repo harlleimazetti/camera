@@ -50,7 +50,7 @@ function onSuccess(imageURI) {
     //var image = document.getElementById('visualizacao_imagem');
     //image.src = imageURI;
 	var img_uri = '#' + sessionStorage.img_uri;
-	var img_vis = '#' + sessionStorage.img_vis;
+	var img_vis = '#' + sessionStorage.img_vis; 
 	$(img_vis, $.mobile.activePage).attr('src', imageURI);
 	$(img_uri, $.mobile.activePage).val(imageURI);
 }

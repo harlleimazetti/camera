@@ -149,7 +149,7 @@ function salvar_acesso_local(acesso_local, operacao_bd, fn)
 						"obs = '" + acesso_local.obs + "', " + 
 						"hipoteses = '" + acesso_local.hipoteses + "'" + 
 					" WHERE id = " + acesso_local.id;
-		}
+		} 
 		tx.executeSql(sql);
 		var resultado = new Object();
 		resultado.status = 1;
