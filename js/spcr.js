@@ -90,6 +90,7 @@ $(document).on('click', '#menu_sincronizar', function(event)
 });
 
 function transmitir_dados() {
+	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
 		get_all_re(function(re) {
