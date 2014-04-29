@@ -498,7 +498,53 @@ $(document).on('click', '#btn_acesso_coisa_salvar', function(event)
 $(document).on('click', '#btn_acesso_coisa_limpar', function(event)
 {
 	event.preventDefault();
-
+			$('#acesso_coisa_form #res_pri_comodo_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #res_atuacao_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #res_outro_comodo_id').val(0).selectmenu('refresh');
+			//$('#acesso_coisa_form #res_imagem1').val('');
+			$('#acesso_coisa_form #res_imagem1_uri').val('');
+			$('#acesso_coisa_form #res_visualizacao_imagem1').attr('src', '');
+			//$('#acesso_coisa_form #res_imagem2').val('');
+			$('#acesso_coisa_form #res_imagem2_uri').val('');
+			$('#acesso_coisa_form #res_visualizacao_imagem2').attr('src', '');
+			$('#acesso_coisa_form #com_pri_comodo_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #com_atuacao_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #com_outro_comodo_id').val(0).selectmenu('refresh');
+			//$('#acesso_coisa_form #com_imagem1').val('');
+			$('#acesso_coisa_form #com_imagem1_uri').val('');
+			$('#acesso_coisa_form #com_visualizacao_imagem2').attr('src', '');
+			//$('#acesso_coisa_form #com_imagem2').val('');
+			$('#acesso_coisa_form #com_imagem2_uri').val('');
+			$('#acesso_coisa_form #com_visualizacao_imagem2').attr('src', '');
+			$('#acesso_coisa_form #ind_pri_comodo_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #ind_atuacao_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #ind_outro_comodo_id').val(0).selectmenu('refresh');
+			//$('#acesso_coisa_form #ind_imagem1').val('');
+			$('#acesso_coisa_form #ind_imagem1_uri').val('');
+			$('#acesso_coisa_form #ind_visualizacao_imagem1').attr('src', '');
+			//$('#acesso_coisa_form #ind_imagem2').val('');
+			$('#acesso_coisa_form #ind_imagem2_uri').val('');
+			$('#acesso_coisa_form #ind_visualizacao_imagem2').attr('src', '');
+			$('#acesso_coisa_form #esco_pri_comodo_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #esco_atuacao_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #esco_outro_comodo_id').val(0).selectmenu('refresh');
+			//$('#acesso_coisa_form #esco_imagem1').val('');
+			$('#acesso_coisa_form #esco_imagem1_uri').val('');
+			$('#acesso_coisa_form #esco_visualizacao_imagem1').attr('src', '');
+			//$('#acesso_coisa_form #esco_imagem2').val('');
+			$('#acesso_coisa_form #esco_imagem2_uri').val('');
+			$('#acesso_coisa_form #esco_visualizacao_imagem2').attr('src', '');
+			$('#acesso_coisa_form #escr_pri_comodo_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #escr_atuacao_id').val(0).selectmenu('refresh');
+			$('#acesso_coisa_form #escr_outro_comodo_id').val(0).selectmenu('refresh');
+			//$('#acesso_coisa_form #escr_imagem1').val('');
+			$('#acesso_coisa_form #escr_imagem1_uri').val('');
+			$('#acesso_coisa_form #escr_visualizacao_imagem1').attr('src', '');
+			//$('#acesso_coisa_form #escr_imagem2').val('');
+			$('#acesso_coisa_form #escr_imagem2_uri').val('');
+			$('#acesso_coisa_form #escr_visualizacao_imagem2').attr('src', '');
+			$('#acesso_coisa_form #obs').val('');
+			$('#acesso_coisa_form #hipoteses').val('');
 });
 
 ///////// acesso_coisa FIM

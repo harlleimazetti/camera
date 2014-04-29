@@ -278,7 +278,18 @@ $(document).on('click', '#btn_acesso_local_salvar', function(event)
 $(document).on('click', '#btn_acesso_local_limpar', function(event)
 {
 	event.preventDefault();
-
+			$('#acesso_local_form #limite_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #escalada_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #modo_escalada_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #rompimento_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #modo_rompimento_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #chave_falsa_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #imagem1_uri').val('');
+			$('#acesso_local_form #visualizacao_imagem1').attr('src', '');
+			$('#acesso_local_form #imagem2_uri').val('');
+			$('#acesso_local_form #visualizacao_imagem2').attr('src', '');
+			$('#acesso_local_form #obs').val('');
+			$('#acesso_local_form #hipoteses').val('');
 });
 
 ///////// acesso_local FIM

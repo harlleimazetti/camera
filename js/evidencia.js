@@ -32,6 +32,39 @@ function get_all_evidencia(fn)
 	});
 }
 
+function get_all_evidencia_t(fn) 
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM evidencia ORDER BY numero_ordem, id, data, hora";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var evidencia = new Array;
+				for (var i = 0; i < result.rows.length; i++) 
+				{
+					var row = result.rows.item(i);
+					evidencia[i] = new Object();
+					evidencia[i].id					= row.id;
+					evidencia[i].evidencia_tipo_id	= row.evidencia_tipo_id;
+					evidencia[i].re_id				= row.re_id;
+					evidencia[i].numero_ordem		= row.numero_ordem;
+					evidencia[i].numero_lacre		= row.numero_lacre;
+					evidencia[i].data				= row.data;
+					evidencia[i].hora				= row.hora;
+					evidencia[i].nome_perito		= row.nome_perito;
+					evidencia[i].coordenadas		= row.coordenadas;
+					evidencia[i].unidade			= row.unidade;
+					evidencia[i].obs				= row.obs;
+					evidencia[i].imagem_uri			= row.imagem_uri;
+				}
+				fn(evidencia);
+			}
+		});
+	});
+}
+
 function get_evidencia(id, fn)
 {
 	db.transaction(function (tx)

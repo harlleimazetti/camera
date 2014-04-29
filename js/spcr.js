@@ -193,6 +193,65 @@ function transmitir_dados() {
 				});
 			}
 		});
+						get_all_evidencia_t(function(evidencia) {
+							if (evidencia) {
+								$.ajax({
+									url: url_servidor,
+									data: {acao: 'evidencia', dados : evidencia},
+									dataType: 'jsonp',
+									jsonp: 'callback',
+									success: function(resultado) {
+										//console.log(resultado.mensagem);
+										//console.log(resultado.registro);
+										toast(resultado.mensagem);
+									},
+									error: function (xhr, textStatus, thrownError) {
+										//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+										toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+									}
+								});
+							}
+						});
+						
+						get_all_informe_t(function(informe) {
+							if (informe) {
+								$.ajax({
+									url: url_servidor,
+									data: {acao: 'informe', dados : informe},
+									dataType: 'jsonp',
+									jsonp: 'callback',
+									success: function(resultado) {
+										//console.log(resultado.mensagem);
+										//console.log(resultado.registro);
+										toast(resultado.mensagem);
+									},
+									error: function (xhr, textStatus, thrownError) {
+										//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+										toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+									}
+								});
+							}
+						});
+						
+						get_all_vestigio_t(function(vestigio) {
+							if (vestigio) {
+								$.ajax({
+									url: url_servidor,
+									data: {acao: 'vestigio', dados : vestigio},
+									dataType: 'jsonp',
+									jsonp: 'callback',
+									success: function(resultado) {
+										//console.log(resultado.mensagem);
+										//console.log(resultado.registro);
+										toast(resultado.mensagem);
+									},
+									error: function (xhr, textStatus, thrownError) {
+										//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+										toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+									}
+								});
+							}
+						});
 	});
 }
 

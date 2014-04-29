@@ -30,6 +30,37 @@ function get_all_vestigio(fn)
 	});
 }
 
+function get_all_vestigio_t(fn) 
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM vestigio ORDER BY numero_ordem, id, data, hora";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var vestigio = new Array;
+				for (var i = 0; i < result.rows.length; i++) 
+				{
+					var row = result.rows.item(i);
+					vestigio[i] = new Object();
+					vestigio[i].id					= row.id;
+					vestigio[i].vestigio_tipo_id	= row.vestigio_tipo_id;
+					vestigio[i].re_id				= row.re_id;
+					vestigio[i].numero_ordem		= row.numero_ordem;
+					vestigio[i].data				= formata_data(row.data);
+					vestigio[i].hora				= row.hora;
+					vestigio[i].coordenadas			= row.coordenadas;
+					vestigio[i].descricao			= row.descricao;
+					vestigio[i].localizacao			= row.localizacao;
+					vestigio[i].imagem_uri			= row.imagem_uri;
+				}
+				fn(vestigio);
+			}
+		});
+	});
+}
+
 function get_vestigio(id, fn)
 {
 	db.transaction(function (tx)

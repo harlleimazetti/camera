@@ -239,7 +239,7 @@ $(document).on('pagebeforeshow', '#formulario_administrativa', function()
 			operacao_bd = 'novo';
 			$('#administrativa_form #operacao_bd').val(operacao_bd);
 			$('#administrativa_form #id').val(0);
-			$('#administrativa_form #cidade_id').val(1).selectmenu('refresh');
+			$('#administrativa_form #cidade_id').val(0).selectmenu('refresh');
 			$('#administrativa_form #re_id').val(sessionStorage.re_id);
 			$('#administrativa_form #re_codigo').html('RE: ' + sessionStorage.re_codigo);
 			$('#administrativa_form #bo_tc').val('');
@@ -308,7 +308,21 @@ $(document).on('click', '#btn_administrativa_salvar', function(event)
 $(document).on('click', '#btn_administrativa_limpar', function(event)
 {
 	event.preventDefault();
-
+			$('#administrativa_form #cidade_id').val(0).selectmenu('refresh');
+			$('#administrativa_form #bo_tc').val('');
+			$('#administrativa_form #dp').val('');
+			$('#administrativa_form #data_requisicao').val('');
+			$('#administrativa_form #hora_requisicao').val('');
+			$('#administrativa_form #data_atendimento').val('');
+			$('#administrativa_form #hora_atendimento').val('');
+			$('#administrativa_form #preservacao').val(0).selectmenu('refresh');
+			$('#administrativa_form #logradouro').val('');
+			$('#administrativa_form #numero').val('');
+			$('#administrativa_form #complemento').val('');
+			$('#administrativa_form #bairro').val('');
+			$('#administrativa_form #coordenadas').val('');
+			$('#administrativa_form #obs').val('');
+			$('#administrativa_form #hipoteses').val('');
 });
 
 ///////// ADMINISTRATIVA FIM

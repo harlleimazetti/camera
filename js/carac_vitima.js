@@ -257,7 +257,7 @@ $(document).on('pagebeforeshow', '#formulario_carac_vitima', function()
 			$('#carac_vitima_form #ofendiculas_id').val(0).selectmenu('refresh');
 			$('#carac_vitima_form #defesas_id').val(0).selectmenu('refresh');
 			$('#carac_vitima_form #construcao_id').val(0).selectmenu('refresh');
-			$('#carac_vitima_form #imagem2_uri').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #imagem2_uri').val('');
 			$('#carac_vitima_form #visualizacao_imagem2_uri').attr('src','');
 			$('#carac_vitima_form #dimensao_frontal_id').val(0).selectmenu('refresh');
 			$('#carac_vitima_form #ocupacao_id').val(0).selectmenu('refresh');
@@ -310,7 +310,22 @@ $(document).on('click', '#btn_carac_vitima_salvar', function(event)
 $(document).on('click', '#btn_carac_vitima_limpar', function(event)
 {
 	event.preventDefault();
-
+			$('#carac_vitima_form #imovel_tipo_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #trafego_veiculos_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #trafego_pessoas_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #iluminacao_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #imagem1_uri').val('');
+			$('#carac_vitima_form #visualizacao_imagem1_uri').attr('src','');
+			$('#carac_vitima_form #vedacao_frontal_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #ofendiculas_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #defesas_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #construcao_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #imagem2_uri').val('');
+			$('#carac_vitima_form #visualizacao_imagem2_uri').attr('src','');
+			$('#carac_vitima_form #dimensao_frontal_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #ocupacao_id').val(0).selectmenu('refresh');
+			$('#carac_vitima_form #obs').val('');
+			$('#carac_vitima_form #hipoteses').val('');
 });
 
 ///////// carac_vitima FIM

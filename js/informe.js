@@ -30,6 +30,37 @@ function get_all_informe(fn)
 	});
 }
 
+function get_all_informe_t(fn) 
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM informe ORDER BY numero_ordem, id, data, hora";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var informe = new Array;
+				for (var i = 0; i < result.rows.length; i++) 
+				{
+					var row = result.rows.item(i);
+					informe[i] = new Object();
+					informe[i].id					= row.id;
+					informe[i].testemunha_tipo_id	= row.testemunha_tipo_id;
+					informe[i].re_id				= row.re_id;
+					informe[i].numero_ordem			= row.numero_ordem;
+					informe[i].data					= formata_data(row.data);
+					informe[i].hora					= row.hora;
+					informe[i].coordenadas			= row.coordenadas;
+					informe[i].declaracao			= row.declaracao;
+					informe[i].localizacao			= row.localizacao;
+					informe[i].imagem_uri			= row.imagem_uri;
+				}
+				fn(informe);
+			}
+		});
+	});
+}
+
 function get_informe(id, fn)
 {
 	db.transaction(function (tx)

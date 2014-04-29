@@ -262,7 +262,16 @@ $(document).on('click', '#btn_carac_coisa_salvar', function(event)
 $(document).on('click', '#btn_carac_coisa_limpar', function(event)
 {
 	event.preventDefault();
-
+			$('#carac_coisa_form #visibilidade_id').val(0).selectmenu('refresh');
+			$('#carac_coisa_form #tipo_principal_id').val(0).selectmenu('refresh');
+			$('#carac_coisa_form #tipo_secundario_id').val(0).selectmenu('refresh');
+			$('#carac_coisa_form #dimensao_id').val(0).selectmenu('refresh');
+			$('#carac_coisa_form #peso_id').val(0).selectmenu('refresh');
+			$('#carac_coisa_form #transporte_id').val(0).selectmenu('refresh');
+			$('#carac_coisa_form #vestigios_id').val(0).selectmenu('refresh');
+			$('#carac_coisa_form #fluidos_id').val(0).selectmenu('refresh');
+			$('#carac_coisa_form #obs').val('');
+			$('#carac_coisa_form #hipoteses').val('');
 });
 
 ///////// carac_coisa FIM
