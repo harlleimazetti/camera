@@ -108,6 +108,7 @@ function transmitir_dados() {
 							},
 							error: function (xhr, textStatus, thrownError) {
 								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
 					}
@@ -125,6 +126,7 @@ function transmitir_dados() {
 							},
 							error: function (xhr, textStatus, thrownError) {
 								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
 					}
@@ -142,6 +144,7 @@ function transmitir_dados() {
 							},
 							error: function (xhr, textStatus, thrownError) {
 								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
 					}
@@ -159,6 +162,7 @@ function transmitir_dados() {
 							},
 							error: function (xhr, textStatus, thrownError) {
 								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
 					}
@@ -176,6 +180,7 @@ function transmitir_dados() {
 							},
 							error: function (xhr, textStatus, thrownError) {
 								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
 					}
