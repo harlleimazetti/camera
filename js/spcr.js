@@ -5,7 +5,7 @@ function onDeviceReady() {
 	$.mobile.allowCrossDomainPages = true;
 	$.mobile.phonegapNavigationEnabled = true;
 	$.support.cors = true;
-	sincronizar();
+	//sincronizar();
 }
 $(document).on('focus', '#evidencia_form input', function() 
 {
