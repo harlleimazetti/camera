@@ -223,12 +223,12 @@ $(document).on('pagebeforeshow', '#formulario_acesso_local', function()
 			$('#acesso_local_form #id').val(0);
 			$('#acesso_local_form #re_id').val(sessionStorage.re_id);
 			$('#acesso_local_form #re_codigo').html('RE: ' + sessionStorage.re_codigo);
-			$('#acesso_local_form #limite_id').val(1).selectmenu('refresh');
-			$('#acesso_local_form #escalada_id').val(1).selectmenu('refresh');
-			$('#acesso_local_form #modo_escalada_id').val(1).selectmenu('refresh');
-			$('#acesso_local_form #rompimento_id').val(1).selectmenu('refresh');
-			$('#acesso_local_form #modo_rompimento_id').val(1).selectmenu('refresh');
-			$('#acesso_local_form #chave_falsa_id').val(1).selectmenu('refresh');
+			$('#acesso_local_form #limite_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #escalada_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #modo_escalada_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #rompimento_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #modo_rompimento_id').val(0).selectmenu('refresh');
+			$('#acesso_local_form #chave_falsa_id').val(0).selectmenu('refresh');
 			$('#acesso_local_form #imagem1_uri').val('');
 			$('#acesso_local_form #visualizacao_imagem1').attr('src', '');
 			$('#acesso_local_form #imagem2_uri').val('');

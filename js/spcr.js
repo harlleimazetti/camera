@@ -86,8 +86,57 @@ function onGPSError(error) {
 
 $(document).on('click', '#menu_sincronizar', function(event)
 {
-	sincronizar();
+	transmitir_dados();
 });
+
+function transmitir_dados() {
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_all_re(function(re) {
+			for (i = 0; i < re.length; i++) {
+				console.log(re[i].id);
+				get_acesso_coisa_re(re[i].id, function(acesso_coisa) {
+					if (acesso_coisa) {
+						$.ajax({
+							url: url_servidor,
+							data: {acao: 'acesso_coisa', dados : acesso_coisa},
+							dataType: 'jsonp',
+							jsonp: 'callback',
+							success: function(resultado) {
+								console.log(resultado.mensagem);
+								console.log(resultado.registro);
+							},
+							error: function (xhr, textStatus, thrownError) {
+								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+							}
+						});
+					}
+				});
+				get_acesso_local_re(re[i].id, function(acesso_local) {
+
+				});
+				get_administrativa(re[i].id, function(administrativa) {
+				
+				});
+				get_carac_coisa_re(re[i].id, function(carac_coisa) {
+				
+				});
+				get_carac_vitima_re(re[i].id, function(carac_vitima) {
+				
+				});
+			}
+		});
+		/*$.ajax({
+			url: url_servidor,
+			data: {nome : 'Harllei Mazetti'},
+			dataType: 'jsonp',
+			jsonp: 'callback',
+			jsonpCallback: 'resultado_sincronizar',
+			success: function(){},
+			error: function(){}
+		});*/
+	});
+}
 
 function sincronizar() {
 	get_config(1, function(config) {

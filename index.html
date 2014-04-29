@@ -19,6 +19,7 @@
     <script src="js/acesso_local.js"></script>
     <script src="js/acesso_coisa.js"></script>
     <script src="js/carac_coisa.js"></script>
+    <script src="js/carac_vitima.js"></script>
     
     <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
     <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" />
@@ -205,32 +206,33 @@
                 
                 <button id="scan">Escanear QRCode</button>
             
-                <label for="data" class="ui-hidden-accessible">Data:</label>
-                <input type="text" name="data" id="data" value="" placeholder="Data" disabled>
+                <label for="data">Data:</label>
+                <input type="text" name="data" id="data" value="" disabled>
                 
-                <label for="hora" class="ui-hidden-accessible">Hora:</label>
-                <input type="text" name="hora" id="hora" value="" placeholder="Hora" disabled>
+                <label for="hora">Hora:</label>
+                <input type="text" name="hora" id="hora" value="" disabled>
                 
-                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
-                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
+                <label for="coordenadas">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="">
                 
-                <label for="codigo" class="ui-hidden-accessible">Número do Lacre:</label>
-                <input type="text" name="numero_lacre" id="numero_lacre" value="" placeholder="Número do Lacre" disabled>
+                <label for="codigo">Número do Lacre:</label>
+                <input type="text" name="numero_lacre" id="numero_lacre" value="" disabled>
                 
-                <label for="nome_perito" class="ui-hidden-accessible">Nome do Perito:</label>
-                <input type="text" name="nome_perito" id="nome_perito" value="" placeholder="Nome do Perito" disabled>
+                <label for="nome_perito">Nome do Perito:</label>
+                <input type="text" name="nome_perito" id="nome_perito" value="" disabled>
                 
-                <label for="unidade" class="ui-hidden-accessible">Unidade:</label>
-                <input type="text" name="unidade" id="unidade" value="" placeholder="Unidade" disabled>
+                <label for="unidade">Unidade:</label>
+                <input type="text" name="unidade" id="unidade" value="" disabled>
                 
-                <label for="obs" class="ui-hidden-accessible">Observações:</label>
-                <input type="text" name="obs" id="obs" value="" placeholder="Observaçoes">
+                <label for="obs">Observações:</label>
+                <input type="text" name="obs" id="obs" value="">
                 
-                <input type="hidden" name="imagem_uri" id="imagem_uri" value="" placeholder="Imagem URI">
+                <input type="hidden" name="imagem_uri" id="imagem_uri" value="">
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
-				<select name="evidencia_tipo_id" id="evidencia_tipo_id">
+				<label for="evidencia_tipo_id">Tipo de Vestígio</label>
+                <select name="evidencia_tipo_id" id="evidencia_tipo_id">
 					<option>Tipo de Vestígio</option>
 					<option value="1">Arma</option>
                     <option value="2">Digital</option>
@@ -270,26 +272,26 @@
                 <input type="hidden" name="id" id="id" value="">
                 <input type="hidden" name="novo" id="novo" value="1">
                 
-                <label for="data" class="ui-hidden-accessible">Número RE:</label>
-                <input type="text" name="codigo" id="codigo" value="" placeholder="Número RE">
+                <label for="codigo">Número RE:</label>
+                <input type="text" name="codigo" id="codigo" value="">
             
-                <label for="data" class="ui-hidden-accessible">Data:</label>
-                <input type="text" name="data" id="data" value="" placeholder="Data">
+                <label for="data">Data:</label>
+                <input type="text" name="data" id="data" value="">
                 
-                <label for="hora" class="ui-hidden-accessible">Hora:</label>
-                <input type="text" name="hora" id="hora" value="" placeholder="Hora">
+                <label for="hora">Hora:</label>
+                <input type="text" name="hora" id="hora" value="">
                 
-                <label for="endereco" class="ui-hidden-accessible">Endereço:</label>
-                <input type="text" name="endereco" id="endereco" value="" placeholder="Endereço">
+                <label for="endereco">Endereço:</label>
+                <input type="text" name="endereco" id="endereco" value="">
                 
-                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
-                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
+                <label for="coordenadas">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="">
                 
-                <label for="crime" class="ui-hidden-accessible">Descrição do Crime:</label>
-                <input type="text" name="crime" id="crime" value="" placeholder="Descrição do Crime">
+                <label for="crime">Descrição do Crime:</label>
+                <input type="text" name="crime" id="crime" value="">
                 
-                <label for="obs" class="ui-hidden-accessible">Observações:</label>
-                <input type="text" name="obs" id="obs" value="" placeholder="Observações">
+                <label for="obs">Observações:</label>
+                <input type="text" name="obs" id="obs" value="">
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
@@ -329,15 +331,16 @@
                 
                 <button class="capturar_imagem" data-img-uri="imagem_uri" data-img-vis="visualizacao_imagem">Capturar Imagem</button>
 
-                <label for="data" class="ui-hidden-accessible">Data:</label>
-                <input type="text" name="data" id="data" value="" placeholder="Data" disabled>
+                <label for="data">Data:</label>
+                <input type="text" name="data" id="data" value="" disabled>
                 
-                <label for="hora" class="ui-hidden-accessible">Hora:</label>
-                <input type="text" name="hora" id="hora" value="" placeholder="Hora" disabled>
+                <label for="hora">Hora:</label>
+                <input type="text" name="hora" id="hora" value="" disabled>
                 
-                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
-                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
+                <label for="coordenadas">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="">
                 
+                <label for="vestigio_tipo_id">Tipo de Vestígio:</label>
 				<select name="vestigio_tipo_id" id="vestigio_tipo_id">
 					<option>Tipo de Vestígio</option>
 					<option value="1">Arma</option>
@@ -348,13 +351,13 @@
                     <option value="6">Pneumático</option>
 				</select>
                 
-                <label for="descricao" class="ui-hidden-accessible">Descrição:</label>
-                <input type="text" name="descricao" id="descricao" value="" placeholder="Descrição">
+                <label for="descricao">Descrição:</label>
+                <input type="text" name="descricao" id="descricao" value="">
                 
-                <label for="localizacao" class="ui-hidden-accessible">Localização:</label>
-                <input type="text" name="localizacao" id="localizacao" value="" placeholder="Localização">
+                <label for="localizacao">Localização:</label>
+                <input type="text" name="localizacao" id="localizacao" value="">
                 
-                <input type="hidden" name="imagem_uri" id="imagem_uri" value="" placeholder="Imagem URI">
+                <input type="hidden" name="imagem_uri" id="imagem_uri" value="">
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
@@ -395,15 +398,16 @@
 					</li>
                 </ul>
 
-                <label for="data" class="ui-hidden-accessible">Data:</label>
-                <input type="text" name="data" id="data" value="" placeholder="Data" disabled>
+                <label for="data">Data:</label>
+                <input type="text" name="data" id="data" value="" disabled>
                 
-                <label for="hora" class="ui-hidden-accessible">Hora:</label>
-                <input type="text" name="hora" id="hora" value="" placeholder="Hora" disabled>
+                <label for="hora">Hora:</label>
+                <input type="text" name="hora" id="hora" value="" disabled>
                 
-                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
-                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
+                <label for="coordenadas">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="">
                 
+                <label for="testemunha_tipo_id">Tipo da Testemunha:</label>
 				<select name="testemunha_tipo_id" id="testemunha_tipo_id">
 					<option>Tipo da Testemunha</option>
 					<option value="1">Vítima</option>
@@ -415,13 +419,13 @@
                     <option value="7">Outros</option>
 				</select>
                 
-                <label for="declaracao" class="ui-hidden-accessible">Declaração:</label>
-                <input type="text" name="declaracao" id="declaracao" value="" placeholder="Declaração">
+                <label for="declaracao">Declaração:</label>
+                <input type="text" name="declaracao" id="declaracao" value="">
                 
-                <label for="localizacao" class="ui-hidden-accessible">Localização:</label>
-                <input type="text" name="localizacao" id="localizacao" value="" placeholder="Localização">
+                <label for="localizacao">Localização:</label>
+                <input type="text" name="localizacao" id="localizacao" value="">
                 
-                <input type="hidden" name="imagem_uri" id="imagem_uri" value="" placeholder="Imagem URI">
+                <input type="hidden" name="imagem_uri" id="imagem_uri" value="">
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
@@ -475,30 +479,32 @@
 					</li>
                 </ul>
 
-                <label for="bo_tc" class="ui-hidden-accessible">BO/TC:</label>
-                <input type="text" name="bo_tc" id="bo_tc" value="" placeholder="BO/TC">
+                <label for="bo_tc">BO/TC:</label>
+                <input type="text" name="bo_tc" id="bo_tc" value="">
                 
-                <label for="dp" class="ui-hidden-accessible">DP:</label>
-                <input type="text" name="dp" id="dp" value="" placeholder="DP">
+                <label for="dp">DP:</label>
+                <input type="text" name="dp" id="dp" value="">
                 
-                <label for="data_requisicao" class="ui-hidden-accessible">Data Requisição:</label>
-                <input type="text" name="data_requisicao" id="data_requisicao" value="" placeholder="Data Requisição">
+                <label for="data_requisicao">Data Requisição:</label>
+                <input type="text" name="data_requisicao" id="data_requisicao" value="">
                 
-                <label for="hora_requisicao" class="ui-hidden-accessible">Hora Requisição:</label>
-                <input type="text" name="hora_requisicao" id="hora_requisicao" value="" placeholder="Hora Requisição">
+                <label for="hora_requisicao">Hora Requisição:</label>
+                <input type="text" name="hora_requisicao" id="hora_requisicao" value="">
                 
-                <label for="data_atendimento" class="ui-hidden-accessible">Data Atendimento:</label>
-                <input type="text" name="data_atendimento" id="data_atendimento" value="" placeholder="Data Atendimento">
+                <label for="data_atendimento">Data Atendimento:</label>
+                <input type="text" name="data_atendimento" id="data_atendimento" value="">
                 
-                <label for="hora_atendimento" class="ui-hidden-accessible">Hora Atendimento:</label>
-                <input type="text" name="hora_atendimento" id="hora_atendimento" value="" placeholder="Hora Atendimento">
+                <label for="hora_atendimento">Hora Atendimento:</label>
+                <input type="text" name="hora_atendimento" id="hora_atendimento" value="">
                 
+                <label for="preservacao">Preservação:</label>
 				<select name="preservacao" id="preservacao" data-native-menu="false">
 					<option>Preservação</option>
 					<option value="S">Sim</option>
                     <option value="N">Não</option>
 				</select>
                 
+                <label for="cidade_id">Cidade:</label>
 				<select name="cidade_id" id="cidade_id" data-native-menu="false">
 					<option>Cidade</option>
 					<option value="1">SBC</option>
@@ -506,26 +512,26 @@
                     <option value="3">DDA</option>
 				</select>
                 
-                <label for="logradouro" class="ui-hidden-accessible">Logradouro:</label>
-                <input type="text" name="logradouro" id="logradouro" value="" placeholder="Logradouro">
+                <label for="logradouro">Logradouro:</label>
+                <input type="text" name="logradouro" id="logradouro" value="">
                 
-                <label for="numero" class="ui-hidden-accessible">Número:</label>
-                <input type="text" name="numero" id="numero" value="" placeholder="Número">
+                <label for="numero">Número:</label>
+                <input type="text" name="numero" id="numero" value="">
                 
-                <label for="complemento" class="ui-hidden-accessible">Complemento:</label>
-                <input type="text" name="complemento" id="complemento" value="" placeholder="Complemento">
+                <label for="complemento">Complemento:</label>
+                <input type="text" name="complemento" id="complemento" value="">
                 
-                <label for="bairro" class="ui-hidden-accessible">Bairro:</label>
-                <input type="text" name="bairro" id="bairro" value="" placeholder="Bairro">
+                <label for="bairro">Bairro:</label>
+                <input type="text" name="bairro" id="bairro" value="">
 
-                <label for="coordenadas" class="ui-hidden-accessible">Coordenadas do GPS:</label>
-                <input type="text" name="coordenadas" id="coordenadas" value="" placeholder="Coordenadas do GPS">
+                <label for="coordenadas">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="">
                 
-                <label for="obs" class="ui-hidden-accessible">Observações:</label>
-                <input type="text" name="obs" id="obs" value="" placeholder="Observações">
+                <label for="obs">Observações:</label>
+                <input type="text" name="obs" id="obs" value="">
                 
-                <label for="hipoteses" class="ui-hidden-accessible">Hipóteses:</label>
-                <input type="text" name="hipoteses" id="hipoteses" value="" placeholder="Hipóteses">
+                <label for="hipoteses">Hipóteses:</label>
+                <input type="text" name="hipoteses" id="hipoteses" value="">
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
@@ -560,6 +566,7 @@
 					</li>
                 </ul>
                 
+                <label for="limite_id">Limite Externo Vencido:</label>
 				<select name="limite_id" id="limite_id">
 					<option>Limite Externo Vencido</option>
 					<option value="1">Frontal</option>
@@ -575,7 +582,8 @@
 				<img style="display:block;width:100%;" id="visualizacao_imagem1" src="" />
 				<img style="display:none;" id="largeImage1" src="" />
 
-				<select name="escalada_id" id="escalada_id">
+				<label for="escalada_id">Escalada:</label>
+                <select name="escalada_id" id="escalada_id">
 					<option>Escalada</option>
 					<option value="1">0 Vestígios</option>
                     <option value="2">Menor 1.00 m</option>
@@ -585,6 +593,7 @@
                     <option value="6">Maior 3 m</option>
 				</select>
                 
+                <label for="modo_escalada_id">Modo de Escalada:</label>
 				<select name="modo_escalada_id" id="modo_escalada_id">
 					<option>Modo de Escalada</option>
 					<option value="1">0 Vestígios</option>
@@ -595,6 +604,7 @@
                     <option value="6">Outro</option>
 				</select>
                 
+                <label for="rompimento_id">Rompimento de Obstáculos:</label>
 				<select name="rompimento_id" id="rompimento_id">
 					<option>Rompimento de Obstáculos</option>
 					<option value="1">0 Vestígios</option>
@@ -611,6 +621,7 @@
                     <option value="12">Outros</option> 
 				</select>
                 
+                <label for="modo_rompimento_id">Modo do Rompimento:</label>
 				<select name="modo_rompimento_id" id="modo_rompimento_id">
 					<option>Modo do Rompimento</option>
 					<option value="1">0 Vestígios</option>
@@ -621,6 +632,7 @@
                     <option value="6">Outros</option>
 				</select>
                 
+                <label for="chave_falsa_id">Uso de Chave Falsa:</label>
 				<select name="chave_falsa_id" id="chave_falsa_id">
 					<option>Uso de Chave Falsa</option>
 					<option value="1">0 Vestígios</option>
@@ -630,11 +642,11 @@
                     <option value="5">Outros</option>
 				</select>
                 
-                <label for="obs" class="ui-hidden-accessible">Observações:</label>
-                <input type="text" name="obs" id="obs" value="" placeholder="Observações">
+                <label for="obs">Observações:</label>
+                <input type="text" name="obs" id="obs" value="">
                 
-                <label for="hipoteses" class="ui-hidden-accessible">Hipóteses:</label>
-                <input type="text" name="hipoteses" id="hipoteses" value="" placeholder="Hipóteses">
+                <label for="hipoteses">Hipóteses:</label>
+                <input type="text" name="hipoteses" id="hipoteses" value="">
                 
                 <button class="capturar_imagem" data-img-uri="imagem2_uri" data-img-vis="visualizacao_imagem2">Capturar Imagem</button>
                 
@@ -677,6 +689,7 @@
                 	<li data-role="list-divider">Residência</li>
                 </ul>
                 
+                <label for="res_pri_comodo_id">1o. Cômodo Invadido:</label>
 				<select name="res_pri_comodo_id" id="res_pri_comodo_id">
 					<option>1o. Cômodo Invadido</option>
 					<option value="1">0 Vestígios</option>
@@ -687,6 +700,7 @@
                     <option value="6">Outro</option>
 				</select>
                 
+                <label for="res_atuacao_id">Atuação do Invasor:</label>
 				<select name="res_atuacao_id" id="res_atuacao_id">
 					<option>Atuação do Invasor</option>
 					<option value="1">0 Vestígios</option>
@@ -708,6 +722,7 @@
 				<img style="display:block;width:100%;" id="res_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="res_largeImage2" src="" />
                 
+                <label for="res_outro_comodo_id">Outros Cômodos Invadidos:</label>
 				<select name="res_outro_comodo_id" id="res_outro_comodo_id">
 					<option>Outros Cômodos Invadidos</option>
 					<option value="1">0 Vestígios</option>
@@ -722,6 +737,7 @@
                 	<li data-role="list-divider">Comércio</li>
                 </ul>
                 
+                <label for="com_pri_comodo_id">1o. Cômodo Invadido:</label>
 				<select name="com_pri_comodo_id" id="com_pri_comodo_id">
 					<option>1o. Cômodo Invadido</option>
 					<option value="1">0 Vestígios</option>
@@ -732,6 +748,7 @@
                     <option value="6">Outro</option>
 				</select>
                 
+                <label for="com_atuacao_id">Atuação do Invasor:</label>
 				<select name="com_atuacao_id" id="com_atuacao_id">
 					<option>Atuação do Invasor</option>
 					<option value="1">0 Vestígios</option>
@@ -752,7 +769,8 @@
 				<input type="hidden" name="com_imagem2_uri" id="com_imagem2_uri" value="" placeholder="Imagem URI">
 				<img style="display:block;width:100%;" id="com_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="com_largeImage2" src="" />
-                                
+
+				<label for="com_outro_comodo_id">Outros Cômodos Invadidos:</label>
 				<select name="com_outro_comodo_id" id="com_outro_comodo_id">
 					<option>Outros Cômodos Invadidos</option>
 					<option value="1">0 Vestígios</option>
@@ -767,6 +785,7 @@
                 	<li data-role="list-divider">Indústria</li>
                 </ul>
                 
+                <label for="ind_pri_comodo_id">1o. Cômodo Invadido:</label>
 				<select name="ind_pri_comodo_id" id="ind_pri_comodo_id">
 					<option>1o. Cômodo Invadido</option>
 					<option value="1">0 Vestígios</option>
@@ -777,6 +796,7 @@
                     <option value="6">Outro</option>
 				</select>
                 
+                <label for="ind_atuacao_id">Atuação do Invasor:</label>
 				<select name="ind_atuacao_id" id="ind_atuacao_id">
 					<option>Atuação do Invasor</option>
 					<option value="1">0 Vestígios</option>
@@ -798,6 +818,7 @@
 				<img style="display:block;width:100%;" id="ind_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="ind_largeImage2" src="" />
                 
+                <label for="ind_outro_comodo_id">Outros Cômodos Invadidos:</label>
 				<select name="ind_outro_comodo_id" id="ind_outro_comodo_id">
 					<option>Outros Cômodos Invadidos</option>
 					<option value="1">0 Vestígios</option>
@@ -812,6 +833,7 @@
                 	<li data-role="list-divider">Escola</li>
                 </ul>
                 
+                <label for="esco_pri_comodo_id">1o. Cômodo Invadido:</label>
 				<select name="esco_pri_comodo_id" id="esco_pri_comodo_id">
 					<option>1o. Cômodo Invadido</option>
 					<option value="1">0 Vestígios</option>
@@ -822,6 +844,7 @@
                     <option value="6">Outro</option>
 				</select>
                 
+                <label for="esco_atuacao_id">Atuação do Invasor:</label>
 				<select name="esco_atuacao_id" id="esco_atuacao_id">
 					<option>Atuação do Invasor</option>
 					<option value="1">0 Vestígios</option>
@@ -843,6 +866,7 @@
 				<img style="display:block;width:100%;" id="esco_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="esco_largeImage2" src="" />
                 
+                <label for="esco_outro_comodo_id">Outros Cômodos Invadidos:</label>
 				<select name="esco_outro_comodo_id" id="esco_outro_comodo_id">
 					<option>Outros Cômodos Invadidos</option>
 					<option value="1">0 Vestígios</option>
@@ -857,6 +881,7 @@
                 	<li data-role="list-divider">Escritório</li>
                 </ul>
                 
+                <label for="escr_pri_comodo_id">1o. Cômodo Invadido:</label>
 				<select name="escr_pri_comodo_id" id="escr_pri_comodo_id">
 					<option>1o. Cômodo Invadido</option>
 					<option value="1">0 Vestígios</option>
@@ -867,6 +892,7 @@
                     <option value="6">Outro</option>
 				</select>
                 
+                <label for="escr_atuacao_id">Atuação do Invasor:</label>
 				<select name="escr_atuacao_id" id="escr_atuacao_id">
 					<option>Atuação do Invasor</option>
 					<option value="1">0 Vestígios</option>
@@ -888,6 +914,7 @@
 				<img style="display:block;width:100%;" id="escr_visualizacao_imagem2" src="" />
 				<img style="display:none;" id="escr_largeImage2" src="" />
                 
+                <label for="escr_outro_comodo_id">Outros Cômodos Invadidos:</label>
 				<select name="escr_outro_comodo_id" id="escr_outro_comodo_id">
 					<option>Outros Cômodos Invadidos</option>
 					<option value="1">0 Vestígios</option>
@@ -898,11 +925,11 @@
                     <option value="6">Outro</option>
 				</select>
                 
-                <label for="obs" class="ui-hidden-accessible">Observações:</label>
-                <input type="text" name="obs" id="obs" value="" placeholder="Observações">
+                <label for="obs">Observações:</label>
+                <input type="text" name="obs" id="obs" value="">
                 
-                <label for="hipoteses" class="ui-hidden-accessible">Hipóteses:</label>
-                <input type="text" name="hipoteses" id="hipoteses" value="" placeholder="Hipóteses">
+                <label for="hipoteses">Hipóteses:</label>
+                <input type="text" name="hipoteses" id="hipoteses" value="">
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a"><button data-theme="b" id="btn_acesso_coisa_salvar">Salvar</button></div>
@@ -935,6 +962,7 @@
 					</li>
                 </ul>
                 
+                <label for="tipo_busca_id">Tipo de Busca do Invasor:</label>
 				<select name="tipo_busca_id" id="tipo_busca_id">
 					<option>Tipo de Busca do Invasor</option>
 					<option value="1">0 Vestígios</option>
@@ -942,6 +970,7 @@
                     <option value="3">Não Organizada</option>
 				</select>
                 
+                <label for="visibilidade_id">Visibilidade da Coisa Furtada:</label>
 				<select name="visibilidade_id" id="visibilidade_id">
 					<option>Visibilidade da Coisa Furtada</option>
 					<option value="1">Imediata</option>
@@ -951,6 +980,7 @@
                     <option value="5">Dissimulada</option>
 				</select>
                 
+                <label for="tipo_principal_id">Tipo Principal da Coisa Furtada:</label>
 				<select name="tipo_principal_id" id="tipo_principal_id">
 					<option>Tipo Principal da Coisa Furtada</option>
 					<option value="1">Jóias</option>
@@ -967,6 +997,7 @@
                     <option value="12">Outros</option>
 				</select>
                 
+                <label for="tipo_secundario_id">Tipo Secundário da Coisa Furtada:</label>
 				<select name="tipo_secundario_id" id="tipo_secundario_id">
 					<option>Tipo Secundário da Coisa Furtada</option>
 					<option value="1">Jóias</option>
@@ -984,6 +1015,7 @@
                     <option value="13">Outros</option>
 				</select>
                 
+                <label for="dimensao_id">Maior Dimensão:</label>
 				<select name="dimensao_id" id="dimensao_id">
 					<option>Maior Dimensão</option>
 					<option value="1">Menor 0.1 m</option>
@@ -994,6 +1026,7 @@
                     <option value="6">Maior 1.51 m</option>
 				</select>
                 
+                <label for="peso_id">Peso Total:</label>
 				<select name="peso_id" id="peso_id">
 					<option>Peso Total</option>
 					<option value="1">Menor 0.20 Kg</option>
@@ -1004,6 +1037,7 @@
                     <option value="6">Maior 60.00 Kg</option>
 				</select>
                 
+                <label for="transporte_id">Mecanismo de Transporte:</label>
 				<select name="transporte_id" id="transporte_id">
 					<option>Mecanismo de Transporte</option>
 					<option value="1">Manual</option>
@@ -1015,6 +1049,7 @@
                     <option value="7">Outros</option>
 				</select>
                 
+                <label for="vestigios_id">Vestígios Encontrados:</label>
 				<select name="vestigios_id" id="vestigios_id">
 					<option>Vestígios Encontrados</option>
 					<option value="1">0 Vestígios</option>
@@ -1026,6 +1061,7 @@
                     <option value="7">Outros</option>
 				</select>
                 
+                <label for="fluidos_id">Fluídos Corpóreos:</label>
 				<select name="fluidos_id" id="fluidos_id">
 					<option>Fluídos Corpóreos</option>
 					<option value="1">0 Vestígios</option>
@@ -1036,15 +1072,172 @@
                     <option value="6">Outros</option>
 				</select>
                 
-                <label for="obs" class="ui-hidden-accessible">Observações:</label>
-                <input type="text" name="obs" id="obs" value="" placeholder="Observações">
+                <label for="obs">Observações:</label>
+                <input type="text" name="obs" id="obs" value="">
                 
-                <label for="hipoteses" class="ui-hidden-accessible">Hipóteses:</label>
-                <input type="text" name="hipoteses" id="hipoteses" value="" placeholder="Hipóteses">
+                <label for="hipoteses">Hipóteses:</label>
+                <input type="text" name="hipoteses" id="hipoteses" value="">
                 
 				<div class="ui-grid-a">
 					<div class="ui-block-a"><button data-theme="b" id="btn_carac_coisa_salvar">Salvar</button></div>
 					<div class="ui-block-b"><button data-theme="d" id="btn_carac_coisa_limpar">Limpar</button></div>
+				</div><!-- /grid-a -->
+
+			</form>
+            
+		</div><!-- /content -->
+	</div><!-- /page -->
+    
+	<div data-role="page" id="formulario_carac_vitima" data-theme="a">
+
+		<div data-role="header">
+			<a href="#" data-rel="back" data-icon="arrow-l">Voltar</a>
+			<h1>Características da Vítima</h1>
+		</div><!-- /header -->
+
+		<div data-role="content">
+
+        	<form action="teste" method="post" id="carac_vitima_form" name="carac_vitima_form">
+
+                <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
+                <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="re_id" id="re_id" value="">
+                
+                <ul data-role="listview" style="margin-bottom:20px">
+                	<li data-role="list-divider">
+						<h2 id="re_codigo"></h2>
+					</li>
+                </ul>
+                
+                <label for="imovel_tipo_id">Tipo do Imóvel:</label>
+				<select name="imovel_tipo_id" id="imovel_tipo_id">
+					<option>Tipo do Imóvel</option>
+					<option value="1">Residência</option>
+                    <option value="2">Comércio</option>
+                    <option value="3">Não Indústria</option>
+                    <option value="4">Escola</option>
+                    <option value="5">Escritório</option>
+                    <option value="6">Outros</option>
+				</select>
+                
+                <label for="trafego_veiculos_id">Situação do Tráfego de Veículos:</label>
+				<select name="trafego_veiculos_id" id="trafego_veiculos_id">
+					<option>Situação ao Tráfego de Veículos</option>
+					<option value="1">Ordinário</option>
+                    <option value="2">Reduzido</option>
+                    <option value="3">Intenso</option>
+                    <option value="4">Obstruído</option>
+                    <option value="5">Outros</option>
+				</select>
+                
+                <label for="trafego_pessoas_id">Situação do Tráfego de Pessoas:</label>
+				<select name="trafego_pessoas_id" id="trafego_pessoas_id">
+					<option>Situação ao Tráfego de Pessoas</option>
+					<option value="1">Ordinário</option>
+                    <option value="2">Reduzido</option>
+                    <option value="3">Intenso</option>
+                    <option value="4">Restrito</option>
+                    <option value="5">Proibido</option>
+                    <option value="6">Outros</option>
+				</select>
+                
+                <label for="iluminacao_id">Iluminação do Frontispício:</label>
+				<select name="iluminacao_id" id="iluminacao_id">
+					<option>Iluminação do Frontispício</option>
+					<option value="1">Ordinária</option>
+                    <option value="2">Fraca</option>
+                    <option value="3">Excelente</option>
+                    <option value="4">Inexistente</option>
+                    <option value="5">Outros</option>
+				</select>
+
+                <button class="capturar_imagem" data-img-uri="imagem1_uri" data-img-vis="visualizacao_imagem1">Foto Panorâmica</button>
+				<input type="hidden" name="imagem1_uri" id="imagem1_uri" value="" placeholder="Imagem URI">
+				<img style="display:block;width:100%;" id="visualizacao_imagem1" src="" />
+				<img style="display:none;" id="largeImage1" src="" />
+
+				<label for="vedacao_frontal_id">Vedação Frontal:</label>
+				<select name="vedacao_frontal_id" id="vedacao_frontal_id">
+					<option>Vedação Frontal</option>
+					<option value="1">Muro</option>
+                    <option value="2">Grades</option>
+                    <option value="3">Vitrine</option>
+                    <option value="4">Cerca Arame</option>
+                    <option value="5">Cerca Viva</option>
+                    <option value="6">Inexistente</option>
+                    <option value="7">Outros</option>
+				</select>
+                
+                <label for="ofendiculas_id">Ofendículas:</label>
+				<select name="ofendiculas_id" id="ofendiculas_id">
+					<option>Ofendículas</option>
+					<option value="1">Inexistente</option>
+                    <option value="2">Lanças</option>
+                    <option value="3">Vidros</option>
+                    <option value="4">Fios Elétricos</option>
+                    <option value="5">C. Espinhos</option>
+                    <option value="6">Outros</option>
+				</select>
+                
+                <label for="defesas_id">Defesas:</label>
+				<select name="defesas_id" id="defesas_id">
+					<option>Defesas</option>
+					<option value="1">Inexistentes</option>
+                    <option value="2">Cachorro</option>
+                    <option value="3">Circuito TV</option>
+                    <option value="4">Alarme</option>
+                    <option value="5">Vigias</option>
+                    <option value="6">Outros</option>
+				</select>
+                
+                <label for="construcao_id">Construção:</label>
+				<select name="construcao_id" id="construcao_id">
+					<option>Construção</option>
+					<option value="1">Térrea</option>
+                    <option value="2">Sobrado</option>
+                    <option value="3">Rústica</option>
+                    <option value="4">Aglomerado</option>
+                    <option value="5">Galpão Industrial</option>
+                    <option value="6">Galpão Oficina</option>
+                    <option value="7">Prédio Comercial</option>
+                    <option value="8">Prédio Público</option>
+                    <option value="9">Outros</option>
+				</select>
+
+                <button class="capturar_imagem" data-img-uri="imagem2_uri" data-img-vis="visualizacao_imagem2">Foto Panorâmica</button>
+				<input type="hidden" name="imagem2_uri" id="imagem2_uri" value="" placeholder="Imagem URI">
+				<img style="display:block;width:100%;" id="visualizacao_imagem2" src="" />
+				<img style="display:none;" id="largeImage2" src="" />
+                
+                <label for="dimensao_frontal_id">Dimensão Frontal:</label>
+				<select name="dimensao_frontal_id" id="dimensao_frontal_id">
+					<option>Dimensão Frontal</option>
+					<option value="1">0.0 a 5.1 m</option>
+                    <option value="2">5.1 a 10.0 m</option>
+                    <option value="3">10.1 a 20.0 m</option>
+                    <option value="4">Maior que 20.1 m</option>
+                    <option value="5">Outros</option>
+				</select>
+                
+                <label for="ocupacao_id">Ocupação:</label>
+				<select name="ocupacao_id" id="ocupacao_id">
+					<option>Ocupação</option>
+					<option value="1">Permanente</option>
+                    <option value="2">H. Comercial</option>
+                    <option value="3">Desocupado</option>
+                    <option value="4">Deso H. Comercial</option>
+                    <option value="5">Outros</option>
+				</select>
+
+                <label for="obs">Observações:</label>
+                <input type="text" name="obs" id="obs" value="">
+                
+                <label for="hipoteses">Hipóteses:</label>
+                <input type="text" name="hipoteses" id="hipoteses" value="">
+                
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><button data-theme="b" id="btn_carac_vitima_salvar">Salvar</button></div>
+					<div class="ui-block-b"><button data-theme="d" id="btn_carac_vitima_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
 
 			</form>
@@ -1066,8 +1259,8 @@
                 <input type="hidden" name="operacao_bd" id="operacao_bd" value="editar">
                 <input type="hidden" name="id" id="id" value="">
                 
-                <label for="url_servidor" class="ui-hidden-accessible">URL Servidor:</label>
-                <input type="text" name="url_servidor" id="url_servidor" value="" placeholder="URL Servidor">
+                <label for="url_servidor">URL Servidor:</label>
+                <input type="text" name="url_servidor" id="url_servidor" value="">
                 
 				<div class="ui-grid-a">
 					<div class="ui-block-a"><button data-theme="b" id="btn_config_salvar">Salvar</button></div>
