@@ -113,32 +113,79 @@ function transmitir_dados() {
 					}
 				});
 				get_acesso_local_re(re[i].id, function(acesso_local) {
-
+					if (acesso_local) {
+						$.ajax({
+							url: url_servidor,
+							data: {acao: 'acesso_local', dados : acesso_local},
+							dataType: 'jsonp',
+							jsonp: 'callback',
+							success: function(resultado) {
+								console.log(resultado.mensagem);
+								console.log(resultado.registro);
+							},
+							error: function (xhr, textStatus, thrownError) {
+								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+							}
+						});
+					}
 				});
 				get_administrativa(re[i].id, function(administrativa) {
-				
+					if (administrativa) {
+						$.ajax({
+							url: url_servidor,
+							data: {acao: 'administrativa', dados : administrativa},
+							dataType: 'jsonp',
+							jsonp: 'callback',
+							success: function(resultado) {
+								console.log(resultado.mensagem);
+								console.log(resultado.registro);
+							},
+							error: function (xhr, textStatus, thrownError) {
+								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+							}
+						});
+					}
 				});
 				get_carac_coisa_re(re[i].id, function(carac_coisa) {
-				
+					if (carac_coisa) {
+						$.ajax({
+							url: url_servidor,
+							data: {acao: 'carac_coisa', dados : carac_coisa},
+							dataType: 'jsonp',
+							jsonp: 'callback',
+							success: function(resultado) {
+								console.log(resultado.mensagem);
+								console.log(resultado.registro);
+							},
+							error: function (xhr, textStatus, thrownError) {
+								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+							}
+						});
+					}
 				});
 				get_carac_vitima_re(re[i].id, function(carac_vitima) {
-				
+					if (carac_vitima) {
+						$.ajax({
+							url: url_servidor,
+							data: {acao: 'carac_vitima', dados : carac_vitima},
+							dataType: 'jsonp',
+							jsonp: 'callback',
+							success: function(resultado) {
+								console.log(resultado.mensagem);
+								console.log(resultado.registro);
+							},
+							error: function (xhr, textStatus, thrownError) {
+								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+							}
+						});
+					}
 				});
 			}
 		});
-		/*$.ajax({
-			url: url_servidor,
-			data: {nome : 'Harllei Mazetti'},
-			dataType: 'jsonp',
-			jsonp: 'callback',
-			jsonpCallback: 'resultado_sincronizar',
-			success: function(){},
-			error: function(){}
-		});*/
 	});
 }
 
-function sincronizar() {
+function sincronizar() { 
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
 		$.ajax({
