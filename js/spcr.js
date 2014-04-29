@@ -104,11 +104,12 @@ function transmitir_dados() {
 							dataType: 'jsonp',
 							jsonp: 'callback',
 							success: function(resultado) {
-								console.log(resultado.mensagem);
-								console.log(resultado.registro);
+								//console.log(resultado.mensagem);
+								//console.log(resultado.registro);
+								toast(resultado.mensagem);
 							},
 							error: function (xhr, textStatus, thrownError) {
-								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
@@ -122,11 +123,12 @@ function transmitir_dados() {
 							dataType: 'jsonp',
 							jsonp: 'callback',
 							success: function(resultado) {
-								console.log(resultado.mensagem);
-								console.log(resultado.registro);
+								//console.log(resultado.mensagem);
+								//console.log(resultado.registro);
+								toast(resultado.mensagem);
 							},
 							error: function (xhr, textStatus, thrownError) {
-								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
@@ -140,11 +142,12 @@ function transmitir_dados() {
 							dataType: 'jsonp',
 							jsonp: 'callback',
 							success: function(resultado) {
-								console.log(resultado.mensagem);
-								console.log(resultado.registro);
+								//console.log(resultado.mensagem);
+								//console.log(resultado.registro);
+								toast(resultado.mensagem);
 							},
 							error: function (xhr, textStatus, thrownError) {
-								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
@@ -158,11 +161,12 @@ function transmitir_dados() {
 							dataType: 'jsonp',
 							jsonp: 'callback',
 							success: function(resultado) {
-								console.log(resultado.mensagem);
-								console.log(resultado.registro);
+								//console.log(resultado.mensagem);
+								//console.log(resultado.registro);
+								toast(resultado.mensagem);
 							},
 							error: function (xhr, textStatus, thrownError) {
-								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
@@ -176,11 +180,12 @@ function transmitir_dados() {
 							dataType: 'jsonp',
 							jsonp: 'callback',
 							success: function(resultado) {
-								console.log(resultado.mensagem);
-								console.log(resultado.registro);
+								//console.log(resultado.mensagem);
+								//console.log(resultado.registro);
+								toast(resultado.mensagem);
 							},
 							error: function (xhr, textStatus, thrownError) {
-								console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+								//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 								toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
 							}
 						});
