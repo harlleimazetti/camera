@@ -16,6 +16,9 @@
     <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
 	<gap:plugin name="org.apache.cordova.core.camera" />
 	<gap:plugin name="org.apache.cordova.core.geolocation" />
+	<gap:plugin name="org.apache.cordova.file" />
+	<gap:plugin name="org.apache.cordova.file-transfer" />
+
 
     <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="debug-server" required="true">

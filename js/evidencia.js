@@ -333,6 +333,13 @@ $(document).on('click', '#btn_evidencia_salvar', function(event)
 	});
 });
 
+$(document).on('click', '#btn_evidencia_transmitir', function(event)
+{
+	event.preventDefault();
+	var imagem_uri = $("#evidencia_form #imagem_uri").val();
+	transmitir_imagem(imagem_uri, 1);
+});
+
 $(document).on('click', '#btn_evidencia_limpar', function(event)
 {
 	event.preventDefault();

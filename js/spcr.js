@@ -89,6 +89,246 @@ $(document).on('click', '#menu_sincronizar', function(event)
 	transmitir_dados();
 });
 
+function transmitir_imagem(imagem_uri, id) {
+	alert(imagem_uri);
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		var options	= new FileUploadOptions();
+		options.fileKey	= "file";
+		options.fileName = "nome_arquivo";
+		options.mimeType = "image/jpeg";
+		//options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+	
+		var params = new Object();
+		params.id = id;
+	
+		options.params = params;
+		options.chunkedMode = false;
+	
+		var ft = new FileTransfer();
+		ft.upload(imagem_uri, url_servidor, win, fail, options);
+	});
+}
+ 
+function win(r) {
+	console.log("Code = " + r.responseCode);
+	console.log("Response = " + r.response);
+	console.log("Sent = " + r.bytesSent);
+	alert(r.response);
+}
+ 
+function fail(error) {
+	alert("An error has occurred: Code = " + error.code);
+}
+
+function transmitir_acesso_coisa() {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_acesso_coisa_re(re[i].id, function(acesso_coisa) {
+			if (acesso_coisa) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'acesso_coisa', dados : acesso_coisa},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
+function transmitir_acesso_local() {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_acesso_local_re(re[i].id, function(acesso_local) {
+			if (acesso_local) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'acesso_local', dados : acesso_local},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
+function transmitir_administrativa() {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_administrativa(re[i].id, function(administrativa) {
+			if (administrativa) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'administrativa', dados : administrativa},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
+function transmitir_carac_coisa() {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_carac_coisa_re(re[i].id, function(carac_coisa) {
+			if (carac_coisa) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'carac_coisa', dados : carac_coisa},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
+function transmitir_carac_vitima() {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_carac_vitima_re(re[i].id, function(carac_vitima) {
+			if (carac_vitima) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'carac_vitima', dados : carac_vitima},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
+function transmitir_evidencia() {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_all_evidencia_t(function(evidencia) {
+			if (evidencia) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'evidencia', dados : evidencia},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
+function transmitir_informe() {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_all_informe_t(function(informe) {
+			if (informe) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'informe', dados : informe},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
+function transmitir_vestigio() {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_all_vestigio_t(function(vestigio) {
+			if (vestigio) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'vestigio', dados : vestigio},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
 function transmitir_dados() {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {

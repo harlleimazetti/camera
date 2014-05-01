@@ -227,7 +227,7 @@
                 <label for="obs">Observações:</label>
                 <input type="text" name="obs" id="obs" value="">
                 
-                <input type="hidden" name="imagem_uri" id="imagem_uri" value="">
+                <input type="text" name="imagem_uri" id="imagem_uri" value="">
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
@@ -244,9 +244,10 @@
                 
                 <button class="capturar_imagem" data-img-uri="imagem_uri" data-img-vis="visualizacao_imagem">Capturar Imagem</button>
 
-				<div class="ui-grid-a">
+				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_evidencia_salvar">Salvar</button></div>
-					<div class="ui-block-b"><button data-theme="d" id="btn_evidencia_limpar">Limpar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_evidencia_transmitir">Transmitir Dados</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_evidencia_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
 
 				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
