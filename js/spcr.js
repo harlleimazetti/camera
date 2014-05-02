@@ -437,7 +437,7 @@ function transmitir_dados() {
 							if (evidencia) {
 								$.ajax({
 									url: url_servidor,
-									data: {acao: 'evidencia', dados : evidencia},
+									data: {acao: 'evidencia_t', dados : evidencia},
 									dataType: 'jsonp',
 									jsonp: 'callback',
 									success: function(resultado) {
@@ -457,7 +457,7 @@ function transmitir_dados() {
 							if (informe) {
 								$.ajax({
 									url: url_servidor,
-									data: {acao: 'informe', dados : informe},
+									data: {acao: 'informe_t', dados : informe},
 									dataType: 'jsonp',
 									jsonp: 'callback',
 									success: function(resultado) {
@@ -477,7 +477,7 @@ function transmitir_dados() {
 							if (vestigio) {
 								$.ajax({
 									url: url_servidor,
-									data: {acao: 'vestigio', dados : vestigio},
+									data: {acao: 'vestigio_t', dados : vestigio},
 									dataType: 'jsonp',
 									jsonp: 'callback',
 									success: function(resultado) {
