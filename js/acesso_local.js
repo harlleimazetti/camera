@@ -98,6 +98,24 @@ function get_acesso_local_re(re_id, fn)
 	});
 }
 
+function get_last_acesso_local(fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM acesso_local ORDER BY id DESC LIMIT 1";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var acesso_local = new Object();
+				var row = result.rows.item(0);
+				acesso_local.id	= row.id;
+				fn(acesso_local);
+			}
+		});
+	});
+}
+
 function salvar_acesso_local(acesso_local, operacao_bd, fn)
 {
 	db.transaction(function (tx)
@@ -271,8 +289,22 @@ $(document).on('click', '#btn_acesso_local_salvar', function(event)
 	var dados = $("#acesso_local_form").serializeJSON();
 	salvar_acesso_local(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
-		history.back();
+		if (dados.operacao_bd == 'novo') {
+			get_last_acesso_local(function(acesso_local) {
+				var id = acesso_local.id;
+				$('#acesso_local_form #operacao_bd').val('editar');
+				$('#acesso_local_form #id').val(id);
+			});
+		}
+		//history.back();
 	});
+});
+
+$(document).on('click', '#btn_acesso_local_transmitir', function(event)
+{
+	event.preventDefault();
+	var id = $("#acesso_local_form #id").val();
+	transmitir_acesso_local(id);
 });
 
 $(document).on('click', '#btn_acesso_local_limpar', function(event)

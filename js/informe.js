@@ -108,6 +108,24 @@ function get_no_informe(re_id, fn)
 	});
 }
 
+function get_last_informe(fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM informe ORDER BY id DESC LIMIT 1";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var informe = new Object();
+				var row = result.rows.item(0);
+				informe.id = row.id;
+				fn(informe);
+			}
+		});
+	});
+}
+
 function salvar_informe(informe, operacao_bd, fn)
 {
 	db.transaction(function (tx)
@@ -287,8 +305,22 @@ $(document).on('click', '#btn_informe_salvar', function(event)
 	var dados = $("#informe_form").serializeJSON();
 	salvar_informe(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
-		history.back();
+		if (dados.operacao_bd == 'novo') {
+			get_last_informe(function(informe) {
+				var id = informe.id;
+				$('#informe_form #operacao_bd').val('editar');
+				$('#informe_form #id').val(id);
+			});
+		}
+		//history.back();
 	});
+});
+
+$(document).on('click', '#btn_informe_transmitir', function(event)
+{
+	event.preventDefault();
+	var id = $("#informe_form #id").val();
+	transmitir_informe(id);
 });
 
 $(document).on('click', '#btn_informe_limpar', function(event)

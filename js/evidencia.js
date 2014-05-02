@@ -114,6 +114,24 @@ function get_no_evidencia(re_id, fn)
 	});
 }
 
+function get_last_evidencia(fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM evidencia ORDER BY id DESC LIMIT 1";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var evidencia = new Object();
+				var row = result.rows.item(0);
+				evidencia.id = row.id;
+				fn(evidencia);
+			}
+		});
+	});
+}
+
 function salvar_evidencia(evidencia, operacao_bd, fn)
 {
 	db.transaction(function (tx)
@@ -319,25 +337,22 @@ $(document).on('click', '#btn_evidencia_salvar', function(event)
 	var dados = $("#evidencia_form").serializeJSON();
 	salvar_evidencia(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
-		history.back();
-		/*setTimeout(function() {
-			var resp = confirm('Inserir novo registro?');
-			if (resp == true) {
-				sessionStorage.evidencia_id = 0;
-				sessionStorage.operacao_bd = 'novo';
-				$.mobile.changePage( "#evidencia_formulario", {reloadPage : true} );
-			} else {
-				$.mobile.changePage( "#evidencia_lista", {transition : 'slide', reverse : true} );
-			}
-		}, 3000);*/
+		if (dados.operacao_bd == 'novo') {
+			get_last_evidencia(function(evidencia) {
+				var id = evidencia.id;
+				$('#evidencia_form #operacao_bd').val('editar');
+				$('#evidencia_form #id').val(id);
+			});
+		}
+		//history.back();
 	});
 });
 
 $(document).on('click', '#btn_evidencia_transmitir', function(event)
 {
 	event.preventDefault();
-	var imagem_uri = $("#evidencia_form #imagem_uri").val();
-	transmitir_imagem(imagem_uri, 1);
+	var id = $("#evidencia_form #id").val();
+	transmitir_evidencia(id);
 });
 
 $(document).on('click', '#btn_evidencia_limpar', function(event)

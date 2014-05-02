@@ -107,6 +107,24 @@ function get_administrativa_re(re_id, fn)
 	});
 }
 
+function get_last_administrativa(fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM administrativa ORDER BY id DESC LIMIT 1";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var administrativa = new Object();
+				var row = result.rows.item(0);
+				administrativa.id = row.id;
+				fn(administrativa);
+			}
+		});
+	});
+}
+
 function salvar_administrativa(administrativa, operacao_bd, fn)
 {
 	db.transaction(function (tx)
@@ -301,8 +319,22 @@ $(document).on('click', '#btn_administrativa_salvar', function(event)
 	var dados = $("#administrativa_form").serializeJSON();
 	salvar_administrativa(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
-		history.back();
+		if (dados.operacao_bd == 'novo') {
+			get_last_administrativa(function(administrativa) {
+				var id = administrativa.id;
+				$('#administrativa_form #operacao_bd').val('editar');
+				$('#administrativa_form #id').val(id);
+			});
+		}
+		//history.back();
 	});
+});
+
+$(document).on('click', '#btn_administrativa_transmitir', function(event)
+{
+	event.preventDefault();
+	var id = $("#administrativa_form #id").val();
+	transmitir_administrativa(id);
 });
 
 $(document).on('click', '#btn_administrativa_limpar', function(event)

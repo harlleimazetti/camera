@@ -35,7 +35,8 @@ db.transaction (function (transaction)
 	var sql = "CREATE TABLE IF NOT EXISTS carac_coisa " +
 		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
 		"re_id INTEGER, " +
-		"visibilidade_id INTEGER, " +
+		"tipo_busca_id INTEGER, " + 
+		"visibilidade_id INTEGER, " + 
 		"tipo_principal_id INTEGER, " +
 		"tipo_secundario_id INTEGER, " +
 		"dimensao_id INTEGER, " +

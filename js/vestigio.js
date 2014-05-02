@@ -108,6 +108,24 @@ function get_no_vestigio(re_id, fn)
 	});
 }
 
+function get_last_vestigio(fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM vestigio ORDER BY id DESC LIMIT 1";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var vestigio = new Object();
+				var row = result.rows.item(0);
+				vestigio.id	= row.id;
+				fn(vestigio);
+			}
+		});
+	});
+}
+
 function salvar_vestigio(vestigio, operacao_bd, fn)
 {
 	db.transaction(function (tx)
@@ -287,8 +305,22 @@ $(document).on('click', '#btn_vestigio_salvar', function(event)
 	var dados = $("#vestigio_form").serializeJSON();
 	salvar_vestigio(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
-		history.back();
+		if (dados.operacao_bd == 'novo') {
+			get_last_vestigio(function(vestigio) {
+				var id = vestigio.id;
+				$('#vestigio_form #operacao_bd').val('editar');
+				$('#vestigio_form #id').val(id);
+			});
+		}
+		//history.back();
 	});
+});
+
+$(document).on('click', '#btn_vestigio_transmitir', function(event)
+{
+	event.preventDefault();
+	var id = $("#vestigio_form #id").val();
+	transmitir_vestigio(id);
 });
 
 $(document).on('click', '#btn_vestigio_limpar', function(event)

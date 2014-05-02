@@ -15,6 +15,7 @@ function get_all_carac_coisa(fn)
 					carac_coisa[i] = new Object();
 					carac_coisa[i].id					= row.id;
 					carac_coisa[i].re_id				= row.re_id;
+					carac_coisa[i].tipo_busca_id		= row.tipo_busca_id;
 					carac_coisa[i].visibilidade_id		= row.visibilidade_id;
 					carac_coisa[i].tipo_principal_id	= row.tipo_principal_id;
 					carac_coisa[i].tipo_secundario_id	= row.tipo_secundario_id;
@@ -45,6 +46,7 @@ function get_carac_coisa(id, fn)
 				var row = result.rows.item(0);
 				carac_coisa.id					= row.id;
 				carac_coisa.re_id				= row.re_id;
+				carac_coisa.tipo_busca_id		= row.tipo_busca_id;
 				carac_coisa.visibilidade_id		= row.visibilidade_id;
 				carac_coisa.tipo_principal_id	= row.tipo_principal_id;
 				carac_coisa.tipo_secundario_id	= row.tipo_secundario_id;
@@ -74,6 +76,7 @@ function get_carac_coisa_re(re_id, fn)
 				var row = result.rows.item(0);
 				carac_coisa.id					= row.id;
 				carac_coisa.re_id				= row.re_id;
+				carac_coisa.tipo_busca_id		= row.tipo_busca_id;
 				carac_coisa.visibilidade_id		= row.visibilidade_id;
 				carac_coisa.tipo_principal_id	= row.tipo_principal_id;
 				carac_coisa.tipo_secundario_id	= row.tipo_secundario_id;
@@ -92,6 +95,24 @@ function get_carac_coisa_re(re_id, fn)
 	});
 }
 
+function get_last_carac_coisa(fn)
+{
+	db.transaction(function (tx)
+	{
+		var sql = "SELECT * FROM carac_coisa ORDER BY id DESC LIMIT 1";
+		tx.executeSql (sql, undefined, function (tx, result)
+		{
+			if (result.rows.length)
+			{
+				var carac_coisa = new Object();
+				var row = result.rows.item(0);
+				carac_coisa.id = row.id;
+				fn(carac_coisa);
+			}
+		});
+	});
+}
+
 function salvar_carac_coisa(carac_coisa, operacao_bd, fn)
 {
 	db.transaction(function (tx)
@@ -100,6 +121,7 @@ function salvar_carac_coisa(carac_coisa, operacao_bd, fn)
 		{
 			var sql = "INSERT INTO carac_coisa (" +
 					"re_id, " + 
+					"tipo_busca_id, " + 
 					"visibilidade_id, " + 
 					"tipo_principal_id, " + 
 					"tipo_secundario_id, " + 
@@ -112,6 +134,7 @@ function salvar_carac_coisa(carac_coisa, operacao_bd, fn)
 					"hipoteses " + 
 				") VALUES ( " +
 					"'" + carac_coisa.re_id + "', " + 
+					"'" + carac_coisa.tipo_busca_id + "', " + 
 					"'" + carac_coisa.visibilidade_id + "', " + 
 					"'" + carac_coisa.tipo_principal_id + "', " + 
 					"'" + carac_coisa.tipo_secundario_id + "', " + 
@@ -126,6 +149,7 @@ function salvar_carac_coisa(carac_coisa, operacao_bd, fn)
 		} else {
 			var sql = "UPDATE carac_coisa SET " +
 						"re_id = '" + carac_coisa.re_id + "', " +  
+						"tipo_busca_id = '" + carac_coisa.tipo_busca_id + "', " + 
 						"visibilidade_id = '" + carac_coisa.visibilidade_id + "', " + 
 						"tipo_principal_id = '" + carac_coisa.tipo_principal_id + "', " + 
 						"tipo_secundario_id = '" + carac_coisa.tipo_secundario_id + "', " + 
@@ -211,6 +235,7 @@ $(document).on('pagebeforeshow', '#formulario_carac_coisa', function()
 			$('#carac_coisa_form #id').val(0);
 			$('#carac_coisa_form #re_id').val(sessionStorage.re_id);
 			$('#carac_coisa_form #re_codigo').html('RE: ' + sessionStorage.re_codigo);
+			$('#carac_coisa_form #tipo_busca_id').val(0).selectmenu('refresh');
 			$('#carac_coisa_form #visibilidade_id').val(0).selectmenu('refresh');
 			$('#carac_coisa_form #tipo_principal_id').val(0).selectmenu('refresh');
 			$('#carac_coisa_form #tipo_secundario_id').val(0).selectmenu('refresh');
@@ -228,6 +253,7 @@ $(document).on('pagebeforeshow', '#formulario_carac_coisa', function()
 			$('#carac_coisa_form #re_id').val(sessionStorage.re_id);
 			$('#carac_coisa_form #re_codigo').html('RE: ' + sessionStorage.re_codigo);
 			$('#carac_coisa_form #res_pri_comodo_id').val(carac_coisa.res_pri_comodo_id).selectmenu('refresh');
+			$('#carac_coisa_form #tipo_busca_id').val(carac_coisa.tipo_busca_id).selectmenu('refresh');
 			$('#carac_coisa_form #visibilidade_id').val(carac_coisa.visibilidade_id).selectmenu('refresh');
 			$('#carac_coisa_form #tipo_principal_id').val(carac_coisa.tipo_principal_id).selectmenu('refresh');
 			$('#carac_coisa_form #tipo_secundario_id').val(carac_coisa.tipo_secundario_id).selectmenu('refresh');
@@ -255,13 +281,28 @@ $(document).on('click', '#btn_carac_coisa_salvar', function(event)
 	var dados = $("#carac_coisa_form").serializeJSON();
 	salvar_carac_coisa(dados, dados.operacao_bd, function(resultado) {
 		toast(resultado.mensagem);
-		history.back();
+		if (dados.operacao_bd == 'novo') {
+			get_last_carac_coisa(function(carac_coisa) {
+				var id = carac_coisa.id;
+				$('#carac_coisa_form #operacao_bd').val('editar');
+				$('#carac_coisa_form #id').val(id);
+			});
+		}
+		//history.back();
 	});
+});
+
+$(document).on('click', '#btn_carac_coisa_transmitir', function(event)
+{
+	event.preventDefault();
+	var id = $("#carac_coisa_form #id").val();
+	transmitir_carac_coisa(id);
 });
 
 $(document).on('click', '#btn_carac_coisa_limpar', function(event)
 {
 	event.preventDefault();
+			$('#carac_coisa_form #tipo_busca_id').val(0).selectmenu('refresh');
 			$('#carac_coisa_form #visibilidade_id').val(0).selectmenu('refresh');
 			$('#carac_coisa_form #tipo_principal_id').val(0).selectmenu('refresh');
 			$('#carac_coisa_form #tipo_secundario_id').val(0).selectmenu('refresh');

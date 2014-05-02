@@ -90,7 +90,7 @@
 				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_sincronizar">
                 	<i class="icon-refresh icone"></i>
 					<a href="#">
-						<p>Sincronizar</p>
+						<p>Transmitir Dados</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
@@ -246,7 +246,7 @@
 
 				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_evidencia_salvar">Salvar</button></div>
-                    <div class="ui-block-b"><button data-theme="e" id="btn_evidencia_transmitir">Transmitir Dados</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_evidencia_transmitir">Transmitir</button></div>
 					<div class="ui-block-c"><button data-theme="d" id="btn_evidencia_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
 
@@ -362,9 +362,10 @@
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
-				<div class="ui-grid-a">
+				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_vestigio_salvar">Salvar</button></div>
-					<div class="ui-block-b"><button data-theme="d" id="btn_vestigio_limpar">Limpar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_vestigio_transmitir">Transmitir</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_vestigio_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
 
 				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
@@ -430,9 +431,10 @@
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
-				<div class="ui-grid-a">
+				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_informe_salvar">Salvar</button></div>
-					<div class="ui-block-b"><button data-theme="d" id="btn_informe_limpar">Limpar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_informe_transmitir">Transmitir</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_informe_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
             
 			</form>
@@ -536,9 +538,10 @@
                 
                 <button id="capturar_coordenadas">Coordenadas GPS</button>
 
-				<div class="ui-grid-a">
+				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_administrativa_salvar">Salvar</button></div>
-					<div class="ui-block-b"><button data-theme="d" id="btn_administrativa_limpar">Limpar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_administrativa_transmitir">Transmitir</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_administrativa_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
             
 			</form>
@@ -651,9 +654,10 @@
                 
                 <button class="capturar_imagem" data-img-uri="imagem2_uri" data-img-vis="visualizacao_imagem2">Capturar Imagem</button>
                 
-				<div class="ui-grid-a">
+				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_acesso_local_salvar">Salvar</button></div>
-					<div class="ui-block-b"><button data-theme="d" id="btn_acesso_local_limpar">Limpar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_acesso_local_transmitir">Transmitir</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_acesso_local_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
 
 				<input type="hidden" name="imagem2_uri" id="imagem2_uri" value="" placeholder="Imagem URI">
@@ -932,9 +936,10 @@
                 <label for="hipoteses">Hipóteses:</label>
                 <input type="text" name="hipoteses" id="hipoteses" value="">
 
-				<div class="ui-grid-a">
+				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_acesso_coisa_salvar">Salvar</button></div>
-					<div class="ui-block-b"><button data-theme="d" id="btn_acesso_coisa_limpar">Limpar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_acesso_coisa_transmitir">Transmitir</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_acesso_coisa_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
                 
 			</form>
@@ -953,9 +958,9 @@
 
         	<form action="teste" method="post" id="carac_coisa_form" name="carac_coisa_form">
 
-                <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
-                <input type="hidden" name="id" id="id" value="">
-                <input type="hidden" name="re_id" id="re_id" value="">
+                <input type="text" name="operacao_bd" id="operacao_bd" value="">
+                <input type="text" name="id" id="id" value="">
+                <input type="text" name="re_id" id="re_id" value="">
                 
                 <ul data-role="listview" style="margin-bottom:20px">
                 	<li data-role="list-divider">
@@ -1079,9 +1084,10 @@
                 <label for="hipoteses">Hipóteses:</label>
                 <input type="text" name="hipoteses" id="hipoteses" value="">
                 
-				<div class="ui-grid-a">
+				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_carac_coisa_salvar">Salvar</button></div>
-					<div class="ui-block-b"><button data-theme="d" id="btn_carac_coisa_limpar">Limpar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_carac_coisa_transmitir">Transmitir</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_carac_coisa_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
 
 			</form>
@@ -1236,9 +1242,10 @@
                 <label for="hipoteses">Hipóteses:</label>
                 <input type="text" name="hipoteses" id="hipoteses" value="">
                 
-				<div class="ui-grid-a">
+				<div class="ui-grid-b">
 					<div class="ui-block-a"><button data-theme="b" id="btn_carac_vitima_salvar">Salvar</button></div>
-					<div class="ui-block-b"><button data-theme="d" id="btn_carac_vitima_limpar">Limpar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_carac_vitima_transmitir">Transmitir</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_carac_vitima_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
 
 			</form>

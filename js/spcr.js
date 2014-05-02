@@ -114,18 +114,18 @@ function win(r) {
 	console.log("Code = " + r.responseCode);
 	console.log("Response = " + r.response);
 	console.log("Sent = " + r.bytesSent);
-	alert(r.response);
+	toast(r.response);
 }
  
 function fail(error) {
-	alert("An error has occurred: Code = " + error.code);
+	toast("Ocorreu um erro: Código = " + error.code);
 }
 
-function transmitir_acesso_coisa() {
+function transmitir_acesso_coisa(id) {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
-		get_acesso_coisa_re(re[i].id, function(acesso_coisa) {
+		get_acesso_coisa(id, function(acesso_coisa) {
 			if (acesso_coisa) {
 				$.ajax({
 					url: url_servidor,
@@ -147,11 +147,11 @@ function transmitir_acesso_coisa() {
 	});
 }
 
-function transmitir_acesso_local() {
+function transmitir_acesso_local(id) {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
-		get_acesso_local_re(re[i].id, function(acesso_local) {
+		get_acesso_local(id, function(acesso_local) {
 			if (acesso_local) {
 				$.ajax({
 					url: url_servidor,
@@ -173,11 +173,11 @@ function transmitir_acesso_local() {
 	});
 }
 
-function transmitir_administrativa() {
+function transmitir_administrativa(id) {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
-		get_administrativa(re[i].id, function(administrativa) {
+		get_administrativa(id, function(administrativa) {
 			if (administrativa) {
 				$.ajax({
 					url: url_servidor,
@@ -199,11 +199,11 @@ function transmitir_administrativa() {
 	});
 }
 
-function transmitir_carac_coisa() {
+function transmitir_carac_coisa(id) {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
-		get_carac_coisa_re(re[i].id, function(carac_coisa) {
+		get_carac_coisa(id, function(carac_coisa) {
 			if (carac_coisa) {
 				$.ajax({
 					url: url_servidor,
@@ -225,11 +225,11 @@ function transmitir_carac_coisa() {
 	});
 }
 
-function transmitir_carac_vitima() {
+function transmitir_carac_vitima(id) {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
-		get_carac_vitima_re(re[i].id, function(carac_vitima) {
+		get_carac_vitima(id, function(carac_vitima) {
 			if (carac_vitima) {
 				$.ajax({
 					url: url_servidor,
@@ -251,11 +251,11 @@ function transmitir_carac_vitima() {
 	});
 }
 
-function transmitir_evidencia() {
+function transmitir_evidencia(id) {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
-		get_all_evidencia_t(function(evidencia) {
+		get_evidencia(id, function(evidencia) {
 			if (evidencia) {
 				$.ajax({
 					url: url_servidor,
@@ -277,11 +277,11 @@ function transmitir_evidencia() {
 	});
 }
 
-function transmitir_informe() {
+function transmitir_informe(id) {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
-		get_all_informe_t(function(informe) {
+		get_informe(id, function(informe) {
 			if (informe) {
 				$.ajax({
 					url: url_servidor,
@@ -303,11 +303,11 @@ function transmitir_informe() {
 	});
 }
 
-function transmitir_vestigio() {
+function transmitir_vestigio(id) {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
-		get_all_vestigio_t(function(vestigio) {
+		get_vestigio(id, function(vestigio) {
 			if (vestigio) {
 				$.ajax({
 					url: url_servidor,
@@ -374,7 +374,7 @@ function transmitir_dados() {
 						});
 					}
 				});
-				get_administrativa(re[i].id, function(administrativa) {
+				get_administrativa_re(re[i].id, function(administrativa) {
 					if (administrativa) {
 						$.ajax({
 							url: url_servidor,
