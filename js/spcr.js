@@ -89,18 +89,20 @@ $(document).on('click', '#menu_sincronizar', function(event)
 	transmitir_dados();
 });
 
-function transmitir_imagem(imagem_uri, id) {
+function transmitir_imagem(imagem_uri, tb, id) {
 	alert(imagem_uri);
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
 		var options	= new FileUploadOptions();
-		options.fileKey	= "file";
+		options.fileKey	= "arquivo";
 		options.fileName = "nome_arquivo";
 		options.mimeType = "image/jpeg";
 		//options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
 	
 		var params = new Object();
 		params.id = id;
+		params.tb = tb;
+		params.acao = 'upload_imagem';
 	
 		options.params = params;
 		options.chunkedMode = false;
@@ -265,6 +267,7 @@ function transmitir_evidencia(id) {
 					success: function(resultado) {
 						//console.log(resultado.mensagem);
 						//console.log(resultado.registro);
+						transmitir_imagem(evidencia.imagem_uri, 'evidencia', evidencia.id);
 						toast(resultado.mensagem);
 					},
 					error: function (xhr, textStatus, thrownError) {
