@@ -107,6 +107,10 @@ function transmitir_imagem(imagem_uri, tb, cp, id) {
 	
 		options.params = params;
 		options.chunkedMode = false;
+		
+		options.headers = {
+			Connection: "close"
+		};
 	
 		var ft = new FileTransfer();
 		ft.upload(imagem_uri, encodeURI(url_servidor), win, fail, options);
