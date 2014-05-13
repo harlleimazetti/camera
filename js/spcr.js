@@ -109,7 +109,7 @@ function transmitir_imagem(imagem_uri, tb, cp, id) {
 		options.chunkedMode = false;
 	
 		var ft = new FileTransfer();
-		ft.upload(imagem_uri, url_servidor, win, fail, options);
+		ft.upload(imagem_uri, encodeURI(url_servidor), win, fail, options);
 	});
 }
  
