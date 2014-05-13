@@ -90,7 +90,7 @@ $(document).on('click', '#menu_sincronizar', function(event)
 });
 
 function transmitir_imagem(imagem_uri, tb, cp, id) {
-	alert(imagem_uri + ', ' + tb + ', ' + cp + ', ' + id);
+	//alert(imagem_uri + ', ' + tb + ', ' + cp + ', ' + id);
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
 		var options	= new FileUploadOptions();
