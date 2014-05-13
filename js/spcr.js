@@ -89,19 +89,19 @@ $(document).on('click', '#menu_sincronizar', function(event)
 	transmitir_dados();
 });
 
-function transmitir_imagem(imagem_uri, tb, id) {
-	alert(imagem_uri);
+function transmitir_imagem(imagem_uri, tb, cp, id) {
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
 		var options	= new FileUploadOptions();
 		options.fileKey	= "arquivo";
-		options.fileName = "nome_arquivo";
 		options.mimeType = "image/jpeg";
-		//options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+		options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+		//options.fileName = "nome_arquivo";
 	
 		var params = new Object();
 		params.id = id;
 		params.tb = tb;
+		params.cp = cp;
 		params.acao = 'upload_imagem';
 	
 		options.params = params;
@@ -138,6 +138,16 @@ function transmitir_acesso_coisa(id) {
 						//console.log(resultado.mensagem);
 						//console.log(resultado.registro);
 						toast(resultado.mensagem);
+						transmitir_imagem(acesso_coisa.res_imagem1_uri, 'acesso_coisa', 'res_imagem1', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.res_imagem2_uri, 'acesso_coisa', 'res_imagem2', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.com_imagem1_uri, 'acesso_coisa', 'com_imagem1', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.com_imagem2_uri, 'acesso_coisa', 'com_imagem2', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.ind_imagem1_uri, 'acesso_coisa', 'ind_imagem1', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.ind_imagem2_uri, 'acesso_coisa', 'ind_imagem2', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.esco_imagem1_uri, 'acesso_coisa', 'esco_imagem1', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.esco_imagem2_uri, 'acesso_coisa', 'esco_imagem2', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.escr_imagem1_uri, 'acesso_coisa', 'escr_imagem1', acesso_coisa.id);
+						transmitir_imagem(acesso_coisa.escr_imagem2_uri, 'acesso_coisa', 'escr_imagem2', acesso_coisa.id);
 					},
 					error: function (xhr, textStatus, thrownError) {
 						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
@@ -164,6 +174,8 @@ function transmitir_acesso_local(id) {
 						//console.log(resultado.mensagem);
 						//console.log(resultado.registro);
 						toast(resultado.mensagem);
+						transmitir_imagem(acesso_local.imagem1_uri, 'acesso_local', 'imagem1', acesso_local.id);
+						transmitir_imagem(acesso_local.imagem2_uri, 'acesso_local', 'imagem2', acesso_local.id);
 					},
 					error: function (xhr, textStatus, thrownError) {
 						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
@@ -242,6 +254,8 @@ function transmitir_carac_vitima(id) {
 						//console.log(resultado.mensagem);
 						//console.log(resultado.registro);
 						toast(resultado.mensagem);
+						transmitir_imagem(carac_vitima.imagem1_uri, 'carac_vitima', 'imagem1', carac_vitima.id);
+						transmitir_imagem(carac_vitima.imagem2_uri, 'carac_vitima', 'imagem2', carac_vitima.id);
 					},
 					error: function (xhr, textStatus, thrownError) {
 						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
@@ -267,8 +281,8 @@ function transmitir_evidencia(id) {
 					success: function(resultado) {
 						//console.log(resultado.mensagem);
 						//console.log(resultado.registro);
-						transmitir_imagem(evidencia.imagem_uri, 'evidencia', evidencia.id);
 						toast(resultado.mensagem);
+						transmitir_imagem(evidencia.imagem_uri, 'evidencia', 'imagem', evidencia.id);
 					},
 					error: function (xhr, textStatus, thrownError) {
 						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
@@ -295,6 +309,7 @@ function transmitir_informe(id) {
 						//console.log(resultado.mensagem);
 						//console.log(resultado.registro);
 						toast(resultado.mensagem);
+						transmitir_imagem(informe.imagem_uri, 'informe', 'imagem', informe.id);
 					},
 					error: function (xhr, textStatus, thrownError) {
 						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
@@ -321,6 +336,7 @@ function transmitir_vestigio(id) {
 						//console.log(resultado.mensagem);
 						//console.log(resultado.registro);
 						toast(resultado.mensagem);
+						transmitir_imagem(vestigio.imagem_uri, 'vestigio', 'imagem', vestigio.id);
 					},
 					error: function (xhr, textStatus, thrownError) {
 						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
