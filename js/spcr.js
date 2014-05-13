@@ -96,7 +96,7 @@ function transmitir_imagem(imagem_uri, tb, cp, id) {
 		var options	= new FileUploadOptions();
 		options.fileKey	= "arquivo";
 		options.mimeType = "image/jpeg";
-		options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+		options.fileName = imagem_uri.substr(imageURI.lastIndexOf('/')+1);
 		//options.fileName = "nome_arquivo";
 	
 		var params = new Object();
