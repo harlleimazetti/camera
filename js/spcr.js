@@ -90,6 +90,7 @@ $(document).on('click', '#menu_sincronizar', function(event)
 });
 
 function transmitir_imagem(imagem_uri, tb, cp, id) {
+	alert(imagem_uri + ', ' + tb + ', ' + cp + ', ' + id);
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
 		var options	= new FileUploadOptions();
@@ -253,9 +254,9 @@ function transmitir_carac_vitima(id) {
 					success: function(resultado) {
 						//console.log(resultado.mensagem);
 						//console.log(resultado.registro);
-						toast(resultado.mensagem);
 						transmitir_imagem(carac_vitima.imagem1_uri, 'carac_vitima', 'imagem1', carac_vitima.id);
 						transmitir_imagem(carac_vitima.imagem2_uri, 'carac_vitima', 'imagem2', carac_vitima.id);
+						toast(resultado.mensagem);
 					},
 					error: function (xhr, textStatus, thrownError) {
 						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
