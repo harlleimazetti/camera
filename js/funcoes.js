@@ -34,6 +34,7 @@ function formata_data (data)
 
 function formata_data_db (data)
 {
+	console.log(data);
 	d = data.substring(0,2);
 	m = data.substring(3,5);
 	a = data.substring(6,10);

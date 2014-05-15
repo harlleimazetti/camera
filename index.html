@@ -87,10 +87,16 @@
 						<p>Configurações</p>
 					</a>
 				</li>
-				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_sincronizar">
+				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_transmitir_dados">
                 	<i class="icon-refresh icone"></i>
 					<a href="#">
 						<p>Transmitir Dados</p>
+					</a>
+				</li>
+				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_receber_dados">
+                	<i class="icon-refresh icone"></i>
+					<a href="#">
+						<p>Receber Dados</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
@@ -270,8 +276,11 @@
         	<form action="teste" method="post" id="re_form" name="re_form">
 
                 <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
-                <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="id1" id="id1" value="">
                 <input type="hidden" name="novo" id="novo" value="1">
+                
+                <label for="id">ID:</label>
+                <input type="text" name="id" id="id" value="">
                 
                 <label for="codigo">Número RE:</label>
                 <input type="text" name="codigo" id="codigo" value="">

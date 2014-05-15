@@ -18,7 +18,7 @@ function get_all_evidencia(fn)
 					evidencia[i].re_id				= row.re_id;
 					evidencia[i].numero_ordem		= row.numero_ordem;
 					evidencia[i].numero_lacre		= row.numero_lacre;
-					evidencia[i].data				= formata_data(row.data);
+					evidencia[i].data				= row.data;
 					evidencia[i].hora				= row.hora;
 					evidencia[i].nome_perito		= row.nome_perito;
 					evidencia[i].coordenadas		= row.coordenadas;
@@ -81,7 +81,7 @@ function get_evidencia(id, fn)
 				evidencia.re_id				= row.re_id;
 				evidencia.numero_ordem		= row.numero_ordem;
 				evidencia.numero_lacre		= row.numero_lacre;
-				evidencia.data				= formata_data(row.data);
+				evidencia.data				= row.data;
 				evidencia.hora				= row.hora;
 				evidencia.nome_perito		= row.nome_perito;
 				evidencia.coordenadas		= row.coordenadas;
@@ -205,7 +205,7 @@ function excluir_evidencia(id, fn)
 				evidencia.evidencia_tipo_id	= row.evidencia_tipo_id;
 				evidencia.re_id				= row.re_id;
 				evidencia.numero_lacre		= row.numero_lacre;
-				evidencia.data				= formata_data(row.data);
+				evidencia.data				= row.data;
 				evidencia.hora				= row.hora;
 				evidencia.nome_perito		= row.nome_perito;
 				evidencia.coordenadas		= row.coordenadas;
@@ -239,7 +239,7 @@ $(document).on('pageshow', '#evidencia_lista', function()
 	get_all_evidencia(function(evidencia) {
 		for (var i = 0; i < evidencia.length; i++)
 		{
-			output += '<li id="' + evidencia[i].id + '" data-id="' + evidencia[i].id + '"><a href="#"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].numero_lacre + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li id="' + evidencia[i].id + '" data-id="' + evidencia[i].id + '"><a href="#"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + formata_data(evidencia[i].data) + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].numero_lacre + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_evidencia').append(output).listview('refresh');
 	});
@@ -284,7 +284,7 @@ $(document).on('pagebeforeshow', '#evidencia_formulario', function()
 			$('#re_codigo').html('RE: ' + sessionStorage.re_codigo);
 			$('#numero_ordem_texto').html(evidencia.numero_ordem);
 			$('#evidencia_form #numero_ordem').val(evidencia.numero_ordem);
-			$('#evidencia_form #data').val(evidencia.data);
+			$('#evidencia_form #data').val(formata_data(evidencia.data));
 			$('#evidencia_form #hora').val(evidencia.hora);
 			$('#evidencia_form #numero_lacre').val(evidencia.numero_lacre);
 			$('#evidencia_form #nome_perito').val(evidencia.nome_perito);

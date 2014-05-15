@@ -17,7 +17,7 @@ function get_all_informe(fn)
 					informe[i].testemunha_tipo_id	= row.testemunha_tipo_id;
 					informe[i].re_id				= row.re_id;
 					informe[i].numero_ordem			= row.numero_ordem;
-					informe[i].data					= formata_data(row.data);
+					informe[i].data					= row.data;
 					informe[i].hora					= row.hora;
 					informe[i].coordenadas			= row.coordenadas;
 					informe[i].declaracao			= row.declaracao;
@@ -48,7 +48,7 @@ function get_all_informe_t(fn)
 					informe[i].testemunha_tipo_id	= row.testemunha_tipo_id;
 					informe[i].re_id				= row.re_id;
 					informe[i].numero_ordem			= row.numero_ordem;
-					informe[i].data					= formata_data(row.data);
+					informe[i].data					= row.data;
 					informe[i].hora					= row.hora;
 					informe[i].coordenadas			= row.coordenadas;
 					informe[i].declaracao			= row.declaracao;
@@ -76,7 +76,7 @@ function get_informe(id, fn)
 				informe.testemunha_tipo_id	= row.testemunha_tipo_id;
 				informe.re_id				= row.re_id;
 				informe.numero_ordem		= row.numero_ordem;
-				informe.data				= formata_data(row.data);
+				informe.data				= row.data;
 				informe.hora				= row.hora;
 				informe.coordenadas			= row.coordenadas;
 				informe.declaracao			= row.declaracao;
@@ -211,7 +211,7 @@ $(document).on('pageshow', '#informe_lista', function()
 	get_all_informe(function(informe) {
 		for (var i = 0; i < informe.length; i++)
 		{
-			output += '<li id="' + informe[i].id + '" data-id="' + informe[i].id + '"><a href="#"><h2>' + informe[i].localizacao + '</h2><p><strong>' + informe[i].data + ', ' + informe[i].hora + '</strong></p><p>' + informe[i].declaracao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li id="' + informe[i].id + '" data-id="' + informe[i].id + '"><a href="#"><h2>' + informe[i].localizacao + '</h2><p><strong>' + formata_data(informe[i].data) + ', ' + informe[i].hora + '</strong></p><p>' + informe[i].declaracao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_informe').append(output).listview('refresh');
 	});
@@ -256,7 +256,7 @@ $(document).on('pagebeforeshow', '#informe_formulario', function()
 			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
 			$('#numero_ordem_texto', $.mobile.activePage).html(informe.numero_ordem);
 			$('#informe_form #numero_ordem').val(informe.numero_ordem);
-			$('#informe_form #data').val(informe.data);
+			$('#informe_form #data').val(formata_data(informe.data));
 			$('#informe_form #hora').val(informe.hora);
 			$('#informe_form #coordenadas').val(informe.coordenadas);
 			$('#informe_form #declaracao').val(informe.declaracao);

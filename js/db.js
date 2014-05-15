@@ -271,10 +271,10 @@ db.transaction (function (transaction)
 	transaction.executeSql (sql, undefined, function() { }, error);
 	console.log(sql);
 	
-	var sql =	" INSERT INTO re (id, codigo, data, hora, endereco, coordenadas, crime, obs, novo) VALUES ('1', '99110033', '2014-03-10', '23:00:00', 'SCS Quadra 01 bloco M sala 930 - Asa Sul - Brasília', '-18.92424, -48.249893', 'Furto em Residência', 'Observações 1', '1')";
-	transaction.executeSql (sql, undefined, function() { }, error);
-	var sql =	" INSERT INTO re (id, codigo, data, hora, endereco, coordenadas, crime, obs, novo) VALUES ('2', '99110025', '2014-03-10', '23:15:00', 'SCS Quadra 01 bloco G sala 508 - Asa Sul - Brasília','-18.92424, -48.249893','Furto em Escritório','Observações 2', '0')";
-	transaction.executeSql (sql, undefined, function() { }, error);
+	//var sql =	" INSERT INTO re (id, codigo, data, hora, endereco, coordenadas, crime, obs, novo) VALUES ('1', '99110033', '2014-03-10', '23:00:00', 'SCS Quadra 01 bloco M sala 930 - Asa Sul - Brasília', '-18.92424, -48.249893', 'Furto em Residência', 'Observações 1', '1')";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	//var sql =	" INSERT INTO re (id, codigo, data, hora, endereco, coordenadas, crime, obs, novo) VALUES ('2', '99110025', '2014-03-10', '23:15:00', 'SCS Quadra 01 bloco G sala 508 - Asa Sul - Brasília','-18.92424, -48.249893','Furto em Escritório','Observações 2', '0')";
+	//transaction.executeSql (sql, undefined, function() { }, error);
 	
 });
 

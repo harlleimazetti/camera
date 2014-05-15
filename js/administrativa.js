@@ -18,9 +18,9 @@ function get_all_administrativa(fn)
 					administrativa[i].cidade_id			= row.cidade_id;
 					administrativa[i].bo_tc				= row.bo_tc;
 					administrativa[i].dp				= row.dp;
-					administrativa[i].data_requisicao	= formata_data(row.data_requisicao);
+					administrativa[i].data_requisicao	= row.data_requisicao;
 					administrativa[i].hora_requisicao	= row.hora_requisicao;
-					administrativa[i].data_atendimento	= formata_data(row.data_atendimento);
+					administrativa[i].data_atendimento	= row.data_atendimento;
 					administrativa[i].hora_atendimento	= row.hora_atendimento;
 					administrativa[i].preservacao		= row.preservacao;
 					administrativa[i].logradouro		= row.logradouro;
@@ -53,9 +53,9 @@ function get_administrativa(id, fn)
 				administrativa.cidade_id		= row.cidade_id;
 				administrativa.bo_tc			= row.bo_tc;
 				administrativa.dp				= row.dp;
-				administrativa.data_requisicao	= formata_data(row.data_requisicao);
+				administrativa.data_requisicao	= row.data_requisicao;
 				administrativa.hora_requisicao	= row.hora_requisicao;
-				administrativa.data_atendimento	= formata_data(row.data_atendimento);
+				administrativa.data_atendimento	= row.data_atendimento;
 				administrativa.hora_atendimento	= row.hora_atendimento;
 				administrativa.preservacao		= row.preservacao;
 				administrativa.logradouro		= row.logradouro;
@@ -87,9 +87,9 @@ function get_administrativa_re(re_id, fn)
 				administrativa.cidade_id		= row.cidade_id;
 				administrativa.bo_tc			= row.bo_tc;
 				administrativa.dp				= row.dp;
-				administrativa.data_requisicao	= formata_data(row.data_requisicao);
+				administrativa.data_requisicao	= row.data_requisicao;
 				administrativa.hora_requisicao	= row.hora_requisicao;
-				administrativa.data_atendimento	= formata_data(row.data_atendimento);
+				administrativa.data_atendimento	= row.data_atendimento;
 				administrativa.hora_atendimento	= row.hora_atendimento;
 				administrativa.preservacao		= row.preservacao;
 				administrativa.logradouro		= row.logradouro;
@@ -218,7 +218,7 @@ $(document).on('pageshow', '#administrativa_lista', function()
 	get_all_evidencia(function(evidencia) {
 		for (var i = 0; i < evidencia.length; i++)
 		{
-			output += '<li id="' + evidencia[i].id + '" data-id="' + evidencia[i].id + '"><a href="#"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + evidencia[i].data + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].numero_lacre + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li id="' + evidencia[i].id + '" data-id="' + evidencia[i].id + '"><a href="#"><h2>' + evidencia[i].nome_perito + '</h2><p><strong>' + formata_data(evidencia[i].data) + ', ' + evidencia[i].hora + '</strong></p><p>' + evidencia[i].obs + '</p><p class="ui-li-aside"><strong>' + evidencia[i].numero_lacre + '</strong></p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_evidencia').append(output).listview('refresh');
 	});
@@ -289,9 +289,9 @@ $(document).on('pagebeforeshow', '#formulario_administrativa', function()
 			$('#administrativa_form #re_codigo').html('RE: ' + sessionStorage.re_codigo);
 			$('#administrativa_form #bo_tc').val(administrativa.bo_tc);
 			$('#administrativa_form #dp').val(administrativa.dp);
-			$('#administrativa_form #data_requisicao').val(administrativa.data_requisicao);
+			$('#administrativa_form #data_requisicao').val(formata_data(administrativa.data_requisicao));
 			$('#administrativa_form #hora_requisicao').val(administrativa.hora_requisicao);
-			$('#administrativa_form #data_atendimento').val(administrativa.data_atendimento);
+			$('#administrativa_form #data_atendimento').val(formata_data(administrativa.data_atendimento));
 			$('#administrativa_form #hora_atendimento').val(administrativa.hora_atendimento);
 			$('#administrativa_form #preservacao').val(administrativa.preservacao).selectmenu('refresh');
 			$('#administrativa_form #logradouro').val(administrativa.logradouro);

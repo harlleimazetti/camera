@@ -84,9 +84,14 @@ function onGPSError(error) {
     toast('Erro: ' + error.code + ', Descrição: ' + error.message);
 }
 
-$(document).on('click', '#menu_sincronizar', function(event)
+$(document).on('click', '#menu_transmitir_dados', function(event)
 {
 	transmitir_dados();
+});
+
+$(document).on('click', '#menu_receber_dados', function(event)
+{
+	receber_dados();
 });
 
 function transmitir_imagem(imagem_uri, tb, cp, id) {
@@ -121,7 +126,7 @@ function win(r) {
 	console.log("Code = " + r.responseCode);
 	console.log("Response = " + r.response);
 	console.log("Sent = " + r.bytesSent);
-	toast(r.response);
+	//toast(r.response);
 }
  
 function fail(error) {
@@ -519,12 +524,43 @@ function transmitir_dados() {
 	});
 }
 
+function receber_dados() { 
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		$.ajax({
+			url: url_servidor,
+			data: {acao : 'receber_dados', dados : ''},
+			dataType: 'jsonp',
+			jsonp: 'callback',
+			success: function(resultado) {
+				if (resultado.status == 'ok') {
+					var n = resultado.registro.length;
+						if (n > 0) {
+							toast('Novo Registro de entrada!');
+							for (i = 0; i < n; i++) {
+								salvar_re(resultado.registro[i], 'novo', function(resultado) {});
+							}
+						} else {
+							toast('Não há novos registros.');
+						}
+				} else {
+					toast(resultado.mensagem);
+				}
+			},
+			error: function (xhr, textStatus, thrownError) {
+				//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+				toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+			}
+		});
+	});
+}
+
 function sincronizar() { 
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
 		$.ajax({
 			url: url_servidor,
-			data: {nome : 'Harllei Mazetti'},
+			data: {acao : 'sincronizar'},
 			dataType: 'jsonp',
 			jsonp: 'callback',
 			jsonpCallback: 'resultado_sincronizar',

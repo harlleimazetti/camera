@@ -14,7 +14,7 @@ function get_all_re(fn)
 					re[i] = new Object();
 					re[i].id			= row.id;
 					re[i].codigo		= row.codigo;
-					re[i].data			= formata_data(row.data);
+					re[i].data			= row.data;
 					re[i].hora			= row.hora;
 					re[i].endereco		= row.endereco;
 					re[i].coordenadas	= row.coordenadas;
@@ -41,7 +41,7 @@ function get_re(id, fn)
 				var row = result.rows.item(0);
 				re.id			= row.id;
 				re.codigo		= row.codigo;
-				re.data			= formata_data(row.data);
+				re.data			= row.data;
 				re.hora			= row.hora;
 				re.endereco		= row.endereco;
 				re.coordenadas	= row.coordenadas;
@@ -61,6 +61,7 @@ function salvar_re(re, operacao_bd, fn)
 		if (operacao_bd == 'novo')
 		{
 			var sql =	"INSERT INTO re (" +
+							"id, " + 
 							"codigo, " + 
 							"data, " + 
 							"hora, " + 
@@ -70,6 +71,7 @@ function salvar_re(re, operacao_bd, fn)
 							"obs, " + 
 							"novo " + 
 						") VALUES ( " +
+							"'" + re.id + "', " + 
 							"'" + re.codigo + "', " + 
 							"'" + formata_data_db(re.data) + "', " + 
 							"'" + re.hora + "', " + 
@@ -131,7 +133,7 @@ $(document).on('pageshow', '#re_lista', function()
 			} else {
 				data_theme = 'a';
 			}
-			output += '<li data-theme="' + data_theme + '" data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + re[i].data + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li data-theme="' + data_theme + '" data-id="' + re[i].id + '"><a href="#formulario"><h2>' + re[i].crime + '</h2><p><strong>' + formata_data(re[i].data) + ', ' + re[i].hora + '</strong></p><p>' + re[i].obs + '</p><p class="ui-li-aside"><strong>' + re[i].codigo + '</strong></p></a></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_re').append(output).listview('refresh');
 	});
@@ -144,6 +146,7 @@ $(document).on('click', '#lista_re li', function()
 	$(this).removeClass('ui-btn-up-b ui-btn-hover-b').addClass('ui-btn-up-a ui-btn-hover-a');
 	$('#lista_re').listview('refresh');
 	get_re(re_id, function(re) {
+		re.data = formata_data(re.data);
 		sessionStorage.re_id = re.id;
 		sessionStorage.re_codigo = re.codigo;
 		re.novo = '0';
@@ -179,7 +182,7 @@ $(document).on('pagebeforeshow', '#re_formulario', function()
 			$('#re_form #operacao_bd').val(operacao_bd);
 			$('#re_form #id').val(re.id);
 			$('#re_form #codigo').val(re.codigo);
-			$('#re_form #data').val(re.data);
+			$('#re_form #data').val(formata_data(re.data));
 			$('#re_form #hora').val(re.hora);
 			$('#re_form #endereco').val(re.endereco);
 			$('#re_form #coordenadas').val(re.coordenadas);

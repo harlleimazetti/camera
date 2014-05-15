@@ -17,7 +17,7 @@ function get_all_vestigio(fn)
 					vestigio[i].vestigio_tipo_id	= row.vestigio_tipo_id;
 					vestigio[i].re_id				= row.re_id;
 					vestigio[i].numero_ordem		= row.numero_ordem;
-					vestigio[i].data				= formata_data(row.data);
+					vestigio[i].data				= row.data;
 					vestigio[i].hora				= row.hora;
 					vestigio[i].coordenadas			= row.coordenadas;
 					vestigio[i].descricao			= row.descricao;
@@ -48,7 +48,7 @@ function get_all_vestigio_t(fn)
 					vestigio[i].vestigio_tipo_id	= row.vestigio_tipo_id;
 					vestigio[i].re_id				= row.re_id;
 					vestigio[i].numero_ordem		= row.numero_ordem;
-					vestigio[i].data				= formata_data(row.data);
+					vestigio[i].data				= row.data;
 					vestigio[i].hora				= row.hora;
 					vestigio[i].coordenadas			= row.coordenadas;
 					vestigio[i].descricao			= row.descricao;
@@ -76,7 +76,7 @@ function get_vestigio(id, fn)
 				vestigio.vestigio_tipo_id	= row.vestigio_tipo_id;
 				vestigio.re_id				= row.re_id;
 				vestigio.numero_ordem		= row.numero_ordem;
-				vestigio.data				= formata_data(row.data);
+				vestigio.data				= row.data;
 				vestigio.hora				= row.hora;
 				vestigio.coordenadas		= row.coordenadas;
 				vestigio.descricao			= row.descricao;
@@ -211,7 +211,7 @@ $(document).on('pageshow', '#vestigio_lista', function()
 	get_all_vestigio(function(vestigio) {
 		for (var i = 0; i < vestigio.length; i++)
 		{
-			output += '<li id="' + vestigio[i].id + '" data-id="' + vestigio[i].id + '"><a href="#"><h2>' + vestigio[i].localizacao + '</h2><p><strong>' + vestigio[i].data + ', ' + vestigio[i].hora + '</strong></p><p>' + vestigio[i].descricao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li id="' + vestigio[i].id + '" data-id="' + vestigio[i].id + '"><a href="#"><h2>' + vestigio[i].localizacao + '</h2><p><strong>' + formata_data(vestigio[i].data) + ', ' + vestigio[i].hora + '</strong></p><p>' + vestigio[i].descricao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_vestigio').append(output).listview('refresh');
 	});
@@ -256,7 +256,7 @@ $(document).on('pagebeforeshow', '#vestigio_formulario', function()
 			$('#re_codigo', $.mobile.activePage).html('RE: ' + sessionStorage.re_codigo);
 			$('#numero_ordem_texto', $.mobile.activePage).html(vestigio.numero_ordem);
 			$('#vestigio_form #numero_ordem').val(vestigio.numero_ordem);
-			$('#vestigio_form #data').val(vestigio.data);
+			$('#vestigio_form #data').val(formata_data(vestigio.data));
 			$('#vestigio_form #hora').val(vestigio.hora);
 			$('#vestigio_form #coordenadas').val(vestigio.coordenadas);
 			$('#vestigio_form #descricao').val(vestigio.descricao);
