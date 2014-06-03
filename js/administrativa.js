@@ -132,6 +132,7 @@ function salvar_administrativa(administrativa, operacao_bd, fn)
 		if (operacao_bd == 'novo')
 		{
 			var sql = "INSERT INTO administrativa (" +
+					"id, " + 
 					"re_id, " + 
 					"cidade_id, " + 
 					"bo_tc, " + 
@@ -149,6 +150,7 @@ function salvar_administrativa(administrativa, operacao_bd, fn)
 					"obs, " + 
 					"hipoteses " + 
 				") VALUES ( " +
+					"'" + administrativa.id + "', " + 
 					"'" + administrativa.re_id + "', " + 
 					"'" + administrativa.cidade_id + "', " + 
 					"'" + administrativa.bo_tc + "', " + 
