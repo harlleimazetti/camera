@@ -539,6 +539,7 @@ function receber_dados() {
 							toast('Novo Registro de entrada!');
 							for (i = 0; i < n; i++) {
 								salvar_re(resultado.registro[i], 'novo', function(resultado) {});
+								salvar_administrativa(resultado.administrativa[i], 'novo', function(resultado) {});
 							}
 						} else {
 							toast('Não há novos registros.');

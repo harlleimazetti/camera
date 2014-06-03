@@ -177,10 +177,10 @@ db.transaction (function (transaction)
 	transaction.executeSql (sql, undefined, function() { }, error);
 	console.log(sql);
 	
-	var sql = "INSERT INTO vestigio (id, vestigio_tipo_id, re_id, numero_ordem, data, hora, coordenadas, descricao, localizacao) VALUES ('1', '1', '1', '1', '2014-02-23','11:00:00','-18.92424, -48.249893','Descrição do vestígio 1.','Localização do vestígio 1') ";
-	transaction.executeSql (sql, undefined, function() { }, error);
-	var sql = "INSERT INTO vestigio (id, vestigio_tipo_id, re_id, numero_ordem, data, hora, coordenadas, descricao, localizacao) VALUES ('2', '2', '2', '1', '2014-02-24','19:00:00','-18.92424, -48.249893','Descrição do vestígio 2.','Localização do vestígio 2') ";
-	transaction.executeSql (sql, undefined, function() { }, error);
+	//var sql = "INSERT INTO vestigio (id, vestigio_tipo_id, re_id, numero_ordem, data, hora, coordenadas, descricao, localizacao) VALUES ('1', '1', '1', '1', '2014-02-23','11:00:00','-18.92424, -48.249893','Descrição do vestígio 1.','Localização do vestígio 1') ";
+	//transaction.executeSql (sql, undefined, function() { }, error);
+	//var sql = "INSERT INTO vestigio (id, vestigio_tipo_id, re_id, numero_ordem, data, hora, coordenadas, descricao, localizacao) VALUES ('2', '2', '2', '1', '2014-02-24','19:00:00','-18.92424, -48.249893','Descrição do vestígio 2.','Localização do vestígio 2') ";
+	//transaction.executeSql (sql, undefined, function() { }, error);
 	
 	//var sql = "DROP TABLE informe";
 	//transaction.executeSql (sql, undefined, function() { }, error);
@@ -263,7 +263,13 @@ db.transaction (function (transaction)
 		"codigo VARCHAR(50), " +
 		"data DATE, " +
 		"hora TIME, " +
-		"endereco VARCHAR(200), " +
+		"endereco VARCHAR(200), " + 
+		"logradouro VARCHAR(200), " + 
+		"numero VARCHAR(5), " + 
+		"complemento VARCHAR(200), " + 
+		"bairro VARCHAR(200), " + 
+		"cidade VARCHAR(200), " + 
+		"uf VARCHAR(200), " + 
 		"coordenadas VARCHAR(200), " +
 		"crime VARCHAR(200), " +
 		"obs TEXT, " +
