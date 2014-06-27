@@ -42,3 +42,43 @@
 	filter:Alpha(Opacity=80) !important;
 	opacity:.8 !important;
 }
+.item_desenho {
+	background-color:#FC3;
+	width:50px;
+	height:50px;
+	/*-webkit-transform:rotate(45deg);
+	transform:rotate(45deg);*/
+}
+.clear {
+	clear:both;	
+}
+#desenho_parametros {
+	padding-right:40px;
+	display:none;
+}
+#desenho_parametros .controle {
+	text-align:center;
+	float:right;
+	margin:10px;
+	width:150px;
+}
+#desenho_parametros .controle h2 {
+	position:absolute;
+	bottom:10px;
+	margin-left:45px;
+}
+#desenho_categorias {
+
+}
+#desenho_categorias .item {
+	padding:15px;
+	width:100px;
+	height:80px;
+	border:1px outset #666;
+	text-align:center;
+	color:#aaa;
+	display:inline-block;
+}
+#desenho_categorias .controle h2 {
+
+}
